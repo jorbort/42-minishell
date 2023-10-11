@@ -3,31 +3,35 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juan-anm <juan-anm@student.42barcel>       +#+  +:+       +#+        */
+/*   By: juan-anm <juan-anm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 14:39:17 by juan-anm          #+#    #+#             */
-/*   Updated: 2023/10/09 15:49:09 by juan-anm         ###   ########.fr       */
+/*   Updated: 2023/10/11 14:08:44 by juan-anm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <includes/minishell.h>
 
-int main(void)
+
+int main(int ac, char **av)
 {
 	
 	char *str;
-	int i = 0;
-	int f = 0;
+	(void) av;
+	t_lexer **lexe;
+
+	lexer = NULL;
+	if (ac != 1)
+		return (1);
 	while(42)
 	{
-		str = readline("	MiniShell: $>");
-		while (str[i])
+		str = readline(BLUE_T"\nMiniShell:" YELLOW_T" $>"RESET_COLOR);
+	
+		lexe = tokenizer(lexe, str);	
+		while (lexe->next != NULL)
 		{
-			if (str[i] == '"');
-					f++;
-		i++;
+			printf("%s\n", lexe->str);
+			lexe = lexe->next;
 		}
-		if (f != 2)
-			str = readline("	$>");
-
 	}
+	return (0);
 }
+

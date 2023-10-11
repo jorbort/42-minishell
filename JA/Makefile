@@ -1,8 +1,9 @@
 
 NAME = minishell 
 
-FLAGS = -Wall -Wextra -Werror 
-SRC =	src/main.c
+FLAGS = -Wall -Wextra -Werror -MMD 
+SRC =	src/main.c src/tokenizer/token_parser.c src/tokenizer/token_lst.c
+
 
 OBJS = $(SRC:.c=.o) 
 DEPS = $(SRC:.c=.d)
@@ -19,12 +20,12 @@ GREEN = \033[1;92m
 RED = \033[1;91m
 NC = \033[0m
 
-%.o: %.c $(PS) Makefile
-	@$(CC) $(CFLAGS) -MMD -g -I./ -c $< -o $@ -I$(READLINE_PATH)/include
+%.o: %.c $(MS) Makefile
+	@$(CC) $(FLAGS) -g -I./ -c $< -o $@ -I$(READLINE_PATH)/include
 
 all:
-	@$(MAKE) -C $(LIBFT_DIR)
-	@$(MAKE) -lreadline $(NAME)
+	@$(MAKE) -C $(LIBFT_DIR) --no-print-directory
+	@$(MAKE) -lreadline $(NAME) --no-print-directory
 
 $(NAME):: $(OBJS)
 	@$(CC) $(OBJS) $(LIBFT) -o $@ -L$(READLINE_PATH)/lib -lreadline
@@ -33,10 +34,9 @@ $(NAME):: $(OBJS)
 $(NAME)::
 	@echo -n
 
-
 clean:
-	@$(RM) $(OBJS) $(DEPS) 
-	@$(MAKE) clean -C $(LIBFT_DIR)
+	@$(RM) $(OBJS) $(DEPS) --no-print-directory
+	@$(MAKE) clean -C $(LIBFT_DIR) --no-print-directory 
 	@echo "$(RED)\nAll files deleted succesfully\n$(NC)"
 
 fclean: clean

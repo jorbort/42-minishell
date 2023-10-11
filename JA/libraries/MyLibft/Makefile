@@ -6,7 +6,7 @@
 #    By: juan-anm <juan-anm@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/09 11:15:53 by juan-anm          #+#    #+#              #
-#    Updated: 2023/06/02 13:21:51 by juan-anm         ###   ########.fr        #
+#    Updated: 2023/10/11 11:16:33 by juan-anm         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,6 +28,10 @@ SRCSPRINTF = ft_printf.c ft_printbase.c ft_printchars.c ft_printnum.c \
 
 INCLUDE = libft.h
 
+GREEN = \033[1;92m
+RED = \033[1;91m
+NC = \033[0m
+
 OBJS = $(SRCS:.c=.o)
 OBJSBONUS = $(SRCSBONUS:.c=.o)
 OBJSGNL = $(SRCSGNL:.c=.o)
@@ -42,19 +46,21 @@ DEPSPRINTF = $(SRCSPRINTF:.c=.d)
 %.o: %.c $(INCLUDE) Makefile
 	$(CC) $(CFLAGS) -MMD -I $(INCLUDE) -c $< -o $@
 	
-all: $(NAME)
+all: $(NAME) 
 
 $(NAME)::$(OBJS) $(OBJSBONUS) $(OBJSGNL) $(OBJSPRINTF)
-	ar crs $(NAME) $(OBJS) $(OBJSBONUS) $(OBJSGNL) $(OBJSPRINTF)
+	ar crs $(NAME) $(OBJS) $(OBJSBONUS) $(OBJSGNL) $(OBJSPRINTF) 
+	@echo "$(GREEN)MyLibft compiled$(NC)"
 
 $(NAME)::
-	@echo -n
+	@echo -n 
 
 clean:
-	$(RM) $(OBJS) $(DEPS) $(OBJSBONUS) $(DEPSBONUS) $(OBJSGNL) $(DEPSGNL) $(OBJSPRINTF) $(DEPSPRINTF)
+	$(RM) $(OBJS) $(DEPS) $(OBJSBONUS) $(DEPSBONUS) $(OBJSGNL) $(DEPSGNL) $(OBJSPRINTF) $(DEPSPRINTF) 
+	@echo "$(RED)MyLibft objects destroyed$(NC)"
 
 fclean: clean
-	$(RM) $(NAME) $(BNAME)
+	$(RM) $(NAME) $(BNAME) 
 
 re: fclean all
 
