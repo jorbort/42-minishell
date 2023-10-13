@@ -4,13 +4,12 @@ NAME = minishell
 FLAGS = -Wall -Wextra -Werror -MMD 
 SRC =	src/main.c src/tokenizer/token_parser.c src/tokenizer/token_lst.c
 
-
 OBJS = $(SRC:.c=.o) 
 DEPS = $(SRC:.c=.d)
 
 RM = rm -f
 
-MS = includes/minishell.h
+MS = ./includes/minishell.h
 LIBFT_DIR = libraries/MyLibft
 LIBFT =  libraries/MyLibft/libft.a
 LIBS = $(MS) $(LIBFT)
@@ -21,7 +20,7 @@ RED = \033[1;91m
 NC = \033[0m
 
 %.o: %.c $(MS) Makefile
-	@$(CC) $(FLAGS) -g -I./ -c $< -o $@ -I$(READLINE_PATH)/include
+	@$(CC) $(FLAGS) -g -I./includes -I./ -c $< -o $@ -I$(READLINE_PATH)/include
 
 all:
 	@$(MAKE) -C $(LIBFT_DIR) --no-print-directory

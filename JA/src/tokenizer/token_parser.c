@@ -6,34 +6,48 @@
 /*   By: juan-anm <juan-anm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 12:55:32 by juan-anm          #+#    #+#             */
-/*   Updated: 2023/10/11 14:07:54 by juan-anm         ###   ########.fr       */
+/*   Updated: 2023/10/13 12:01:25 by juan-anm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <includes/minishell.h>
+#include <minishell.h>
 
 t_lexer *tokenizer(t_lexer **lexer, char *str)
 {
 	char **split;
-	int j = -1;
+	int j = 0;
 	t_lexer *new;
 
 	split = ft_split(str, 32);
-/*	while(split[i])
-		i++;
-	//printf("%i\n", i);
-	lexer = malloc(i * sizeof(t_lexer));
-	while (split[j++])
-	{
-		lexer[j].str = split[j];
-		//printf("%s\n", lexer[j].str);
-	}
-*/
-	while (split[j++])
+	while (split[j])
 	{
 			new = lex_lstnew();
 			new->str = split[j];
+			new->i = j;
 			lex_lstadd_back(lexer, new);
+			j++;
 	}
-	return(lexer);
+	check_pipes(lexer);
+	return(*lexer);
+}
+
+void check_pipes(t_lexer **lexer)
+{
+	t_lexer *temp;
+
+	temp = *lexer;
+	while (temp != NULL)
+	{
+		if (!strncmp(temp->str, "|", 2))
+			temp->token = PIPE;
+		else if (!strncmp(temp->str, ">", 2))
+			temp->token = GREAT;
+		else if (!strncmp(temp->str, ">>", 3))
+			temp->token = GREAT_GREAT;
+		else if (!strncmp(temp->str, "<", 2))
+			temp->token = LESS;
+		else if (!strncmp(temp->str, "<<", 3))
+			temp->token = LESS_LESS;
+	temp = temp->next;
+	}
 }
