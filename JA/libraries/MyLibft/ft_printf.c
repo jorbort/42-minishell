@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juan-anm <juan-anm@student.42barcel>       +#+  +:+       +#+        */
+/*   By: juanantonio <juanantonio@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 15:15:07 by juan-anm          #+#    #+#             */
-/*   Updated: 2023/06/02 13:05:06 by juan-anm         ###   ########.fr       */
+/*   Updated: 2023/08/06 09:43:07 by juanantonio      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	ft_printf(const char *str, ...)
 		if (tmp == -1)
 			return (-1);
 		res += tmp;
-	i++;
+		i++;
 	}
 	va_end(val);
 	return (res);
@@ -66,87 +66,3 @@ int	ft_typesort(va_list val, char c)
 	else
 		return (0);
 }
-/*
-#include <stdio.h>
-int main(void)
-{
-	char			c			= 	'A';
-	char			*str		=	"Hello World!!!";
-	void			*pointer	=	&str;
-	double			decimal		=	3.141516;	
-	int				integer		=	-2147483648;
-	unsigned int	unsigdec	=	4294967295;
-	unsigned int	HEX			=	255222;
-	unsigned int	hex			=	255222;
-	int 			res;
-
-//// GREEN TEXT\033[1;32m /////
-//// RED TEXT \033[1;31m  /////
-//// RESET TEXT \033[1;0m /////
-
-printf("\033[1;35m///////test Char////////\n");
-	printf("\033[1;31mSF = Char\n");	
-	res = printf("%c", c);
-	printf(" integer return = %i \n", res);
-    		printf("\033[1;32mFT = Char\n");	
-			res = ft_printf("%c", c);
-			printf(" integer return = %i \n\n", res);
-
-printf("\033[1;35m///////test String////////\n");
-	printf("\033[1;31mSF = str\n");	
-	res = printf("%s", str);
-	printf(" integer return = %i \n", res);
-    		printf("\033[1;32mFT = str\n");	
-			res = ft_printf("%s", str);
-			printf(" integer return = %i \n\n", res);
-
-printf("\033[1;35m///////test Integers////////\n");
-	printf("\033[1;31mSF = Int\n");	
-	res = printf("%i", integer);
-	printf(" integer return = %i \n", res);
-    		printf("\033[1;32mFT = int\n");	
-			res = ft_printf("%i", integer);
-			printf(" integer return = %i \n\n", res);
-
-printf("\033[1;35m///////test Unsigned int////////\n");
-	printf("\033[1;31mSF = Unsigned\n");	
-	res = printf("%u", unsigdec);
-	printf(" integer return = %i \n", res);
-    		printf("\033[1;32mFT = int\n");	
-			res = ft_printf("%u", unsigdec);
-			printf(" integer return = %i \n\n", res);
-
-printf("\033[1;35m///////test hex////////\n");
-	printf("\033[1;31mSF = hex\n");	
-	res = printf("%x", hex);
-	printf(" integer return = %i \n", res);
-    		printf("\033[1;32mFT = hex\n");	
-			res = ft_printf("%x", hex);
-			printf(" integer return = %i \n\n", res);
-
-printf("\033[1;35m///////test HEX////////\n");
-	printf("\033[1;31mSF = HEX\n");	
-	res = printf("%X", HEX);
-	printf(" integer return = %i \n", res);
-    		printf("\033[1;32mFT = HEX\n");	
-			res = ft_printf("%X", HEX);
-			printf(" integer return = %i \n\n", res);
-
-printf("\033[1;35m///////test Pointers////////\n");
-	printf("\033[1;31mSF = Pointer\n");	
-	res = printf("%pp", pointer);
-	printf(" integer return = %i \n", res);
-    		printf("\033[1;32mFT = HEX\n");	
-			res = ft_printf("%pp", pointer);
-			printf(" integer return = %i \n\n", res);
-
-printf("\033[1;35m///////test Random////////\n");
-	printf("\033[1;31mSF = Random\n");	
-	res = printf("%pp", pointer);
-	printf(" integer return = %i \n", res);
-    		printf("\033[1;32mFT = HEX\n");	
-			res = ft_printf("%pp", pointer);
-			printf(" integer return = %i \n\n", res);
-
-
-}*/

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juan-anm <juan-anm@student.42barcel>       +#+  +:+       +#+        */
+/*   By: juanantonio <juanantonio@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 11:12:16 by juan-anm          #+#    #+#             */
-/*   Updated: 2023/06/21 11:52:56 by juan-anm         ###   ########.fr       */
+/*   Updated: 2023/09/28 12:54:39 by juanantonio      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,10 @@
 # include <limits.h>
 # include <stdio.h>
 
-/*//////// GNL BUFFER DEFINITION \\\\\\\\\\\\*/
+/*//////// GNL BUFFER DEFINITION \\\\\\\\\\\\*/	
 
-# ifndef BUFFER_SIZE
-#  define BUFFER_SIZE (int) 5
-
+# ifndef BUFFER_SIZE 
+#  define BUFFER_SIZE 5 
 # endif
 
 /*////////////////  First Part  \\\\\\\\\\\\\\\\\*/
@@ -56,6 +55,8 @@ void	*ft_calloc(size_t count, size_t size);
 char	*ft_strdup(const char *s);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 char	*ft_strjoin(char const *s1, char const *s2);
+char	*ft_strjoin_free(char *storage, char *buffer);
+char	*ft_strjoin_doublefree(char *str1, char *str2);
 void	ft_putchar_fd(char c, int fd);
 void	ft_putstr_fd(char *s, int fd);
 void	ft_putendl_fd(char *s, int fd);
@@ -65,6 +66,7 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 void	ft_striteri(char *s, void (*f)(unsigned int, char*));
 char	*ft_itoa(int n);
 char	**ft_split(char const *s, char c);
+void	*ft_freesp(char **m);
 
 /*////////////////!!!!!!   BONUS  !!!!!\\\\\\\\\\\\\\\\\*/
 typedef struct s_list
@@ -85,15 +87,15 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 
 /*/////////////////   FT_PRINT    !!!!!!!!!////////////////\*/
 
-int	ft_printf(const char *str, ...);
-int	ft_typesort(va_list val, char c);
-int	ft_putchars(char c);
-int	ft_typesort(va_list val, char c);
-int	ft_putstrs(char *str);
-int	ft_putnbrs(long long int n, int cont);
-int	ft_base_cnvrt(unsigned int nbr, char x);
-int	ft_base_pointer(unsigned long long pntr);
-int	ft_unsputnbrs(long long int n, int cont);
+int		ft_printf(const char *str, ...);
+int		ft_typesort(va_list val, char c);
+int		ft_putchars(char c);
+int		ft_typesort(va_list val, char c);
+int		ft_putstrs(char *str);
+int		ft_putnbrs(long long int n, int cont);
+int		ft_base_cnvrt(unsigned int nbr, char x);
+int		ft_base_pointer(unsigned long long pntr);
+int		ft_unsputnbrs(long long int n, int cont);
 
 /*/////////////////   GetNextLine    !!!!!!!!!////////////////\*/
 

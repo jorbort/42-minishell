@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printchars.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juan-anm <juan-anm@student.42barcel>       +#+  +:+       +#+        */
+/*   By: juanantonio <juanantonio@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 14:40:21 by juan-anm          #+#    #+#             */
-/*   Updated: 2023/06/02 13:04:50 by juan-anm         ###   ########.fr       */
+/*   Updated: 2023/08/06 09:43:00 by juanantonio      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ int	ft_putstrs(char *str)
 	{
 		if (ft_putchars((char)str[i]) == -1)
 			return (-1);
-	res++;
-	i++;
+		res++;
+		i++;
 	}
 	return (res);
 }

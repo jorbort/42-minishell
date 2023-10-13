@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstadd_front_bonus.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juan-anm <juan-anm@student.42barcel>       +#+  +:+       +#+        */
+/*   By: juanantonio <juanantonio@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 16:07:51 by juan-anm          #+#    #+#             */
-/*   Updated: 2023/05/12 17:04:09 by juan-anm         ###   ########.fr       */
+/*   Updated: 2023/08/06 09:40:37 by juanantonio      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

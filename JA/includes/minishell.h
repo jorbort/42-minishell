@@ -6,7 +6,7 @@
 /*   By: juan-anm <juan-anm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 14:41:54 by juan-anm          #+#    #+#             */
-/*   Updated: 2023/10/13 11:48:54 by juan-anm         ###   ########.fr       */
+/*   Updated: 2023/10/13 13:51:36 by juan-anm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,9 @@ void	lex_lstadd_back(t_lexer **lst, t_lexer *new);
 t_lexer	*lex_lstnew(void);
 void	check_pipes(t_lexer **lexer);
 
-# define WHITE_T   "\x1b[1;37m"
-# define YELLOW_T "\x1b[1;33m"
-# define RESET_COLOR    "\x1b[0m"
-# define BLUE_T "\x1b[1;36m"
+# define WHITE_T		"\x1b[1;37m"
+# define YELLOW_T		"\x1b[1;33m"
+# define RESET_COLOR	"\x1b[0m"
+# define BLUE_T			"\x1b[1;36m"
 
 #endif

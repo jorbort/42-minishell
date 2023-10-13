@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juan-anm <juan-anm@student.42.fr>          +#+  +:+       +#+        */
+/*   By: juanantonio <juanantonio@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 12:38:55 by juan-anm          #+#    #+#             */
-/*   Updated: 2023/05/09 11:09:49 by juan-anm         ###   ########.fr       */
+/*   Updated: 2023/08/06 09:44:56 by juanantonio      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,3 @@ size_t	ft_strlen(const char *s)
 		i++;
 	return (i);
 }
-
-/*#include <string.h>
-int main(void)
-{
-	printf("%lu", ft_strlen("dos"));
-	printf("%lu", strlen("dos"));
-}*/

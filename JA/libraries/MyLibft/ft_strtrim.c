@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juan-anm <juan-anm@student.42.fr>          +#+  +:+       +#+        */
+/*   By: juanantonio <juanantonio@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 10:23:43 by juan-anm          #+#    #+#             */
-/*   Updated: 2023/05/11 14:23:10 by juan-anm         ###   ########.fr       */
+/*   Updated: 2023/08/06 09:45:22 by juanantonio      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,3 @@ char	*ft_strtrim(char const *s1, char const *set)
 	ft_strlcpy(trim, &s1[start], (i - start) + b);
 	return (trim);
 }
-
-/*int main(void)
-{
-	char *str = "11   Hello World!!!!11   ";
-	char *set = "   1 ";
-
-	printf("%s", ft_strtrim(str,set));
-}*/

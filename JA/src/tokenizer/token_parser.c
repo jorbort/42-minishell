@@ -6,7 +6,7 @@
 /*   By: juan-anm <juan-anm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 12:55:32 by juan-anm          #+#    #+#             */
-/*   Updated: 2023/10/13 12:01:25 by juan-anm         ###   ########.fr       */
+/*   Updated: 2023/10/13 13:32:14 by juan-anm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ t_lexer *tokenizer(t_lexer **lexer, char *str)
 			lex_lstadd_back(lexer, new);
 			j++;
 	}
+	ft_freesp(split);
+	check_readline(lexer);
 	check_pipes(lexer);
 	return(*lexer);
 }
@@ -49,5 +51,28 @@ void check_pipes(t_lexer **lexer)
 		else if (!strncmp(temp->str, "<<", 3))
 			temp->token = LESS_LESS;
 	temp = temp->next;
+	}
+}
+
+void check_readline(t_lexer **lexer)
+{
+	t_lexer *temp;
+	int len;
+
+	temp = *lexer;
+	while (temp != NULL)
+	{
+		len = strlen(temp->str)
+		if (strncmp(temp->str, "|", len))
+		
+		else if (!strncmp(temp->str, ">", len))
+		
+		else if (!strncmp(temp->str, ">>", len))
+		
+		else if (!strncmp(temp->str, "<", len))
+
+		else if (!strncmp(temp->str, "<<", len))
+	
+			temp = temp->next;
 	}
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juan-anm <juan-anm@student.42.fr>          +#+  +:+       +#+        */
+/*   By: juanantonio <juanantonio@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 12:23:08 by juan-anm          #+#    #+#             */
-/*   Updated: 2023/05/09 15:40:49 by juan-anm         ###   ########.fr       */
+/*   Updated: 2023/08/06 09:45:09 by juanantonio      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,3 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 	}
 	return (0);
 }
-
-/*#include <string.h>
-int main(void)
-{
-	printf("%i",ft_strncmp("hOla", "hoLa", 0));
-	printf("%i",strncmp("hOla", "hoLa", 0));
-}*/

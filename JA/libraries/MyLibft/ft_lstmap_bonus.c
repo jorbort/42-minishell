@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstmap_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juan-anm <juan-anm@student.42barcel>       +#+  +:+       +#+        */
+/*   By: juanantonio <juanantonio@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 17:43:11 by juan-anm          #+#    #+#             */
-/*   Updated: 2023/05/15 10:58:14 by juan-anm         ###   ########.fr       */
+/*   Updated: 2023/08/06 09:40:53 by juanantonio      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

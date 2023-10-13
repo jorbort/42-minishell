@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstiter_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juan-anm <juan-anm@student.42barcel>       +#+  +:+       +#+        */
+/*   By: juanantonio <juanantonio@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 17:40:04 by juan-anm          #+#    #+#             */
-/*   Updated: 2023/05/15 11:40:08 by juan-anm         ###   ########.fr       */
+/*   Updated: 2023/08/06 09:40:47 by juanantonio      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

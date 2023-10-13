@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juan-anm <juan-anm@student.42.fr>          +#+  +:+       +#+        */
+/*   By: juanantonio <juanantonio@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 10:09:30 by juan-anm          #+#    #+#             */
-/*   Updated: 2023/05/09 11:21:39 by juan-anm         ###   ########.fr       */
+/*   Updated: 2023/08/06 09:46:18 by juanantonio      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,6 @@ void	ft_putstr_fd(char *s, int fd)
 	while (s[i] != 0)
 	{
 		ft_putchar_fd(s[i], fd);
-	i++;
+		i++;
 	}
 }

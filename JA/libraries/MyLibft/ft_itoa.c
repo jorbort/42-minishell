@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juan-anm <juan-anm@student.42.fr>          +#+  +:+       +#+        */
+/*   By: juanantonio <juanantonio@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 16:52:06 by juan-anm          #+#    #+#             */
-/*   Updated: 2023/05/11 14:10:14 by juan-anm         ###   ########.fr       */
+/*   Updated: 2023/08/06 09:40:29 by juanantonio      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,8 @@ static int	ft_intlen(int n)
 		return (1);
 	while (n != 0)
 	{
-	n = n / 10;
-	i++;
+		n = n / 10;
+		i++;
 	}
 	return (i);
 }
@@ -67,22 +67,14 @@ static void	ft_fillnum(char *itoa, int n, int len)
 	while (len > 1)
 	{
 		div = div * 10;
-	len--;
+		len--;
 	}
 	while (div > 0)
 	{
 		itoa[i] = '0' + (n / div);
 		n = n % div;
 		div = div / 10;
-	i++;
+		i++;
 	}
 	itoa[i] = 0;
 }
-
-/*#include <stdio.h>
-#include <stdlib.h>
-
-int main(void)
-{
-	printf("%s", ft_itoa(10020));
-}*/

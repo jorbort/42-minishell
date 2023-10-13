@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juan-anm <juan-anm@student.42barcel>       +#+  +:+       +#+        */
+/*   By: juanantonio <juanantonio@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 10:37:10 by juan-anm          #+#    #+#             */
-/*   Updated: 2023/06/02 13:04:14 by juan-anm         ###   ########.fr       */
+/*   Updated: 2023/08/06 09:39:09 by juanantonio      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,10 @@ char	*get_next_line(int fd)
 		return (NULL);
 	if (buffer[fd] == NULL)
 	{
-	buffer[fd] = malloc(1 * sizeof(char));
+		buffer[fd] = malloc(1 * sizeof(char));
 		if (buffer[fd] == NULL)
 			return (NULL);
-	buffer[fd][0] = '\0';
+		buffer[fd][0] = '\0';
 	}
 	buffer[fd] = ft_read_return_line(buffer[fd], fd);
 	if (buffer[fd] == NULL || buffer[fd][0] == 0)
@@ -48,7 +48,7 @@ char	*ft_read_return_line(char *buffer, int fd)
 	if (read_str == NULL)
 		return (ft_freegnl(&buffer));
 	while (read_check > 0 && ft_strchr(buffer, '\n') == 0)
-	{	
+	{
 		read_check = read(fd, read_str, BUFFER_SIZE);
 		if (read_check < 0)
 		{
@@ -81,7 +81,7 @@ char	*ft_newline(char *buffer)
 	while (buffer[i] != '\n' && buffer[i] != '\0')
 	{
 		newline[i] = buffer[i];
-	i++;
+		i++;
 	}
 	if (buffer[i] == '\n')
 		newline[i++] = '\n';
@@ -122,29 +122,3 @@ char	*ft_cleanbuffer(char *buffer, char *newline)
 	free(buffer);
 	return (nbuffer);
 }
-
-/*/////////////////////////////////////MAIN////////////////////////
-#include <unistd.h>
-#include <fcntl.h>
-int main(void)
-{
-	int		fd;
-	char	*theline;
-//	int		bytes;
-    int		i = 0;
-
-	theline = NULL;
-	fd = open("42_with_nl", O_RDONLY);
-	printf("file descriptor = %d\n", fd);
-	theline = malloc(999);
-//	bytes = read(fd, theline, 999);
-//	printf("CONTENT:\n%s\nbytes read: %d", theline, bytes);
-	while (theline != NULL)
-	{
-		printf("----next line:----\n");
-		theline = get_next_line(fd);
-		printf("%s", theline);
-		i++;
-	}
-	return (0);
-}*/

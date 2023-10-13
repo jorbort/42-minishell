@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printnum.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juan-anm <juan-anm@student.42barcel>       +#+  +:+       +#+        */
+/*   By: juanantonio <juanantonio@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 13:10:30 by juan-anm          #+#    #+#             */
-/*   Updated: 2023/06/26 14:03:34 by juan-anm         ###   ########.fr       */
+/*   Updated: 2023/08/06 09:43:20 by juanantonio      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	ft_putnbrs(long long int n, int cont)
 		n = n * -1;
 		if (ft_putchars('-') == -1)
 			return (-1);
-	cont++;
+		cont++;
 	}
 	while (div > 0)
 	{
@@ -35,7 +35,7 @@ int	ft_putnbrs(long long int n, int cont)
 			return (-1);
 		n = n % div;
 		div = div / 10;
-	cont++;
+		cont++;
 	}
 	return (cont);
 }
@@ -72,13 +72,13 @@ static int	ft_intlen(int n)
 		return (1);
 	while (n != 0)
 	{
-	n = n / 10;
-	i++;
+		n = n / 10;
+		i++;
 	}
 	while (i > 1)
 	{
 		div = div * 10;
-	i--;
+		i--;
 	}
 	return (div);
 }

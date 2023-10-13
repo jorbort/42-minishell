@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juan-anm <juan-anm@student.42.fr>          +#+  +:+       +#+        */
+/*   By: juanantonio <juanantonio@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 11:31:09 by juan-anm          #+#    #+#             */
-/*   Updated: 2023/05/11 12:04:37 by juan-anm         ###   ########.fr       */
+/*   Updated: 2023/08/06 09:48:58 by juanantonio      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,19 +24,10 @@ char	*ft_strdup(const char *s1)
 	if (!dupstr)
 		return (NULL);
 	while (str[i] != 0)
-	{	
+	{
 		dupstr[i] = str[i];
-	i++;
+		i++;
 	}
 	dupstr[i] = 0;
 	return (dupstr);
 }
-
-/*int main(void)
-{
-
-char str[15] = "hola que tal?";
-
-printf("%s", ft_strdup(str));
-
-}*/

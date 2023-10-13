@@ -6,7 +6,7 @@
 /*   By: juan-anm <juan-anm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 11:51:54 by juan-anm          #+#    #+#             */
-/*   Updated: 2023/06/02 12:03:34 by juan-anm         ###   ########.fr       */
+/*   Updated: 2023/09/27 13:30:06 by juan-anm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 static char		*ft_strdupli(const char *s1, char cut);
 static int		ft_cntwrds(char const *s, char c);
 static char		**ft_splipri(char **split, char const *s, char c);
-static void		*ft_freesp(char **m);
 
 char	**ft_split(char const *s, char c)
 {
@@ -27,7 +26,7 @@ char	**ft_split(char const *s, char c)
 	if (!split)
 		return (NULL);
 	if (ft_cntwrds(s, c) != 0)
-	{	
+	{
 		if (ft_splipri(split, s, c) == NULL)
 			return (NULL);
 	}
@@ -57,7 +56,7 @@ static char	**ft_splipri(char **split, char const *s, char c)
 			words = 0;
 			j++;
 		}
-	i++;
+		i++;
 	}
 	split[j] = NULL;
 	return (split);
@@ -81,7 +80,7 @@ static int	ft_cntwrds(char const *s, char c)
 			contw++;
 			contl = 0;
 		}
-	i++;
+		i++;
 	}
 	if (contl > 0)
 		contw++;
@@ -108,13 +107,13 @@ static	char	*ft_strdupli(const char *s1, char cut)
 	while (j < i)
 	{
 		dupstr[j] = str[j];
-	j++;
+		j++;
 	}
 	dupstr[j] = 0;
 	return (dupstr);
 }
 
-static void	*ft_freesp(char **m)
+void	*ft_freesp(char **m)
 {
 	int	i;
 
@@ -127,17 +126,3 @@ static void	*ft_freesp(char **m)
 	free(m);
 	return (NULL);
 }
-
-/*//////////////////////////////////////////MAINNNNNNNNNNNnn/////////////////
-int main(void)
-{
-	char *str = "hola qeue tal?";
-	char **arr = ft_split(str, 32);
-	int i = 0;
-	
-	while (arr[i])
-	{
-		printf("%s\n", arr[i]);
-	i++;
-	}
-}*/

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juan-anm <juan-anm@student.42.fr>          +#+  +:+       +#+        */
+/*   By: juanantonio <juanantonio@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 10:11:11 by juan-anm          #+#    #+#             */
-/*   Updated: 2023/05/09 11:22:21 by juan-anm         ###   ########.fr       */
+/*   Updated: 2023/08/06 09:48:49 by juanantonio      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 	while (s[i] != 0)
 	{
 		str[i] = f(i, s[i]);
-	i++;
-	}	
+		i++;
+	}
 	str[i] = 0;
 	return (str);
 }

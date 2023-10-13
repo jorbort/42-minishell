@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstdelone_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juan-anm <juan-anm@student.42barcel>       +#+  +:+       +#+        */
+/*   By: juanantonio <juanantonio@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 17:31:10 by juan-anm          #+#    #+#             */
-/*   Updated: 2023/05/15 10:39:23 by juan-anm         ###   ########.fr       */
+/*   Updated: 2023/08/06 09:40:42 by juanantonio      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

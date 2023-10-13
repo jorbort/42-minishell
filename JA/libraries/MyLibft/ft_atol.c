@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_atol.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juan-anm <juan-anm@student.42.fr>          +#+  +:+       +#+        */
+/*   By: juanantonio <juanantonio@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 15:18:43 by juan-anm          #+#    #+#             */
-/*   Updated: 2023/05/15 10:34:56 by juan-anm         ###   ########.fr       */
+/*   Updated: 2023/08/06 09:41:15 by juanantonio      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,3 @@ long	ft_atol(const char *str)
 		ato = ato * -1;
 	return (ato);
 }
-
-/*int main(void)
-{
-	char	stri[] = "  1231a 10";
-
-	printf("%i\n", ft_atoi(stri));
-	printf("%i", atoi(stri));
-}*/
