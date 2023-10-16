@@ -27,7 +27,7 @@ t_lexer *tokenizer(t_lexer **lexer, char *str)
 			lex_lstadd_back(lexer, new);
 			j++;
 	}
-	ft_freesp(split);
+	//ft_freesp(split);
 	check_pipes(lexer);
 	return(*lexer);
 }

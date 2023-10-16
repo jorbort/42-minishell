@@ -17,14 +17,13 @@ int main(int ac, char **av)
 	char *str;
 	(void) av;
 	t_lexer *lexe;
-
 	lexe = NULL;
 	if (ac != 1)
 		return (1);
 	while(42)
 	{
-		//str = readline(BLUE_T"\nMiniShell:" YELLOW_T" $>"RESET_COLOR);
-  		str ="Hello | World";
+		str = readline(BLUE_T"\nMiniShell:" YELLOW_T" $>"RESET_COLOR);
+  		//str ="Hello | World";
 		lexe = tokenizer(&lexe, str);	
 		t_lexer *test = lexe;
 		while (test != NULL)
