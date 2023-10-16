@@ -26,14 +26,15 @@ char	**ft_pipesplit(char const *s, char c)
 
 static char	**ft_pipesplipri(char **split, char const *s, char c)
 {
-	size_t	i;
+
+	int		i;
 	int		j;
 	int		words;
 
 	words = 1;
-	i = 0;
+	i = -1;
 	j = 0;
-	while (i < ft_strlen(s))
+	while (i++ < (int)ft_strlen(s))
 	{
 		if (s[i] == (unsigned char)c)
 			words = 1;
@@ -44,9 +45,10 @@ static char	**ft_pipesplipri(char **split, char const *s, char c)
 			if (split[j] == NULL)
 				return (ft_freesp(split));
 			words = 0;
+			if (s[i] == 124 || s[i] == 60 || s[i] == 62)
+				words = 1;
 			j++;
 		}
-		i++;
 	}
 	split[j] = NULL;
 	return (split);
@@ -65,12 +67,12 @@ static int    ft_pipecntwrds(char const *s, char c)
     {
         if (s[i] != c && s[i] != 124 && s[i] != 60 && s[i] != 62)
             contl++;
-        if (s[i] == c && contl > 0)
+        if ((s[i] == c || s[i] == 124 || s[i] == 60 || s[i] == 62) && contl > 0)
         {
             contw++;
             contl = 0;
         }
-        if (s[i] == 124 || s[i] == 60 || s[i] == 62)
+        if ((s[i] == 124 || s[i] == 60 || s[i] == 62) && contl == 0)
           contw++;
         i++;
     }
@@ -93,7 +95,7 @@ static    char    *ft_pipestrdupli(const char *s1, char cut)
       i++;
     else
     {
-      while ((str[i] != cut && str[i] != 0) || (str[i] != 124 && str[i] != 60 && str[i] == 62))
+      while ((str[i] != cut && str[i] != 0 && str[i] != 124 && str[i] != 60 && str[i] != 62))
         i++;
     }
     dupstr = malloc(i * sizeof(char) + 1);
