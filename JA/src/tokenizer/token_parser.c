@@ -18,7 +18,7 @@ t_lexer *tokenizer(t_lexer **lexer, char *str)
 	int j = 0;
 	t_lexer *new;
 
-	split = ft_split(str, 32);
+	split = ft_pipesplit(str, 32);
 	while (split[j])
 	{
 			new = lex_lstnew();
@@ -28,7 +28,6 @@ t_lexer *tokenizer(t_lexer **lexer, char *str)
 			j++;
 	}
 	ft_freesp(split);
-	check_readline(lexer);
 	check_pipes(lexer);
 	return(*lexer);
 }
@@ -54,25 +53,4 @@ void check_pipes(t_lexer **lexer)
 	}
 }
 
-void check_readline(t_lexer **lexer)
-{
-	t_lexer *temp;
-	int len;
 
-	temp = *lexer;
-	while (temp != NULL)
-	{
-		len = strlen(temp->str)
-		if (strncmp(temp->str, "|", len))
-		
-		else if (!strncmp(temp->str, ">", len))
-		
-		else if (!strncmp(temp->str, ">>", len))
-		
-		else if (!strncmp(temp->str, "<", len))
-
-		else if (!strncmp(temp->str, "<<", len))
-	
-			temp = temp->next;
-	}
-}
