@@ -23,7 +23,7 @@ int main(int ac, char **av)
 	while(42)
 	{
 		//str = readline(BLUE_T"\nMiniShell:" YELLOW_T" $>"RESET_COLOR);
-  		str =">Hello|'World>A";
+  		str =">H|'Wdsfs>iiiiiA'YUGHF";
 		lexe = tokenizer(&lexe, str);	
 		t_lexer *test = lexe;
 		while (test != NULL)
@@ -31,6 +31,7 @@ int main(int ac, char **av)
 			printf("%s===%u\n", test->str,test->token);
 			test = test->next;
 		}
+		break;
 	}
 	return (0);
 }

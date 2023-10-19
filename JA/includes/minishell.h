@@ -52,6 +52,7 @@ void	lex_lstadd_back(t_lexer **lst, t_lexer *new);
 t_lexer	*lex_lstnew(void);
 void	check_pipes(t_lexer **lexer);
 char **ft_pipesplit(char const *s, char c);
+int ft_isapipe(char c);
 
 # define WHITE_T		"\x1b[1;37m"
 # define YELLOW_T		"\x1b[1;33m"

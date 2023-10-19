@@ -35,17 +35,17 @@ static char	**ft_pipesplipri(char **split, char const *s, char c)
 	words = 1;
 	i = -1;
 	j = 0;
-	while (i++ < (int)ft_strlen(s))
+	while (i++ < (int)ft_strlen(s) - 1)
 	{
 		if (s[i] == (unsigned char)c)
 			words = 1;
-		else if ((words == 1 && s[i] != (unsigned char)c) || (s[i] == 124 || s[i] == 60 || s[i] == 6 || s[i] == 34 || s[i] == 39))
+		else if ((words == 1 && s[i] != (unsigned char)c) || ft_isapipe(s[i]))
 		{
 			split[j] = ft_pipestrdupli(&s[i], c);
 			if (split[j] == NULL)
 				return (ft_freesp(split));
 			words = 0;
-			if (s[i] == 124 || s[i] == 60 || s[i] == 62 || s[i] == 34 || s[i] == 39)
+			if (ft_isapipe(s[i]))
 				words = 1;
 			j++;
 		}
@@ -65,14 +65,14 @@ static int    ft_pipecntwrds(char const *s, char c)
     contl = 0;
     while (s[i] != 0)
     {
-        if (s[i] != c && s[i] != 124 && s[i] != 60 && s[i] != 62 && s[i] != 34 && s[i] != 39)
+        if (s[i] != c && (!ft_isapipe(s[i]))) 
             contl++;
-        if ((s[i] == c || s[i] == 124 || s[i] == 60 || s[i] == 62 || s[i] == 34 || s[i] == 39) && contl > 0)
+        if ((s[i] == c || ft_isapipe(s[i])) && contl > 0)
         {
             contw++;
             contl = 0;
         }
-        if ((s[i] == 124 || s[i] == 60 || s[i] == 62 || s[i] == 34 || s[i] == 39) && contl == 0)
+        if (ft_isapipe(s[i]) && contl == 0)
           contw++;
         i++;
     }
@@ -91,11 +91,11 @@ static    char    *ft_pipestrdupli(const char *s1, char cut)
     str = s1;
     j = 0;
     i = 0;
-    if (str[i] == 124 || str[i] == 60 || str[i] == 62 || str[i] == 34 || str[i] == 39)
-      i++;
+    if (ft_isapipe(str[i]))
+		i++;
     else
     {
-      while ((str[i] != cut && str[i] != 0 && str[i] != 124 && str[i] != 60 && str[i] != 62 && str[i] != 34 && str[i] != 39))
+      while (str[i] != cut && str[i] != 0 && (!ft_isapipe(str[i])))
         i++;
     }
     dupstr = malloc(i * sizeof(char) + 1);
@@ -113,24 +113,36 @@ static    char    *ft_pipestrdupli(const char *s1, char cut)
 static char		**check_pipesplitter(char **split)
 {
 	int i;
+	int j;
 	int quote;
+	//int last;
 
 	i = 0;
 	quote = 0;
 	while (split[i])
 	{
-		if (ft_strchr(split[i], 34) || ft_strchr(split[i], 34)) 
+		if ((ft_strchr(split[i], 39) || ft_strchr(split[i], 34)) && ft_strlen(split[i]) == 1) 
+		{
 			quote = (int)split[i][0];
-		if (quote > 0)
-			break;
-	i++;
-	}
-	while (quote > 0 && split[i])
-	{
-		if (ft_strchr(split[i + 1], quote) == NULL)
-			split[i] = ft_strjoin_free(split[i + 1], split[i]);
+			j = i + 1;
+			while (split[j] && (!ft_strchr(split[j], quote)))
+			{
+				split[i] = ft_strjoin_doublefree(split[i], split[j]);
+			j++;	
+			}
+			if (ft_strchr(split[j], quote))
+				split[i] = ft_strjoin_free(split[i], split[j]);
+			i = j;
+		}
 	i++;
 	}
 	return (split);
 }
 
+int ft_isapipe(char c)
+{
+	if (c == 124 || c == 60 || c == 62 || c == 34 || c == 39)
+		return (1);
+	else
+		return (0);
+}
