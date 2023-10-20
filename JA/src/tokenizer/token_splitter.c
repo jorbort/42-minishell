@@ -115,10 +115,9 @@ static char		**check_pipesplitter(char **split)
 	int i;
 	int j;
 	int quote;
-	//int last;
-
+	char *tmp;
+	
 	i = 0;
-	quote = 0;
 	while (split[i])
 	{
 		if ((ft_strchr(split[i], 39) || ft_strchr(split[i], 34)) && ft_strlen(split[i]) == 1) 
@@ -127,14 +126,28 @@ static char		**check_pipesplitter(char **split)
 			j = i + 1;
 			while (split[j] && (!ft_strchr(split[j], quote)))
 			{
+				tmp = split[j];	
 				split[i] = ft_strjoin_doublefree(split[i], split[j]);
-			j++;	
+				split[j] = tmp;				
+				j++;
 			}
-			if (ft_strchr(split[j], quote))
-				split[i] = ft_strjoin_free(split[i], split[j]);
-			i = j;
+			if (split[j] && (ft_strchr(split[j], 39) || ft_strchr(split[j], 34)))
+				{
+						split[i] = ft_strjoin_doublefree(split[i], split[j]);
+						j++;
+				}
+			i++;
+			while (split[j])
+			{
+				split[i] = split[j];
+				
+				i++;
+				j++;
+			}
+			split[i] = NULL;
 		}
-	i++;
+		else
+			i++;
 	}
 	return (split);
 }
@@ -142,6 +155,14 @@ static char		**check_pipesplitter(char **split)
 int ft_isapipe(char c)
 {
 	if (c == 124 || c == 60 || c == 62 || c == 34 || c == 39)
+		return (1);
+	else
+		return (0);
+}
+
+int ft_isspace(char c)
+{
+	if ((c >= 9 && c <= 13) || c == 32)
 		return (1);
 	else
 		return (0);

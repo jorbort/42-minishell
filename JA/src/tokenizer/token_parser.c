@@ -22,12 +22,12 @@ t_lexer *tokenizer(t_lexer **lexer, char *str)
 	while (split[j])
 	{
 			new = lex_lstnew();
-			new->str = split[j];
+			new->str = ft_strdup(split[j]);
 			new->i = j;
 			lex_lstadd_back(lexer, new);
 			j++;
 	}
-	//ft_freesp(split);
+	ft_freesp(split);
 	check_pipes(lexer);
 	return(*lexer);
 }
