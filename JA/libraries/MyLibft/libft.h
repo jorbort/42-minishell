@@ -6,7 +6,7 @@
 /*   By: juanantonio <juanantonio@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 11:12:16 by juan-anm          #+#    #+#             */
-/*   Updated: 2023/09/28 12:54:39 by juanantonio      ###   ########.fr       */
+/*   Updated: 2023/10/21 12:21:00 by juanantonio      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,9 @@ int		ft_isalpha(int c);
 int		ft_isascii(int c);
 int		ft_isdigit(int c);
 int		ft_isprint(int c);
+int		ft_isapipe(char c);
+int		ft_isspace(char c);
+int		ft_isaquote(char c);
 void	*ft_memcpy(void *dst, const void *src, size_t n);
 void	*ft_memmove(void *dst, const void *src, size_t len);
 void	*ft_memset(void *b, int c, size_t len);

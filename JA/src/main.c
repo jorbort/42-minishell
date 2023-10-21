@@ -20,13 +20,11 @@ int main(int ac, char **av)
 	lexe = NULL;
 	if (ac != 1)
 		return (1);
-	str = readline(BLUE_T"\nMiniShell:" YELLOW_T" $>"RESET_COLOR);
-
-	while(42)
-	{
-		add_history(str);
-		str = readline(BLUE_T"\nMiniShell:" YELLOW_T" $>"RESET_COLOR);
-		//str =">H|'Wdsfs>iiiiiAYUiGHF'";
+	//while(42)
+	//{
+		//add_history(str);
+	//	str = readline(BLUE_T"\nMiniShell:" YELLOW_T" $>"RESET_COLOR);
+		str =">H|'Wf asfa'AS | ";
 		lexe = tokenizer(&lexe, str);	
 		t_lexer *test = lexe;
 		while (test != NULL)
@@ -34,8 +32,9 @@ int main(int ac, char **av)
 			printf("%s===%u\n", test->str,test->token);
 			test = test->next;
 		}
-		lex_lstclear(&lexe);
-	}
+		//lex_lstclear(&lexe);
+		add_history(str);
+	//}
 	return (0);
 }
 

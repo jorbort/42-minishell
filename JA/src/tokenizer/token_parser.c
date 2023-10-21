@@ -18,7 +18,7 @@ t_lexer *tokenizer(t_lexer **lexer, char *str)
 	int j = 0;
 	t_lexer *new;
 
-	split = ft_pipesplit(str, 32);
+	split = ft_pipesplit(str);
 	while (split[j])
 	{
 			new = lex_lstnew();
