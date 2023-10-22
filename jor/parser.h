@@ -6,7 +6,7 @@
 /*   By: jorge <jorge@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 09:33:03 by jorge             #+#    #+#             */
-/*   Updated: 2023/10/22 15:29:33 by jorge            ###   ########.fr       */
+/*   Updated: 2023/10/22 23:34:23 by jorge            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,10 @@ typedef struct s_redir
 
 typedef struct s_cmd
 {
-	char			*cmd;
-	char			**str;
-	char			*args;
-	t_redir			*redirection;
+	char			**cmd;
+	t_lexer			*redirection;
 	char			*here_d_file_name;
 	bool			built_in;
-	int				id;
 	t_cmd			*next;
 	t_cmd			*prev;
 }	t_cmd;
@@ -40,6 +37,7 @@ typedef struct s_cmd
 typedef struct s_data
 {
 	char	*args;
+	int		nume_redirs;
 	char	**paths;
 	char	**envp;
 	t_cmd	*simple_cmd;
