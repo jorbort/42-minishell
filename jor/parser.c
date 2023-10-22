@@ -6,47 +6,58 @@
 /*   By: jorge <jorge@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 09:13:25 by jorge             #+#    #+#             */
-/*   Updated: 2023/10/19 16:52:17 by jorge            ###   ########.fr       */
+/*   Updated: 2023/10/22 16:23:29 by jorge            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 
-void	ft_parser(t_lexer *lex_list)
+void	ft_parser(t_program	*program )
 {
-	t_cmd	*cmd_list;
-
-	
-	get_cmd(lex_list, cmd_list);
+	if (program->lex_list->token == PIPE)
+		ft_pipe_error();
+	parse_tokens(program);
 }
 
-void	get_cmd(t_lexer *lex_list, t_cmd *cmd_list)
+bool	is_redir(t_program *program, t_token token)
 {
-	char	**str;
-	int		i;
-	t_lexer	*temp;
-	int		pipes_num;
+	t_lexer *node;
+	t_lexer *tmp;
+	int		index_a;
+	int		index_b;
 
-	i = 0;
-	pipes_num = count_pipes();//to-do funcion que cuente los pipes para saber el numero de comandos 
-	str = ft_calloc((pipes_num + 1),sizeof(char *));
-	if (!str)
-		ft_error();//to-do
-	temp = lex_list;
-	while (lex_list)
+
+	if (token < GREAT)
+		return (false);
+	else if (token >= GREAT && token <= LESS_LESS)
 	{
-		
-		if (handle_redir(lex_list, cmd_list) == true)
-			ft_lexerdelone(lex_list); 
-		if (is_pipe(lex_list->str) == true)
-			ft_pipe_error(lex_list);
-		if (temp->str)
-		{
-			str[i++] = ft_strdup(temp->str);
-			ft_lexer_del(lex_list, i);
-			temp = lex_list->str;
-		}
-		pipes_num--;
+		tmp = program->lex_list;
+		node = ft_lexer_new(ft_strdup(tmp->next->str), tmp->token);
+		if (!node)
+			ft_parser_error();
+		ft_lexeradd_back(program->redir, node);
+		index_a = tmp->i;
+		index_b = tmp->next->i;
+		ft_lexerdelone(program->lex_list, index_a);
+		ft_lexerdelone(program->lex_list, index_b);
+		free(node);
+		return (true);
 	}
-	cmd_list->cmd = t_cmd_new(str,);
+}
+
+
+void	parse_tokens(t_program *program)
+{
+	program->data->pipes = count_pipes();//to-do funcion que cuente los pipes para saber el numero de comandos 
+	while (program->lex_list)
+	{
+		is_redir(program ,program->lex_list->token); 
+		if (is_pipe(program->lex_list->token) == true)
+			ft_pipe_error(program->lex_list);
+		if (program->lex_list->str)
+		{
+			program->cmd_list->str = ft_strdup(program->lex_list->str);
+			ft_lexerdelone(program->lex_list, program->lex_list->i);
+		}
+	}
 }
