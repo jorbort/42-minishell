@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jorge <jorge@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jbortolo <jbortolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 09:33:03 by jorge             #+#    #+#             */
-/*   Updated: 2023/10/22 23:34:23 by jorge            ###   ########.fr       */
+/*   Updated: 2023/10/23 12:54:44 by jbortolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,6 @@
 # define PARSER_H
 # include <stdbool.h>
 # include "JA/includes/minishell.h"
-
-typedef struct s_redir
-{
-	char			*redirection;
-	char			*in;
-	char			*out;
-	t_redir			*next;
-	t_redir			*prev;
-}	t_redir;
 
 typedef struct s_cmd
 {
@@ -51,11 +42,11 @@ typedef struct s_data
 
 typedef struct s_program
 {
-	t_data	 		*data;
-	t_cmd  			*cmd_list;
-	t_lexer 		*lex_list;
+	t_data			*data;
+	t_cmd			*cmd_list;
+	t_lexer			*lex_list;
 	t_lexer			*redir;
-}t_program;
+}	t_program;
 
 
 #endif

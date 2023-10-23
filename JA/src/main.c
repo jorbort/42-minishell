@@ -3,26 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juanantonio <juanantonio@student.42.fr>    +#+  +:+       +#+        */
+/*   By: jbortolo <jbortolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 14:39:17 by juan-anm          #+#    #+#             */
-/*   Updated: 2023/10/13 17:12:08 by juanantonio      ###   ########.fr       */
+/*   Updated: 2023/10/23 11:57:10 by jbortolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include <minishell.h>
 
 int main(int ac, char **av)
 {
-	
+	int i = 0;
 	char *str;
 	(void) av;
 	t_lexer *lexe;
 	lexe = NULL;
 	if (ac != 1)
 		return (1);
-	str = readline(BLUE_T"\nMiniShell:" YELLOW_T" $>"RESET_COLOR);
-
-	while(42)
+	while(i < 2)
 	{
 		add_history(str);
 		str = readline(BLUE_T"\nMiniShell:" YELLOW_T" $>"RESET_COLOR);
@@ -35,6 +34,8 @@ int main(int ac, char **av)
 			test = test->next;
 		}
 		lex_lstclear(&lexe);
+		i++;
+		free(str);
 	}
 	return (0);
 }

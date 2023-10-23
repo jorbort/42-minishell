@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jorge <jorge@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jbortolo <jbortolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 17:38:48 by jorge             #+#    #+#             */
-/*   Updated: 2023/10/22 23:52:51 by jorge            ###   ########.fr       */
+/*   Updated: 2023/10/23 12:49:55 by jbortolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,4 +53,20 @@ void	ft_cmd_rmfirst(t_cmd **lst)
 	ft_lexer_rm(&(*lst)->redirection);
 	free(*lst);
 	*lst = temp;
+}
+
+int	count_args(t_program *program)
+{
+	t_lexer	*tmp;
+	int		i;
+
+	i = 0;
+	tmp = program->lex_list;
+	while (tmp && tmp->token != PIPE)
+	{
+		if (tmp->i >= 0)
+			i++;
+		tmp = tmp->next;
+	}
+	return (i);
 }
