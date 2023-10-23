@@ -6,7 +6,7 @@
 /*   By: jbortolo <jbortolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 14:39:17 by juan-anm          #+#    #+#             */
-/*   Updated: 2023/10/23 11:57:10 by jbortolo         ###   ########.fr       */
+/*   Updated: 2023/10/23 15:19:27 by jbortolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int main(int ac, char **av)
 		t_lexer *test = lexe;
 		while (test != NULL)
 		{
-			printf("%s===%u\n", test->str,test->token);
+			printf("%s===%u\n", test->str, test->token);
 			test = test->next;
 		}
 		lex_lstclear(&lexe);
