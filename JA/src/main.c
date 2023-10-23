@@ -6,7 +6,7 @@
 /*   By: juanantonio <juanantonio@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 14:39:17 by juan-anm          #+#    #+#             */
-/*   Updated: 2023/10/13 17:12:08 by juanantonio      ###   ########.fr       */
+/*   Updated: 2023/10/23 13:33:42 by juan-anm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <minishell.h>
@@ -24,7 +24,7 @@ int main(int ac, char **av)
 	//{
 		//add_history(str);
 	//	str = readline(BLUE_T"\nMiniShell:" YELLOW_T" $>"RESET_COLOR);
-		str =">H|'Wf asfa'AS | ";
+		str =">>>>> H|'Wf asfa\"          ' AS | ";
 		lexe = tokenizer(&lexe, str);	
 		t_lexer *test = lexe;
 		while (test != NULL)
