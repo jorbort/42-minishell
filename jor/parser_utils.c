@@ -6,7 +6,7 @@
 /*   By: jbortolo <jbortolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 17:38:48 by jorge             #+#    #+#             */
-/*   Updated: 2023/10/23 12:49:55 by jbortolo         ###   ########.fr       */
+/*   Updated: 2023/10/23 15:10:34 by jbortolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,4 +69,17 @@ int	count_args(t_program *program)
 		tmp = tmp->next;
 	}
 	return (i);
+}
+
+void	ft_count_pipes(t_program *program)
+{
+	t_lexer	*tmp;
+
+	tmp = program->lex_list;
+	while (tmp)
+	{
+		if (tmp->token == PIPE)
+			program->data->pipes++;
+		tmp = tmp->next;
+	}
 }

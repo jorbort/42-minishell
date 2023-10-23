@@ -6,7 +6,7 @@
 /*   By: jbortolo <jbortolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 09:13:25 by jorge             #+#    #+#             */
-/*   Updated: 2023/10/23 13:19:17 by jbortolo         ###   ########.fr       */
+/*   Updated: 2023/10/23 15:11:31 by jbortolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ t_cmd	*get_cmd(t_program *program)
 	args = count_args(program);
 	str = ft_calloc(args + 1, sizeof(char *));
 	if (!str)
-		ft_error(program, 1);//to-do
+		ft_error(program, 1);
 	tmp = program->lex_list;
 	while (args)
 	{
@@ -87,7 +87,6 @@ void	parse_tokens(t_program *program)
 {
 	t_cmd	*node;
 
-	program->data->pipes = count_pipes();//to-do funcion que cuente los pipes para saber el numero de comandos 	
 	del_redir(program);
 	if (program->lex_list->token == PIPE)
 		ft_error(program->lex_list, 2);

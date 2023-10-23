@@ -6,7 +6,7 @@
 /*   By: jbortolo <jbortolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 09:33:03 by jorge             #+#    #+#             */
-/*   Updated: 2023/10/23 12:54:44 by jbortolo         ###   ########.fr       */
+/*   Updated: 2023/10/23 15:10:18 by jbortolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,10 @@
 # define PARSER_H
 # include <stdbool.h>
 # include "JA/includes/minishell.h"
+
+# define TOKEN_ERROR "minishell ERROR: invalid consecutive tokens "
+# define PIPE_ERROR "minishell ERROR: invalid | or consecutive | "
+# define INVALID_ARG "minishell ERROR: invalid arguments"
 
 typedef struct s_cmd
 {
@@ -47,6 +51,5 @@ typedef struct s_program
 	t_lexer			*lex_list;
 	t_lexer			*redir;
 }	t_program;
-
 
 #endif
