@@ -3,38 +3,39 @@
 /*                                                        :::      ::::::::   */
 /*   token_parser.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juan-anm <juan-anm@student.42.fr>          +#+  +:+       +#+        */
+/*   By: juanantonio <juanantonio@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 12:55:32 by juan-anm          #+#    #+#             */
-/*   Updated: 2023/10/13 13:32:14 by juan-anm         ###   ########.fr       */
+/*   Updated: 2023/10/24 17:10:34 by juanantonio      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-t_lexer *tokenizer(t_lexer **lexer, char *str)
+t_lexer	*tokenizer(t_lexer **lexer, char *str)
 {
-	char **split;
-	int j = 0;
-	t_lexer *new;
+	char	**split;
+	t_lexer	*new;
+	int		j;
 
+	j = 0;
 	split = ft_pipesplit(str);
 	while (split[j])
 	{
-			new = lex_lstnew();
-			new->str = ft_strdup(split[j]);
-			new->i = j;
-			lex_lstadd_back(lexer, new);
-			j++;
+		new = lex_lstnew();
+		new->str = ft_strdup(split[j]);
+		new->i = j;
+		lex_lstadd_back(lexer, new);
+		j++;
 	}
 	ft_freesp(split);
 	check_pipes(lexer);
-	return(*lexer);
+	return (*lexer);
 }
 
-void check_pipes(t_lexer **lexer)
+void	check_pipes(t_lexer **lexer)
 {
-	t_lexer *temp;
+	t_lexer	*temp;
 
 	temp = *lexer;
 	while (temp != NULL)
@@ -49,7 +50,7 @@ void check_pipes(t_lexer **lexer)
 			temp->token = LESS;
 		else if (!strncmp(temp->str, "<<", 3))
 			temp->token = LESS_LESS;
-	temp = temp->next;
+		temp = temp->next;
 	}
 }
 
