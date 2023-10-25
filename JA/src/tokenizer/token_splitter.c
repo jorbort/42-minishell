@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   token_splitter.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: juanantonio <juanantonio@student.42.fr>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/10/25 17:25:38 by juanantonio       #+#    #+#             */
+/*   Updated: 2023/10/25 17:49:26 by juanantonio      ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include <minishell.h>
 
@@ -5,7 +16,7 @@ static char		*ft_pipestrdupli(char *s, int reset);
 static int		ft_pipecntwrds(char const *s);
 static char		**ft_pipesplipri(char **split, char *s);
 //static char		**check_pipesplitter(char **split);
-static	int		cntallwrds(int contl, int contw, char *s);
+static	int		cntallwrds(int i, int contl, int contw, char *s);
 
 char	**ft_pipesplit(char const *s)
 {
@@ -35,34 +46,36 @@ static int	ft_pipecntwrds(char const *s)
 {
 	int	contl;
 	int	contw;
-
-	contw = 0;
-	contl = 0;
-	return (cntallwrds(contl, contw, (char *)s));
-}
-
-static	int	cntallwrds(int contl, int contw, char *s)
-{
 	int	i;
-	int	flag;
 
 	i = 0;
-	flag = 0;
-	while (s[i] != 0)
+	contw = 0;
+	contl = 0;
+	return (cntallwrds(i, contl, contw, (char *)s));
+}
+
+static	int	cntallwrds(int i, int contl, int contw, char *s)
+{
+	char	quote;
+
+	while (s[i])
 	{
-		if (ft_isaquote(s[i]) && flag == 1)
-			flag = 0;
-		if (!ft_isspace(s[i]) && !ft_isapipe(s[i])) 
+		if (!ft_isspace(s[i]) && !ft_isapipe(s[i]) && !ft_isaquote(s[i])) 
 			contl++;
-		if (((ft_isspace(s[i]) || ft_isapipe(s[i])) && contl > 0) && flag == 0)
+		if (((ft_isspace(s[i]) || ft_isapipe(s[i])) && contl > 0))
 		{
 			contw++;
 			contl = 0;
 		}
-		if ((ft_isapipe(s[i]) || ft_isaquote(s[i])) && flag == 0)
+		if (ft_isapipe(s[i]))
 			contw++;
-		else if (ft_isaquote(s[i]))
-			flag = 1;
+		if (ft_isaquote(s[i]))
+		{
+			quote = s[i++];
+			while (s[i] != quote && s[i + 1])
+				i++;
+			contw++;
+		}
 		i++;
 	}
 	if (contl > 0)
@@ -117,7 +130,7 @@ static	char	*ft_pipestrdupli(char *s, int reset)
 		}
 		else
 		{
-			while (!ft_isspace(s[i]) && s[i] != 0 && !ft_isapipe(s[i]))
+			while (!ft_isspace(s[i]) && s[i] != 0 && !ft_isapipe(s[i]) && !ft_isaquote(s[i]))
 				i++;
 		}
 		dupstr = malloc((i - j) * sizeof(char) + 1);
@@ -138,6 +151,7 @@ static	char	*ft_pipestrdupli(char *s, int reset)
 		return (NULL);
 	}
 }
+
 /*
 static char		**check_pipesplitter(char **split)
 {
