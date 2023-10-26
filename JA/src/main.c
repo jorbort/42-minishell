@@ -6,7 +6,7 @@
 /*   By: juanantonio <juanantonio@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 14:39:17 by juan-anm          #+#    #+#             */
-/*   Updated: 2023/10/25 17:31:33 by juanantonio      ###   ########.fr       */
+/*   Updated: 2023/10/26 12:59:11 by juanantonio      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,22 @@
 
 int main(int ac, char **av)
 {
-	char	*str;
+	char	*str = NULL;
 	t_lexer	*lexe;
 
 	(void) av;
 	lexe = NULL;
 	if (ac != 1)
 		return (1);
-	while(42)
+	while (42)
 	{
 		//add_history(str);
 		str = readline(BLUE_T"\nMiniShell:" YELLOW_T" $>"RESET_COLOR);
-		//str ="Va a la \"ca de pe\" \"un ra  y lu\'fs \' ad";
 		lexe = tokenizer(&lexe, str);	
 		t_lexer *test = lexe;
 		while (test != NULL)
 		{
-			printf("%s===%u\n", test->str,test->token);
+			printf("%s===%u\n", test->str, test->token);
 			test = test->next;
 		}
 		lex_lstclear(&lexe);

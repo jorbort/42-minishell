@@ -6,13 +6,13 @@
 /*   By: juanantonio <juanantonio@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 10:27:53 by juan-anm          #+#    #+#             */
-/*   Updated: 2023/10/21 11:22:44 by juanantonio      ###   ########.fr       */
+/*   Updated: 2023/10/26 12:42:27 by juanantonio      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int ft_isspace(char c)
+int	ft_isspace(char c)
 {
 	if ((c >= 9 && c <= 13) || c == 32)
 		return (1);

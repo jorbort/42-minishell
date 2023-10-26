@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juan-anm <juan-anm@student.42.fr>          +#+  +:+       +#+        */
+/*   By: juanantonio <juanantonio@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 14:41:54 by juan-anm          #+#    #+#             */
-/*   Updated: 2023/10/13 13:53:33 by juan-anm         ###   ########.fr       */
+/*   Updated: 2023/10/26 12:41:47 by juanantonio      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,13 @@ void	lex_lstclear(t_lexer **lst);
 void	lex_lstadd_back(t_lexer **lst, t_lexer *new);
 t_lexer	*lex_lstnew(void);
 void	check_pipes(t_lexer **lexer);
-char **ft_pipesplit(char const *s);
-
+char	**ft_pipesplit(char const *s);
+int		ft_isspchar(char c);
+char	*ft_pipestrdupli(char *s, int reset);
+int		ft_pipecntwrds(char const *s);
+char	**ft_pipesplipri(char **split, char *s);
+int		cntallwrds(int i, int contl, int contw, char *s);
+int		dupstrlen(char *s, int i);
 
 # define WHITE_T		"\x1b[1;37m"
 # define YELLOW_T		"\x1b[1;33m"

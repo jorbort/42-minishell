@@ -2,7 +2,8 @@
 NAME = minishell 
 
 FLAGS = -Wall -Wextra -Werror -MMD 
-SRC =	src/main.c src/tokenizer/token_parser.c src/tokenizer/token_lst.c src/tokenizer/token_splitter.c
+SRC =	src/main.c src/tokenizer/token_parser.c src/tokenizer/token_lst.c \
+		src/tokenizer/token_splitter.c  src/tokenizer/token_utils.c
 
 OBJS = $(SRC:.c=.o) 
 DEPS = $(SRC:.c=.d)

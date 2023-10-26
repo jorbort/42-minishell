@@ -6,7 +6,7 @@
 /*   By: juanantonio <juanantonio@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 12:55:32 by juan-anm          #+#    #+#             */
-/*   Updated: 2023/10/24 17:10:34 by juanantonio      ###   ########.fr       */
+/*   Updated: 2023/10/26 12:55:30 by juanantonio      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,5 +53,3 @@ void	check_pipes(t_lexer **lexer)
 		temp = temp->next;
 	}
 }
-
-
