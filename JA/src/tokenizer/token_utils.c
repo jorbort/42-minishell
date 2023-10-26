@@ -1,40 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   token_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: juanantonio <juanantonio@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/09 14:39:17 by juan-anm          #+#    #+#             */
-/*   Updated: 2023/10/26 13:02:24 by juanantonio      ###   ########.fr       */
+/*   Created: 2023/10/26 11:23:40 by juanantonio       #+#    #+#             */
+/*   Updated: 2023/10/26 12:57:25 by juanantonio      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-int main(int ac, char **av)
+int	ft_isspchar(char c)
 {
-	
-	char *str;
-	(void) av;
-	lexe = NULL;
-	if (ac != 1)
+	if (ft_isspace(c) || ft_isapipe(c) || ft_isaquote(c))
 		return (1);
-	str = readline(BLUE_T"\nMiniShell:" YELLOW_T" $>"RESET_COLOR);
-
-	while(42)
-	{
-		//add_history(str);
-		str = readline(BLUE_T"\nMiniShell:" YELLOW_T" $>"RESET_COLOR);
-		lexe = tokenizer(&lexe, str);	
-		t_lexer *test = lexe;
-		while (test != NULL)
-		{
-			printf("%s===%u\n", test->str, test->token);
-			test = test->next;
-		}
-		lex_lstclear(&lexe);
-	}
-	return (0);
+	else
+		return (0);
 }
 
+int	dupstrlen(char *s, int i)
+{
+	char	quote;
+
+	quote = 0;
+	if (ft_isapipe(s[i]))
+		i++;
+	else if (ft_isaquote(s[i]))
+	{
+		quote = s[i];
+		i++;
+		while (s[i] != quote && s[i]) 
+			i++;
+		if (s[i] == quote)
+			i++;
+	}
+	else
+	{
+		while (!ft_isspchar(s[i]) && s[i] != 0)
+			i++;
+	}
+	return (i);
+}

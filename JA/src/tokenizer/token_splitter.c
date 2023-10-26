@@ -1,169 +1,121 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   token_splitter.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: juanantonio <juanantonio@student.42.fr>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/10/25 17:25:38 by juanantonio       #+#    #+#             */
+/*   Updated: 2023/10/26 12:36:03 by juanantonio      ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include <minishell.h>
 
-static char		*ft_pipestrdupli(const char *s1, char cut);
-static int		ft_pipecntwrds(char const *s, char c);
-static char		**ft_pipesplipri(char **split, char const *s, char c);
-static char		**check_pipesplitter(char **split);
-
-char	**ft_pipesplit(char const *s, char c)
+char	**ft_pipesplit(char const *s)
 {
 	char	**split;
+	int		nwords;
 
 	if (!s)
 		return (NULL);
-	split = ft_calloc((ft_pipecntwrds(s, c) + 1), sizeof(char *));
+	nwords = ft_pipecntwrds(s);
+	split = ft_calloc((nwords + 1), sizeof(char *));
 	if (!split)
 		return (NULL);
-	if (ft_pipecntwrds(s, c) != 0)
+	if (nwords != 0)
 	{
-		if (ft_pipesplipri(split, s, c) == NULL)
+		if (ft_pipesplipri(split, (char *)s) == NULL)
 			return (NULL);
 	}
 	else
 		split[0] = NULL;
-	split = check_pipesplitter(split);
 	return (split);
 }
 
-static char	**ft_pipesplipri(char **split, char const *s, char c)
+int	ft_pipecntwrds(char const *s)
 {
-	int		i;
-	int		j;
-	int		words;
+	int	contl;
+	int	contw;
+	int	i;
 
-	words = 1;
-	i = -1;
-	j = 0;
-	while (i++ < (int)ft_strlen(s) - 1)
+	i = 0;
+	contw = 0;
+	contl = 0;
+	return (cntallwrds(i, contl, contw, (char *)s));
+}
+
+int	cntallwrds(int i, int contl, int contw, char *s)
+{
+	char	quote;
+
+	while (s[i])
 	{
-		if (s[i] == (unsigned char)c)
-			words = 1;
-		else if ((words == 1 && s[i] != (unsigned char)c) || ft_isapipe(s[i]))
+		if (!ft_isspchar(s[i])) 
+			contl++;
+		if (ft_isspchar(s[i]) && contl > 0)
 		{
-			split[j] = ft_pipestrdupli(&s[i], c);
-			if (split[j] == NULL)
-				return (ft_freesp(split));
-			words = 0;
-			if (ft_isapipe(s[i]))
-				words = 1;
-			j++;
+			contw++;
+			contl = 0;
 		}
+		if (ft_isapipe(s[i]))
+			contw++;
+		if (ft_isaquote(s[i]))
+		{
+			quote = s[i++];
+			while (s[i] != quote && s[i + 1])
+				i++;
+			contw++;
+		}
+		i++;
 	}
-	split[j] = NULL;
-	return (split);
-}
-
-static int    ft_pipecntwrds(char const *s, char c)
-{
-    int    i;
-    int    contl;
-    int    contw;
-
-    i = 0;
-    contw = 0;
-    contl = 0;
-    while (s[i] != 0)
-    {
-        if (s[i] != c && (!ft_isapipe(s[i]))) 
-            contl++;
-        if ((s[i] == c || ft_isapipe(s[i])) && contl > 0)
-        {
-            contw++;
-            contl = 0;
-        }
-        if (ft_isapipe(s[i]) && contl == 0)
-          contw++;
-        i++;
-    }
-    if (contl > 0)
-        contw++;
+	if (contl > 0)
+		contw++;
 	return (contw);
 }
 
-static    char    *ft_pipestrdupli(const char *s1, char cut)
+char	**ft_pipesplipri(char **split, char *s)
 {
-    int            i;
-    int            j;
-    const char    *str;
-    char        *dupstr;
+	int		i;
+	char	*reset;
 
-    str = s1;
-    j = 0;
-    i = 0;
-    if (ft_isapipe(str[i]))
-		i++;
-    else
-    {
-      while (str[i] != cut && str[i] != 0 && (!ft_isapipe(str[i])))
-        i++;
-    }
-    dupstr = malloc(i * sizeof(char) + 1);
-    if (!dupstr)
-        return (NULL);
-    while (j < i)
-    {
-        dupstr[j] = str[j];
-        j++;
-    }
-    dupstr[j] = 0;
-    return (dupstr);
-}
-
-static char		**check_pipesplitter(char **split)
-{
-	int i;
-	int j;
-	int quote;
-	char *tmp;
-	
 	i = 0;
-	while (split[i])
+	while (i < ft_pipecntwrds(s))
 	{
-		if ((ft_strchr(split[i], 39) || ft_strchr(split[i], 34)) && ft_strlen(split[i]) == 1) 
-		{
-			quote = (int)split[i][0];
-			j = i + 1;
-			while (split[j] && (!ft_strchr(split[j], quote)))
-			{
-				tmp = split[j];	
-				split[i] = ft_strjoin_doublefree(split[i], split[j]);
-				split[j] = tmp;				
-				j++;
-			}
-			if (split[j] && (ft_strchr(split[j], 39) || ft_strchr(split[j], 34)))
-				{
-						split[i] = ft_strjoin_doublefree(split[i], split[j]);
-						j++;
-				}
-			i++;
-			while (split[j])
-			{
-				split[i] = split[j];
-				
-				i++;
-				j++;
-			}
-			split[i] = NULL;
-		}
-		else
-			i++;
+		split[i] = ft_pipestrdupli(s, 0);
+		if (split[i] == NULL)
+			return (ft_freesp(split));
+		i++;
 	}
+	split[i] = NULL;
+	reset = ft_pipestrdupli(s, 1);
+	free (reset);
 	return (split);
 }
 
-int ft_isapipe(char c)
+char	*ft_pipestrdupli(char *s, int reset)
 {
-	if (c == 124 || c == 60 || c == 62 || c == 34 || c == 39)
-		return (1);
-	else
-		return (0);
-}
+	static int	i = 0;
+	int			j;
+	int			a;
+	char		*dupstr;
 
-int ft_isspace(char c)
-{
-	if ((c >= 9 && c <= 13) || c == 32)
-		return (1);
-	else
-		return (0);
+	if (reset == 1)
+		return (i = 0, NULL);
+	a = 0;
+	while (s[i] == 32)
+		i++;
+	j = i;
+	i = dupstrlen(s, i);
+	dupstr = malloc((i - j) * sizeof(char) + 1);
+	if (!dupstr)
+		return (NULL);
+	while (j < i)
+	{
+		dupstr[a] = s[j];
+		j++;
+		a++;
+	}
+	dupstr[j] = 0;
+	return (dupstr);
 }
