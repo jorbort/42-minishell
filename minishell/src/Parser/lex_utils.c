@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   lex_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jorge <jorge@student.42.fr>                +#+  +:+       +#+        */
+/*   By: juanantonio <juanantonio@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 12:50:39 by jbortolo          #+#    #+#             */
-/*   Updated: 2023/10/26 09:43:11 by jorge            ###   ########.fr       */
+/*   Updated: 2023/10/26 13:41:24 by juanantonio      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parser.h"
+#include <minishell.h>
 
 void	ft_lexerdelone(t_lexer *lex_list, int to_del)
 {

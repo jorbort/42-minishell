@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   parser_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jorge <jorge@student.42.fr>                +#+  +:+       +#+        */
+/*   By: juanantonio <juanantonio@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 17:38:48 by jorge             #+#    #+#             */
-/*   Updated: 2023/10/26 09:36:21 by jorge            ###   ########.fr       */
+/*   Updated: 2023/10/26 13:41:32 by juanantonio      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parser.h"
+#include <minishell.h>
 
 t_cmd	*t_cmd_new(char **str_cmd, t_lexer *redirection)
 {

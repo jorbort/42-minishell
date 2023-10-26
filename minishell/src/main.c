@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jorge <jorge@student.42.fr>                +#+  +:+       +#+        */
+/*   By: juanantonio <juanantonio@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 14:39:17 by juan-anm          #+#    #+#             */
-/*   Updated: 2023/10/26 09:32:42 by jorge            ###   ########.fr       */
+/*   Updated: 2023/10/26 14:59:35 by juanantonio      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
-#include "parser.h"
 
 void	init_program(t_program *program)
 {
@@ -27,9 +26,10 @@ int main(int ac, char **av, char **env)
 {
 	
 	char *str;
+	t_program *program;
 	(void) env;
 	(void) av;
-	t_program *program;
+	
 	
 	program = malloc(sizeof(t_program));
 	init_program(program);

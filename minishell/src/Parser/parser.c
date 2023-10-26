@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jorge <jorge@student.42.fr>                +#+  +:+       +#+        */
+/*   By: juanantonio <juanantonio@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 09:13:25 by jorge             #+#    #+#             */
-/*   Updated: 2023/10/26 09:45:30 by jorge            ###   ########.fr       */
+/*   Updated: 2023/10/26 15:00:47 by juanantonio      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parser.h"
+#include <minishell.h>
 
 static void	get_redir(t_program *program, t_lexer *tmp)
 {
@@ -25,7 +25,7 @@ static void	get_redir(t_program *program, t_lexer *tmp)
 		ft_error(program, 1);
 		return ;
 	}
-	lex_lstadd_back(program->redir, node);
+	lex_lstadd_back(&program->redir, node);
 	index_a = tmp->i;
 	index_b = tmp->next->i;
 	ft_lexerdelone(program->lex_list, index_a);
@@ -91,9 +91,10 @@ static void	parse_tokens(t_program *program)
 {
 	t_cmd	*node;
 
-	del_redir(program);
+	del_redirs(program);
 	if (program->lex_list->token == PIPE)
-		ft_error(program->lex_list, 2);
+		ft_error(program, 2);
+		//ft_error(program->lex_list, 2);
 	while (program->lex_list)
 	{
 		if (program->lex_list && program->lex_list->token == PIPE)
@@ -106,7 +107,7 @@ static void	parse_tokens(t_program *program)
 		if (!program->cmd_list)
 			program->cmd_list = node;
 		else
-			ft_cmd_addback(program->cmd_list, node);
+			ft_cmd_addback(&program->cmd_list, node);
 		if (node)
 			free(node);
 	}

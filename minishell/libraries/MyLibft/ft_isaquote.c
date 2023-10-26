@@ -1,30 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_errors.c                                        :+:      :+:    :+:   */
+/*   ft_isaquote.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jorge <jorge@student.42.fr>                +#+  +:+       +#+        */
+/*   By: juanantonio <juanantonio@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/23 14:32:22 by jbortolo          #+#    #+#             */
-/*   Updated: 2023/10/26 09:06:04 by jorge            ###   ########.fr       */
+/*   Created: 2023/05/03 10:27:53 by juan-anm          #+#    #+#             */
+/*   Updated: 2023/10/26 12:42:15 by juanantonio      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parser.h"
+#include "libft.h"
 
-void	ft_error(t_program *program, int errno)
+int	ft_isaquote(char c)
 {
-	(void) program;
-	if (errno == 1)
-	{
-		perror(INVALID_ARG);
-	}
-	if (errno == 2)
-	{
-		perror(PIPE_ERROR);
-	}
-	if (errno == 3)
-	{
-		perror(TOKEN_ERROR);
-	}
+	if (c == 34 || c == 39)
+		return (1);
+	else
+		return (0);
 }

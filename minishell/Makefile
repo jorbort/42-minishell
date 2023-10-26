@@ -1,18 +1,21 @@
-
 NAME = minishell 
 
 FLAGS = -Wall -Wextra -Werror -MMD 
-SRC =	main.c token_parser.c token_lst.c token_splitter.c ft_errors.c lex_utils.c parser_utils.c parser.c
+SRC = 	src/main.c src/Tokenizer/token_parser.c src/Tokenizer/token_lst.c \
+		src/Tokenizer/token_splitter.c  src/Tokenizer/token_utils.c \
+		src/Parser/ft_errors.c src/Parser/lex_utils.c src/Parser/parser_utils.c \
+		src/Parser/parser.c \
 
-OBJS = $(SRC:.c=.o) 
-DEPS = $(SRC:.c=.d)
+OBJS = $(SRC:.c=.o) ##$(SRC_TOKENIZER:.c=.o) $(SRC_PARSER:.c=.o) 
+DEPS = $(SRC:.c=.d) ##$(SRC_TOKENIZER:.c=.d) $(SRC_PARSER:.c=.d)
 
 RM = rm -f
 
-MS = minishell.h
-LIBFT_DIR = MyLibft
-LIBFT =  MyLibft/libft.a
-LIBS = $(MS) $(LIBFT)
+MS = ./includes/minishell.h 
+
+LIBFT_DIR = libraries/MyLibft
+LIBFT =  libraries/MyLibft/libft.a
+LIBS = $(MS) $(LIBFT) 
 READLINE_PATH:=	/goinfre/homebrew/opt/readline
 
 GREEN = \033[1;92m

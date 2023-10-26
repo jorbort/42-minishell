@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   token_lst.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jorge <jorge@student.42.fr>                +#+  +:+       +#+        */
+/*   By: juan-anm <juan-anm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 13:39:08 by juan-anm          #+#    #+#             */
-/*   Updated: 2023/10/26 09:02:51 by jorge            ###   ########.fr       */
+/*   Updated: 2023/10/13 11:59:28 by juan-anm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include <includes/minishell.h>
 
 t_lexer	*lex_lstnew(void)
 {
@@ -27,18 +27,18 @@ t_lexer	*lex_lstnew(void)
 	return (node);
 }
 
-void	lex_lstadd_back(t_lexer **lst, t_lexer *node)
+void	lex_lstadd_back(t_lexer **lst, t_lexer *new)
 {
 	t_lexer	*last;
 
 	if ((*lst))
 	{
 		last = lex_lstlast(*lst);
-		last->next = node;
-		node->prev = last;
+		last->next = new;
+		new->prev = last;
 	}
 	else
-		(*lst) = node;
+		(*lst) = new;
 }
 
 void	lex_lstclear(t_lexer **lst)
