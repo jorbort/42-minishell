@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juanantonio <juanantonio@student.42.fr>    +#+  +:+       +#+        */
+/*   By: jbortolo <jbortolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 14:41:54 by juan-anm          #+#    #+#             */
-/*   Updated: 2023/10/26 14:48:57 by juanantonio      ###   ########.fr       */
+/*   Updated: 2023/10/29 14:13:09 by jbortolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,10 +86,10 @@ typedef struct s_data
 
 typedef struct s_program
 {
-	t_data			*data;
-	t_cmd			*cmd_list;
-	t_lexer			*lex_list;
-	t_lexer			*redir;
+	struct s_data			*data;
+	struct s_cmd			*cmd_list;
+	struct s_lexer			*lex_list;
+	struct s_lexer			*redir;
 }	t_program;
 
 ///////////////TOKENIZER *.c///////////////
@@ -98,7 +98,7 @@ t_lexer	*tokenizer(t_lexer **lexer, char *str);
 t_lexer	*lex_lstlast(t_lexer *lst);
 int		lex_lstsize(t_lexer *lst);
 void	lex_lstclear(t_lexer **lst);
-void	lex_lstadd_back(t_lexer **lst, t_lexer *new);
+void	lex_lstadd_back(t_lexer **lst, t_lexer *node);
 t_lexer	*lex_lstnew(void);
 void	check_pipes(t_lexer **lexer);
 char	**ft_pipesplit(char const *s);
@@ -115,7 +115,7 @@ int		dupstrlen(char *s, int i);
 bool	ft_parser(t_program *program);
 //parser_utils.c
 t_cmd	*t_cmd_new(char **str, t_lexer *redirection);
-void	ft_cmd_addback(t_cmd **lst, t_cmd *new);
+void	ft_cmd_addback(t_cmd **lst, t_cmd *node);
 /*void	ft_cmd_rmfirst(t_cmd **lst);*/
 int		count_args(t_program *program);
 void	ft_count_pipes(t_program *program);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juanantonio <juanantonio@student.42.fr>    +#+  +:+       +#+        */
+/*   By: jbortolo <jbortolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 09:13:25 by jorge             #+#    #+#             */
-/*   Updated: 2023/10/26 15:00:47 by juanantonio      ###   ########.fr       */
+/*   Updated: 2023/10/29 14:13:10 by jbortolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,10 +91,12 @@ static void	parse_tokens(t_program *program)
 {
 	t_cmd	*node;
 
+	printf("before del redirs \n");
 	del_redirs(program);
+	printf("after del_redirs \n");
+	printf("%d", program->redir->token);
 	if (program->lex_list->token == PIPE)
 		ft_error(program, 2);
-		//ft_error(program->lex_list, 2);
 	while (program->lex_list)
 	{
 		if (program->lex_list && program->lex_list->token == PIPE)
@@ -117,10 +119,12 @@ bool	ft_parser(t_program	*program )
 {
 	if (program->lex_list->token == PIPE)
 	{
+		printf("pipe error \n");
 		ft_error(program, 2);
 		return (false);
 	}
 	ft_count_pipes(program);
 	parse_tokens(program);
+	printf("after parse tokens \n");
 	return (true);
 }

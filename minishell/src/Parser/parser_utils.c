@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juanantonio <juanantonio@student.42.fr>    +#+  +:+       +#+        */
+/*   By: jbortolo <jbortolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 17:38:48 by jorge             #+#    #+#             */
-/*   Updated: 2023/10/26 13:41:32 by juanantonio      ###   ########.fr       */
+/*   Updated: 2023/10/29 14:13:08 by jbortolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ void	ft_count_pipes(t_program *program)
 	t_lexer	*tmp;
 
 	tmp = program->lex_list;
-	while (tmp)
+	while (tmp->next)
 	{
 		if (tmp->token == PIPE)
 			program->data->pipes++;
