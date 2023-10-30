@@ -6,7 +6,7 @@
 /*   By: jbortolo <jbortolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 09:13:25 by jorge             #+#    #+#             */
-/*   Updated: 2023/10/29 14:13:10 by jbortolo         ###   ########.fr       */
+/*   Updated: 2023/10/30 15:04:16 by jbortolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,12 @@ static void	get_redir(t_program *program, t_lexer *tmp)
 		ft_error(program, 1);
 		return ;
 	}
-	lex_lstadd_back(&program->redir, node);
+	ft_lexeradd_back(&program->redir, node);
 	index_a = tmp->i;
 	index_b = tmp->next->i;
-	ft_lexerdelone(program->lex_list, index_a);
-	ft_lexerdelone(program->lex_list, index_b);
+	ft_lexerdelone(&program->lex_list, index_a);
+	ft_lexerdelone(&program->lex_list, index_b);
 	program->data->nume_redirs++;
-	free(node);
 }
 
 static void	del_redirs(t_program *program)
@@ -48,13 +47,10 @@ static void	del_redirs(t_program *program)
 		ft_error(program, 1);
 		return ;
 	}
-	if (tmp->next->token)
-	{
-		ft_error(program, 3);
-		return ;
-	}
 	if ((tmp->token >= GREAT && tmp->token <= LESS_LESS))
+	{
 		get_redir(program, tmp);
+	}
 	del_redirs(program);
 }
 
@@ -79,7 +75,7 @@ static t_cmd	*get_cmd(t_program *program)
 		if (tmp->str)
 		{
 			str[i++] = ft_strdup(tmp->str);
-			ft_lexerdelone(program->lex_list, tmp->i);
+			ft_lexerdelone(&program->lex_list, tmp->i);
 			tmp = program->lex_list;
 		}
 		args--;
@@ -91,16 +87,13 @@ static void	parse_tokens(t_program *program)
 {
 	t_cmd	*node;
 
-	printf("before del redirs \n");
 	del_redirs(program);
-	printf("after del_redirs \n");
-	printf("%d", program->redir->token);
 	if (program->lex_list->token == PIPE)
 		ft_error(program, 2);
 	while (program->lex_list)
 	{
 		if (program->lex_list && program->lex_list->token == PIPE)
-			ft_lexerdelone(program->lex_list, program->lex_list->i);
+			ft_lexerdelone(&program->lex_list, program->lex_list->i);
 		if (program->lex_list->token == PIPE)
 			ft_error(program, 2);
 		node = get_cmd(program);
@@ -119,12 +112,10 @@ bool	ft_parser(t_program	*program )
 {
 	if (program->lex_list->token == PIPE)
 	{
-		printf("pipe error \n");
 		ft_error(program, 2);
 		return (false);
 	}
 	ft_count_pipes(program);
 	parse_tokens(program);
-	printf("after parse tokens \n");
 	return (true);
 }

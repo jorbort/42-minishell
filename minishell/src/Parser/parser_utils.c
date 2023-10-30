@@ -6,7 +6,7 @@
 /*   By: jbortolo <jbortolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 17:38:48 by jorge             #+#    #+#             */
-/*   Updated: 2023/10/29 14:13:08 by jbortolo         ###   ########.fr       */
+/*   Updated: 2023/10/30 15:02:35 by jbortolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,18 +43,6 @@ void	ft_cmd_addback(t_cmd **lst, t_cmd *new)
 	new->prev = temp;
 }
 
-/*void	ft_cmd_rmfirst(t_cmd **lst)
-{
-	t_cmd	*temp;
-
-	if (!*lst)
-		return ;
-	temp = (*lst)->next;
-	ft_lexer_rm(&(*lst)->redirection);
-	free(*lst);
-	*lst = temp;
-}*/
-
 int	count_args(t_program *program)
 {
 	t_lexer	*tmp;
@@ -82,4 +70,20 @@ void	ft_count_pipes(t_program *program)
 			program->data->pipes++;
 		tmp = tmp->next;
 	}
+}
+
+void	ft_lexeradd_back(t_lexer **lst, t_lexer *new)
+{
+	t_lexer	*tmp;
+
+	tmp = *lst;
+	if (*lst == NULL)
+	{
+		*lst = new;
+		return ;
+	}
+	while (tmp->next != NULL)
+		tmp = tmp->next;
+	tmp->next = new;
+	new->prev = tmp;
 }
