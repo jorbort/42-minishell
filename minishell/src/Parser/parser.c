@@ -6,7 +6,7 @@
 /*   By: jorge <jorge@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 17:44:14 by jorge             #+#    #+#             */
-/*   Updated: 2023/11/01 18:20:12 by jorge            ###   ########.fr       */
+/*   Updated: 2023/11/01 19:09:37 by jorge            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ bool	ft_parser(t_program *program)
 	{
 		if (program->lex_list && program->lex_list->token == PIPE)
 			ft_lexerdelone(&program->lex_list, program->lex_list->i);
-		if (pipe_error(program, program->lex_list->token))
+		if (!pipe_error(program, program->lex_list->token))
 			return (false);
 		aux = init_parser(program->lex_list, program);
 		node = init_cmd(&aux);

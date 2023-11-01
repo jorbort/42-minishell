@@ -6,7 +6,7 @@
 /*   By: jorge <jorge@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 14:39:17 by juan-anm          #+#    #+#             */
-/*   Updated: 2023/11/01 18:55:49 by jorge            ###   ########.fr       */
+/*   Updated: 2023/11/01 19:11:37 by jorge            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,14 +45,13 @@ int	main(int ac, char **av, char **env)
 		program->lex_list = tokenizer(&program->lex_list, str);
 		if (!ft_parser(program))
 			ft_error(program, 5);
-		printf("antes del print");
-		printf("%s\n", temp->cmd[0]);
 		temp = program->cmd_list;
 		printf("antes del while \n");
 		while (temp != NULL)
 		{
 			printf("loop");//no llega hasta aqui
 			printf("%s\n", temp->cmd[0]);
+			printf("%s\n", temp->cmd[1]);
 			temp = temp->next; 
 		}
 		free(str);
