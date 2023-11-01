@@ -1,26 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser_utils.c                                     :+:      :+:    :+:   */
+/*   parser_lst_utils.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jorge <jorge@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 17:38:48 by jorge             #+#    #+#             */
-/*   Updated: 2023/10/30 20:57:34 by jorge            ###   ########.fr       */
+/*   Updated: 2023/11/01 18:47:15 by jorge            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parser.h"
+#include <minishell.h>
 
-t_cmd	*t_cmd_new(char **str, char *redirection)
+t_cmd	*t_cmd_new(char **str_cmd,int num_redirs, t_lexer *redirection)
 {
 	t_cmd	*new;
 
 	new = malloc(sizeof(t_cmd));
 	if (!new)
 		return (0);
-	new->cmd = str;
+	new->cmd = str_cmd;
 	new->built_in = false;
+	new->num_redirs = num_redirs;
 	new->redirection = redirection;
 	new->next = NULL;
 	new->prev = NULL;
@@ -37,49 +38,24 @@ void	ft_cmd_addback(t_cmd **lst, t_cmd *new)
 		*lst = new;
 		return ;
 	}
-	while (temp->next ! NULL)
+	while (temp->next != NULL)
 		temp = temp->next;
 	temp->next = new;
 	new->prev = temp;
 }
 
-void	ft_cmd_rmfirst(t_cmd **lst)
+void	ft_lexeradd_back(t_lexer **lst, t_lexer *new)
 {
-	t_cmd	*temp;
+	t_lexer	*tmp;
 
-	if (!*lst)
+	tmp = *lst;
+	if (*lst == NULL)
+	{
+		*lst = new;
 		return ;
-	temp = (*lst)->next;
-	ft_lexer_rm(&(*lst)->redirection);
-	free(*lst);
-	*lst = temp;
-}
-
-int	count_args(t_program *program)
-{
-	t_lexer	*tmp;
-	int		i;
-
-	i = 0;
-	tmp = program->lex_list;
-	while (tmp && tmp->token != PIPE)
-	{
-		if (tmp->i >= 0)
-			i++;
-		tmp = tmp->next;
 	}
-	return (i);
-}
-
-void	ft_count_pipes(t_program *program)
-{
-	t_lexer	*tmp;
-
-	tmp = program->lex_list;
-	while (tmp)
-	{
-		if (tmp->token == PIPE)
-			program->data->pipes++;
+	while (tmp->next != NULL)
 		tmp = tmp->next;
-	}
+	tmp->next = new;
+	new->prev = tmp;
 }

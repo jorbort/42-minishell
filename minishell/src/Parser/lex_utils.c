@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lex_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbortolo <jbortolo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jorge <jorge@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 12:50:39 by jbortolo          #+#    #+#             */
-/*   Updated: 2023/10/30 15:22:17 by jbortolo         ###   ########.fr       */
+/*   Updated: 2023/11/01 18:44:48 by jorge            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	ft_lexerdelone(t_lexer **lex_list, int to_del)
 	t_lexer	*prev;
 	t_lexer	*start;
 
-	start = *(lex_list);
+	start = *lex_list;
 	node = start;
 	if ((*lex_list)->i == to_del)
 	{

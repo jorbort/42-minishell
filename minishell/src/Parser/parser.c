@@ -3,122 +3,82 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbortolo <jbortolo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jorge <jorge@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/10 09:13:25 by jorge             #+#    #+#             */
-/*   Updated: 2023/10/30 15:43:31 by jbortolo         ###   ########.fr       */
+/*   Created: 2023/10/31 17:44:14 by jorge             #+#    #+#             */
+/*   Updated: 2023/11/01 18:20:12 by jorge            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <minishell.h>
+#include "minishell.h"
 
-static void	get_redir(t_program *program, t_lexer *tmp)
-{
-	t_lexer	*node;
-	int		index_a;
-	int		index_b;
-
-	tmp = program->lex_list;
-	node = ft_lex_new(ft_strdup(tmp->next->str), tmp->token);
-	if (!node)
-	{
-		ft_error(program, 1);
-		return ;
-	}
-	ft_lexeradd_back(&program->redir, node);
-	index_a = tmp->i;
-	index_b = tmp->next->i;
-	ft_lexerdelone(&program->lex_list, index_a);
-	ft_lexerdelone(&program->lex_list, index_b);
-	program->data->nume_redirs++;
-}
-
-static void	del_redirs(t_program *program)
-{
-	t_lexer	*tmp;
-
-	tmp = program->lex_list;
-	while (tmp && tmp->token == 0)
-		tmp = tmp->next;
-	if (!tmp || tmp->token == PIPE)
-		return ;
-	if (!tmp->next)
-	{
-		ft_error(program, 1);
-		return ;
-	}
-	if ((tmp->token >= GREAT && tmp->token <= LESS_LESS))
-	{
-		get_redir(program, tmp);
-	}
-	del_redirs(program);
-}
-
-static t_cmd	*get_cmd(t_program *program)
+static t_cmd	*init_cmd(t_parser *pars)
 {
 	char	**str;
 	int		i;
+	int		arg_size;
 	t_lexer	*tmp;
-	int		args;
 
 	i = 0;
-	args = count_args(program);
-	str = ft_calloc(args + 1, sizeof(char *));
+	del_redirs(pars);
+	arg_size = count_args(pars->lexer_list);
+	str = ft_calloc(arg_size + 1, sizeof(char *));
 	if (!str)
-	{
-		ft_error(program, 1);
-		return (NULL);
-	}
-	tmp = program->lex_list;
-	while (args)
+		ft_error(pars->program, 3);
+	tmp = pars->lexer_list;
+	while (arg_size > 0)
 	{
 		if (tmp->str)
 		{
 			str[i++] = ft_strdup(tmp->str);
-			ft_lexerdelone(&program->lex_list, tmp->i);
-			tmp = program->lex_list;
+			ft_lexerdelone(&pars->lexer_list, tmp->i);
+			tmp = pars->lexer_list;
 		}
-		args--;
+		arg_size--;
 	}
-	return (t_cmd_new(str, program->redir));
+	return (t_cmd_new(str,pars->num_redirections,pars->redirections));
 }
 
-static void	parse_tokens(t_program *program)
+static bool	pipe_error(t_program *program, t_token token)
 {
-	t_cmd			*node;
-	t_program		*tmp;
+	if (token == PIPE)
+	{
+		ft_error(program,1);
+		return (false);
+	}
+	if (!program->lex_list)
+	{
+		ft_error(program,3);
+		return (false);
+	}
+	return (true);
+}
 
-	del_redirs(program);
+
+bool	ft_parser(t_program *program)
+{
+	t_cmd		*node;
+	t_parser	aux;
+
+	program->cmd_list = NULL;
+	ft_count_pipes(program->lex_list, program);
 	if (program->lex_list->token == PIPE)
-		ft_error(program, 2);
+		return(ft_error(program,1));
 	while (program->lex_list)
 	{
 		if (program->lex_list && program->lex_list->token == PIPE)
 			ft_lexerdelone(&program->lex_list, program->lex_list->i);
-		if (program->lex_list->token == PIPE)
-			ft_error(program, 2);
-		tmp = init_program(program->lex_list, program);//-> falta inicializar
-		node = get_cmd(program);
+		if (pipe_error(program, program->lex_list->token))
+			return (false);
+		aux = init_parser(program->lex_list, program);
+		node = init_cmd(&aux);
 		if (!node)
-			return ;
+			ft_error(program,3);
 		if (!program->cmd_list)
 			program->cmd_list = node;
 		else
 			ft_cmd_addback(&program->cmd_list, node);
-		if (node)
-			free(node);
-		program->lex_list = tmp->lex_list;
+		program->lex_list = aux.lexer_list;
 	}
-}
-
-bool	ft_parser(t_program	*program )
-{
-	if (program->lex_list->token == PIPE)
-	{
-		ft_error(program, 2);
-		return (false);
-	}
-	ft_count_pipes(program);
-	parse_tokens(program);
 	return (true);
 }

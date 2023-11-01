@@ -3,8 +3,8 @@ NAME = minishell
 FLAGS = -Wall -Wextra -Werror -MMD 
 SRC = 	src/main.c src/Tokenizer/token_parser.c src/Tokenizer/token_lst.c \
 		src/Tokenizer/token_splitter.c  src/Tokenizer/token_utils.c \
-		src/Parser/ft_errors.c src/Parser/lex_utils.c src/Parser/parser_utils.c \
-		src/Parser/parser.c \
+		src/Parser/ft_errors.c src/Parser/lex_utils.c src/Parser/parser_utils.c src/Parser/parser_lst_utils.c \
+		src/Parser/parser.c src/Parser/parse_redirs.c \
 
 OBJS = $(SRC:.c=.o) ##$(SRC_TOKENIZER:.c=.o) $(SRC_PARSER:.c=.o) 
 DEPS = $(SRC:.c=.d) ##$(SRC_TOKENIZER:.c=.d) $(SRC_PARSER:.c=.d)
