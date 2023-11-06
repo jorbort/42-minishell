@@ -23,13 +23,12 @@ RED = \033[1;91m
 NC = \033[0m
 
 %.o: %.c $(MS) Makefile
-	@$(CC) $(FLAGS) -g -I./includes -I./ -c $< -o $@ -I$(READLINE_PATH)/include
-
+	@$(CC) $(FLAGS) -g -I./includes -I./ -c $< -o $@ -I$(READLINE_PATH)/include -I libraries/MyLibft
 all:
 	@$(MAKE) -C $(LIBFT_DIR) 
 	@$(MAKE) -lreadline $(NAME)
 
-$(NAME):: $(OBJS)
+$(NAME):: $(OBJS) 
 	@$(CC) $(OBJS) $(LIBFT) -o $@ -L$(READLINE_PATH)/lib -lreadline
 	@echo "$(GREEN)MiniShell Compiled$(NC)"
 

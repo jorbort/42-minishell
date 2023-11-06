@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jorge <jorge@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jbortolo <jbortolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 14:41:54 by juan-anm          #+#    #+#             */
-/*   Updated: 2023/11/01 18:17:18 by jorge            ###   ########.fr       */
+/*   Updated: 2023/11/06 10:56:11 by jbortolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,29 +103,29 @@ typedef struct s_program
 
 ///////////////TOKENIZER *.c///////////////
 
-t_lexer	*tokenizer(t_lexer **lexer, char *str);
-t_lexer	*lex_lstlast(t_lexer *lst);
-int		lex_lstsize(t_lexer *lst);
-void	lex_lstclear(t_lexer **lst);
-void	lex_lstadd_back(t_lexer **lst, t_lexer *node);
-t_lexer	*lex_lstnew(void);
-void	check_pipes(t_lexer **lexer);
-char	**ft_pipesplit(char const *s);
-int		ft_isspchar(char c);
-char	*ft_pipestrdupli(char *s, int reset);
-int		ft_pipecntwrds(char const *s);
-char	**ft_pipesplipri(char **split, char *s);
-int		cntallwrds(int i, int contl, int contw, char *s);
-int		dupstrlen(char *s, int i);
+t_lexer		*tokenizer(t_lexer **lexer, char *str);
+t_lexer		*lex_lstlast(t_lexer *lst);
+int			lex_lstsize(t_lexer *lst);
+void		lex_lstclear(t_lexer **lst);
+void		lex_lstadd_back(t_lexer **lst, t_lexer *node);
+t_lexer		*lex_lstnew(void);
+void		check_pipes(t_lexer **lexer);
+char		**ft_pipesplit(char const *s);
+int			ft_isspchar(char c);
+char		*ft_pipestrdupli(char *s, int reset);
+int			ft_pipecntwrds(char const *s);
+char		**ft_pipesplipri(char **split, char *s);
+int			cntallwrds(int i, int contl, int contw, char *s);
+int			dupstrlen(char *s, int i);
 
 ///////////////PARSER *.c///////////////
 
 //parser.c
 bool		ft_parser(t_program *program);
 //parser_lst_utils.c
-t_cmd	*t_cmd_new(char **str_cmd,int num_redirs, t_lexer *redirection);
+t_cmd		*t_cmd_new(char **str_cmd, int num_redirs, t_lexer *redirection);
 void		ft_cmd_addback(t_cmd **lst, t_cmd *node);
-void		ft_lexeradd_back(t_lexer **lst, t_lexer *new);
+void		ft_lexeradd_back(t_lexer **lst, t_lexer *node);
 //parser_utils.c
 t_parser	init_parser(t_lexer *lex_list, t_program *program);
 void		ft_count_pipes(t_lexer *lex_list, t_program *program);
