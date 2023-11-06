@@ -6,7 +6,7 @@
 /*   By: jbortolo <jbortolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 14:41:54 by juan-anm          #+#    #+#             */
-/*   Updated: 2023/11/06 10:56:11 by jbortolo         ###   ########.fr       */
+/*   Updated: 2023/11/06 14:07:29 by jbortolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # include <readline/readline.h>
 # include <readline/history.h>
 # include <stdbool.h>
+# include <limits.h>
 
 /////////////ERROR MGS////////////////
 
@@ -141,5 +142,9 @@ bool		ft_error(t_program *program, int errno);
 //parse_redirs.c
 int			add_redir(t_lexer *tmp, t_parser *pars);
 void		del_redirs(t_parser *pars);
+//pwd.c
+void	get_pwd(t_data *data);
+//built_in.c
+void	is_builtin(t_program *program);
 
 #endif
