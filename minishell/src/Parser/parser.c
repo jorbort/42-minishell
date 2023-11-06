@@ -6,7 +6,7 @@
 /*   By: jbortolo <jbortolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 09:13:25 by jorge             #+#    #+#             */
-/*   Updated: 2023/10/30 15:43:31 by jbortolo         ###   ########.fr       */
+/*   Updated: 2023/10/30 17:59:56 by jbortolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ static t_cmd	*get_cmd(t_program *program)
 static void	parse_tokens(t_program *program)
 {
 	t_cmd			*node;
-	t_program		*tmp;
+	//t_lexer			*tmp;
 
 	del_redirs(program);
 	if (program->lex_list->token == PIPE)
@@ -97,7 +97,7 @@ static void	parse_tokens(t_program *program)
 			ft_lexerdelone(&program->lex_list, program->lex_list->i);
 		if (program->lex_list->token == PIPE)
 			ft_error(program, 2);
-		tmp = init_program(program->lex_list, program);//-> falta inicializar
+		//tmp = program->lex_list;
 		node = get_cmd(program);
 		if (!node)
 			return ;
@@ -107,7 +107,7 @@ static void	parse_tokens(t_program *program)
 			ft_cmd_addback(&program->cmd_list, node);
 		if (node)
 			free(node);
-		program->lex_list = tmp->lex_list;
+		//program->lex_list = tmp;
 	}
 }
 

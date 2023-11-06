@@ -6,7 +6,7 @@
 /*   By: jbortolo <jbortolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 14:39:17 by juan-anm          #+#    #+#             */
-/*   Updated: 2023/10/30 15:21:53 by jbortolo         ###   ########.fr       */
+/*   Updated: 2023/10/30 17:59:10 by jbortolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	main(int ac, char **av, char **env)
 	while (42)
 	{
 		add_history(str);
-		str = readline(BLUE_T"\nMiniShell:" YELLOW_T" $>"RESET_COLOR);
+		str = readline(BLUE_T"\nMiniShell:" YELLOW_T" $> "RESET_COLOR);
 		program->lex_list = tokenizer(&program->lex_list, str);
 		if (!ft_parser(program))
 			ft_error(program, 5);
