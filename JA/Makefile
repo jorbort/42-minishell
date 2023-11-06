@@ -21,7 +21,7 @@ RED = \033[1;91m
 NC = \033[0m
 
 %.o: %.c $(MS) Makefile
-	@$(CC) $(FLAGS) -g -I./includes -I./ -c $< -o $@ -I$(READLINE_PATH)/include
+	@$(CC) $(FLAGS) -g -I./includes -I./ -c $< -o $@ -I$(READLINE_PATH)/include -I ($LIBFT_DIR)
 
 all:
 	@$(MAKE) -C $(LIBFT_DIR) --no-print-directory

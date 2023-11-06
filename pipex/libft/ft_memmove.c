@@ -1,34 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_errors.c                                        :+:      :+:    :+:   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jorge <jorge@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/23 14:32:22 by jbortolo          #+#    #+#             */
-/*   Updated: 2023/11/01 18:12:27 by jorge            ###   ########.fr       */
+/*   Created: 2023/05/05 11:34:47 by jbortolo          #+#    #+#             */
+/*   Updated: 2023/08/27 16:12:13 by jorge            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <minishell.h>
+#include "libft.h"
 
-bool	ft_error(t_program *program, int errno)
+void	*ft_memmove(void *dst, const void *src, size_t len)
 {
-	(void) program;
-	if (errno == 1)
+	char		*ptrd;
+	char		*ptrs;
+
+	ptrd = dst;
+	ptrs = (char *)src;
+	if (ptrs < ptrd)
 	{
-		perror(INVALID_ARG);
-		return (false);
+		ptrd += len - 1;
+		ptrs += len -1;
+		while (len--)
+		{
+			*ptrd = *ptrs;
+			ptrd--;
+			ptrs--;
+		}
 	}
-	if (errno == 2)
-	{
-		perror(PIPE_ERROR);
-		return (false);
-	}
-	if (errno == 3)
-	{
-		perror(TOKEN_ERROR);
-		return(false);
-	}
-	return (true);
+	else
+		ft_memcpy(dst, src, len);
+	return (dst);
 }

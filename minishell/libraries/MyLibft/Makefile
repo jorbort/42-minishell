@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: juanantonio <juanantonio@student.42.fr>    +#+  +:+       +#+         #
+#    By: jorge <jorge@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/09 11:15:53 by juan-anm          #+#    #+#              #
-#    Updated: 2023/10/21 11:58:09 by juanantonio      ###   ########.fr        #
+#    Updated: 2023/10/30 19:37:00 by jorge            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,7 +45,7 @@ DEPSGNL = $(SRCSGNL:.c=.d)
 DEPSPRINTF = $(SRCSPRINTF:.c=.d)
 
 %.o: %.c $(INCLUDE) Makefile
-	@$(CC) $(CFLAGS) -MMD -I $(INCLUDE) -c $< -o $@
+	@$(CC) $(CFLAGS) -MMD  -c $< -o $@
 	
 all: $(NAME)
 

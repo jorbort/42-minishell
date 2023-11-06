@@ -6,19 +6,27 @@
 /*   By: jbortolo <jbortolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 14:39:17 by juan-anm          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2023/10/30 17:59:10 by jbortolo         ###   ########.fr       */
+=======
+/*   Updated: 2023/11/06 14:39:29 by jbortolo         ###   ########.fr       */
+>>>>>>> a3eb437b70dff184f167dbb14770df546915ed2c
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <includes/minishell.h>
 
-void	init_program(t_program *program)
+void	init_program(t_program *program, char **env)
 {
-	program->data = (t_data*)malloc(sizeof(t_data));
+	program->data = (t_data*) malloc( sizeof(t_data *));
 	if (program->data)
 	{
 		program->data->pipes = 0;
 		program->data->nume_redirs = 0;
+		program->data->pwd = getcwd(NULL, PATH_MAX);
+		program->data->prev_pwd = NULL;
+		program->data->envp = env;
+		get_pwd(program->data);
 	}
 	program->redir = NULL;
 	program->lex_list = NULL;
@@ -33,23 +41,24 @@ int	main(int ac, char **av, char **env)
 
 	(void) env;
 	(void) av;
+	str = "cd | pwd";
 	program = malloc(sizeof(t_program));
-	init_program(program);
+	init_program(program, env);
 	if (ac != 1)
 		return (1);
 	while (42)
 	{
+		//str = readline(BLUE_T"\nMiniShell:" YELLOW_T" $> "RESET_COLOR);
 		add_history(str);
+<<<<<<< HEAD
 		str = readline(BLUE_T"\nMiniShell:" YELLOW_T" $> "RESET_COLOR);
+=======
+>>>>>>> a3eb437b70dff184f167dbb14770df546915ed2c
 		program->lex_list = tokenizer(&program->lex_list, str);
 		if (!ft_parser(program))
 			ft_error(program, 5);
-		while (program->redir)
-		{
-			printf("%s", program->redir->str);
-			program->redir = program->redir->next;
-		}
-		free(str);
+		is_builtin(program);
+		//free(str);
 	}
 	return (0);
 }

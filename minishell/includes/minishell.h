@@ -6,7 +6,7 @@
 /*   By: jbortolo <jbortolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 14:41:54 by juan-anm          #+#    #+#             */
-/*   Updated: 2023/10/30 15:01:52 by jbortolo         ###   ########.fr       */
+/*   Updated: 2023/11/06 14:07:29 by jbortolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # include <readline/readline.h>
 # include <readline/history.h>
 # include <stdbool.h>
+# include <limits.h>
 
 /////////////ERROR MGS////////////////
 
@@ -59,9 +60,19 @@ typedef struct s_lexer
 
 /////////////////// PARSER STRUCTS /////////////////////////
 
+typedef struct s_parser
+{
+	t_lexer				*lexer_list;
+	t_lexer				*redirections;
+	int					num_redirections;
+	struct s_program	*program;
+}	t_parser;
+
+
 typedef struct s_cmd
 {
 	char			**cmd;
+	int				num_redirs;
 	t_lexer			*redirection;
 	char			*here_d_file_name;
 	bool			built_in;
@@ -93,39 +104,47 @@ typedef struct s_program
 
 ///////////////TOKENIZER *.c///////////////
 
-t_lexer	*tokenizer(t_lexer **lexer, char *str);
-t_lexer	*lex_lstlast(t_lexer *lst);
-int		lex_lstsize(t_lexer *lst);
-void	lex_lstclear(t_lexer **lst);
-void	lex_lstadd_back(t_lexer **lst, t_lexer *node);
-t_lexer	*lex_lstnew(void);
-void	check_pipes(t_lexer **lexer);
-char	**ft_pipesplit(char const *s);
-int		ft_isspchar(char c);
-char	*ft_pipestrdupli(char *s, int reset);
-int		ft_pipecntwrds(char const *s);
-char	**ft_pipesplipri(char **split, char *s);
-int		cntallwrds(int i, int contl, int contw, char *s);
-int		dupstrlen(char *s, int i);
+t_lexer		*tokenizer(t_lexer **lexer, char *str);
+t_lexer		*lex_lstlast(t_lexer *lst);
+int			lex_lstsize(t_lexer *lst);
+void		lex_lstclear(t_lexer **lst);
+void		lex_lstadd_back(t_lexer **lst, t_lexer *node);
+t_lexer		*lex_lstnew(void);
+void		check_pipes(t_lexer **lexer);
+char		**ft_pipesplit(char const *s);
+int			ft_isspchar(char c);
+char		*ft_pipestrdupli(char *s, int reset);
+int			ft_pipecntwrds(char const *s);
+char		**ft_pipesplipri(char **split, char *s);
+int			cntallwrds(int i, int contl, int contw, char *s);
+int			dupstrlen(char *s, int i);
 
 ///////////////PARSER *.c///////////////
 
 //parser.c
-bool	ft_parser(t_program *program);
+bool		ft_parser(t_program *program);
+//parser_lst_utils.c
+t_cmd		*t_cmd_new(char **str_cmd, int num_redirs, t_lexer *redirection);
+void		ft_cmd_addback(t_cmd **lst, t_cmd *node);
+void		ft_lexeradd_back(t_lexer **lst, t_lexer *node);
 //parser_utils.c
-t_cmd	*t_cmd_new(char **str, t_lexer *redirection);
-void	ft_cmd_addback(t_cmd **lst, t_cmd *node);
-/*void	ft_cmd_rmfirst(t_cmd **lst);*/
-int		count_args(t_program *program);
-void	ft_count_pipes(t_program *program);
-void	ft_lexeradd_back(t_lexer **lst, t_lexer *new);
+t_parser	init_parser(t_lexer *lex_list, t_program *program);
+void		ft_count_pipes(t_lexer *lex_list, t_program *program);
+int			count_args(t_lexer *lex_list);
 //lex_utils.c
-void	ft_lexerdelone(t_lexer **lex_list, int to_del);
-t_lexer	*ft_lexclear_one(t_lexer **lex_list);
-void	ft_lexerdel_first(t_lexer **lex_list);
-void	ft_lexclear(t_lexer **lex_list);
-t_lexer	*ft_lex_new(char *str, int token);
+void		ft_lexerdelone(t_lexer **lex_list, int to_del);
+t_lexer		*ft_lexclear_one(t_lexer **lex_list);
+void		ft_lexerdel_first(t_lexer **lex_list);
+void		ft_lexclear(t_lexer **lex_list);
+t_lexer		*ft_lex_new(char *str, int token);
 //ft_errors.c
-void	ft_error(t_program *program, int errno);
+bool		ft_error(t_program *program, int errno);
+//parse_redirs.c
+int			add_redir(t_lexer *tmp, t_parser *pars);
+void		del_redirs(t_parser *pars);
+//pwd.c
+void	get_pwd(t_data *data);
+//built_in.c
+void	is_builtin(t_program *program);
 
 #endif
