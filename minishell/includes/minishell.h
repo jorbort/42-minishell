@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbortolo <jbortolo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jorge <jorge@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 14:41:54 by juan-anm          #+#    #+#             */
-/*   Updated: 2023/11/06 14:07:29 by jbortolo         ###   ########.fr       */
+/*   Updated: 2023/11/07 17:15:11 by jorge            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,7 +143,7 @@ bool		ft_error(t_program *program, int errno);
 int			add_redir(t_lexer *tmp, t_parser *pars);
 void		del_redirs(t_parser *pars);
 //pwd.c
-void	get_pwd(t_data *data);
+void	print_wd(t_data *data);
 //built_in.c
 void	is_builtin(t_program *program);
 
