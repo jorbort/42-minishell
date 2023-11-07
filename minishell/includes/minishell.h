@@ -6,7 +6,7 @@
 /*   By: jorge <jorge@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 14:41:54 by juan-anm          #+#    #+#             */
-/*   Updated: 2023/11/07 17:15:11 by jorge            ###   ########.fr       */
+/*   Updated: 2023/11/07 19:08:29 by jorge            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,9 +142,18 @@ bool		ft_error(t_program *program, int errno);
 //parse_redirs.c
 int			add_redir(t_lexer *tmp, t_parser *pars);
 void		del_redirs(t_parser *pars);
+
+/////Built-ins//////
 //pwd.c
 void	print_wd(t_data *data);
+//cd.c
+bool	change_dir(t_program *program, t_cmd *cmd_list);
 //built_in.c
 void	is_builtin(t_program *program);
 
+////Utils///
+
+//utils_general.c
+char	**ft_arrdup(char **arr);
+void	change_path(t_program *program);
 #endif

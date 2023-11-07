@@ -6,7 +6,7 @@
 /*   By: jorge <jorge@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 14:39:17 by juan-anm          #+#    #+#             */
-/*   Updated: 2023/11/07 17:14:37 by jorge            ###   ########.fr       */
+/*   Updated: 2023/11/07 19:06:08 by jorge            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ void	init_program(t_program *program, char **env)
 	{
 		program->data->pipes = 0;
 		program->data->nume_redirs = 0;
-		program->data->pwd = getcwd(NULL, PATH_MAX);
+		program->data->pwd = getcwd(NULL, sizeof(NULL));
 		program->data->prev_pwd = NULL;
-		program->data->envp = env;
+		program->data->envp = ft_arrdup(env);
 		get_pwd(program->data);
 	}
 	program->redir = NULL;
