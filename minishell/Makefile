@@ -5,7 +5,8 @@ SRC = 	src/main.c src/Tokenizer/token_parser.c src/Tokenizer/token_lst.c \
 		src/Tokenizer/token_splitter.c  src/Tokenizer/token_utils.c \
 		src/Parser/ft_errors.c src/Parser/lex_utils.c src/Parser/parser_utils.c src/Parser/parser_lst_utils.c \
 		src/Parser/parser.c src/Parser/parse_redirs.c \
-		src/Built_ins/built_in.c src/Built_ins/pwd.c \
+		src/Built_ins/built_in.c src/Built_ins/pwd.c src/Built_ins/cd.c src/Built_ins/env.c \
+		src/Utils/utils_general.c \
 
 OBJS = $(SRC:.c=.o) ##$(SRC_TOKENIZER:.c=.o) $(SRC_PARSER:.c=.o) 
 DEPS = $(SRC:.c=.d) ##$(SRC_TOKENIZER:.c=.d) $(SRC_PARSER:.c=.d)
@@ -24,7 +25,7 @@ RED = \033[1;91m
 NC = \033[0m
 
 %.o: %.c $(MS) Makefile
-	@$(CC) $(FLAGS) -g -I./includes -I./ -c $< -o $@ -I$(READLINE_PATH)/include -I libraries/MyLibft
+	@$(CC) $(FLAGS) -g -I./includes -I./ -c $< -o $@ -I$(READLINE_PATH)/include
 all:
 	@$(MAKE) -C $(LIBFT_DIR) 
 	@$(MAKE) -lreadline $(NAME)

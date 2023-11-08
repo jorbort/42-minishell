@@ -6,7 +6,7 @@
 /*   By: jorge <jorge@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 17:17:30 by jorge             #+#    #+#             */
-/*   Updated: 2023/11/07 19:07:58 by jorge            ###   ########.fr       */
+/*   Updated: 2023/11/08 01:17:50 by jorge            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,13 +55,13 @@ static void	change_path_env(t_program *program)
 	i = 0;
 	while (program->data->envp[i])
 	{
-		if (!ft_strncmp(program->data->envp[i], "pwd=",4))
+		if (!ft_strncmp(program->data->envp[i], "pwd=", 4))
 		{
 			tmp = ft_strjoin("PWD=", program->data->pwd);
 			free(program->data->envp[i]);
 			program->data->envp[i] = tmp;
 		}
-		else if (!ft_strncmp("OLDPWD=", program->data->prev_pwd))
+		else if (!ft_strncmp("OLDPWD=", program->data->prev_pwd, 7))
 		{
 			tmp = ft_strjoin("OLDPWD=", program->data->prev_pwd);
 			free(program->data->envp[i]);
