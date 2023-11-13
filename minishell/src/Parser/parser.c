@@ -6,11 +6,11 @@
 /*   By: jbortolo <jbortolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 09:13:25 by jorge             #+#    #+#             */
-/*   Updated: 2023/11/13 12:38:37 by jbortolo         ###   ########.fr       */
+/*   Updated: 2023/11/13 13:05:06 by jbortolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "includes/minishell.h"
 
 static t_cmd	*init_cmd(t_parser *pars)
 {
@@ -36,19 +36,19 @@ static t_cmd	*init_cmd(t_parser *pars)
 		}
 		arg_size--;
 	}
-	return (t_cmd_new(str,pars->num_redirections,pars->redirections));
+	return (t_cmd_new(str, pars->num_redirections, pars->redirections));
 }
 
 static bool	pipe_error(t_program *program, t_token token)
 {
 	if (token == PIPE)
 	{
-		ft_error(program,1);
+		ft_error(program, 1);
 		return (false);
 	}
 	if (!program->lex_list)
 	{
-		ft_error(program,3);
+		ft_error(program, 3);
 		return (false);
 	}
 	return (true);
@@ -62,7 +62,7 @@ bool	ft_parser(t_program *program)
 	program->cmd_list = NULL;
 	ft_count_pipes(program->lex_list, program);
 	if (program->lex_list->token == PIPE)
-		return(ft_error(program, 1));
+		return (ft_error(program, 1));
 	while (program->lex_list)
 	{
 		if (program->lex_list && program->lex_list->token == PIPE)

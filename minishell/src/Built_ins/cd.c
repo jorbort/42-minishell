@@ -6,7 +6,7 @@
 /*   By: jbortolo <jbortolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 17:17:30 by jorge             #+#    #+#             */
-/*   Updated: 2023/11/13 10:30:10 by jbortolo         ###   ########.fr       */
+/*   Updated: 2023/11/13 13:33:02 by jbortolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,14 @@
 
 static char	*find_path_res(char *str, t_program *program)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (program->data->envp[i])
 	{
-		if(!ft_strncmp(program->data->envp[i], str, t_strlen(str)))
+		if (!ft_strncmp(program->data->envp[i], str, ft_strlen(str)))
 			return (ft_substr(program->data->envp[i], ft_strlen(str),
-			ft_strlen(program->data->envp[i]) - ft_strlen(str)));
+					ft_strlen(program->data->envp[i]) - ft_strlen(str)));
 		i++;
 	}
 	return (NULL);
@@ -34,10 +34,10 @@ static int	go_dir(t_program *program, char *str)
 
 	tmp = find_path_res(str, program);
 	resul = chdir(tmp);
-	ree (tmp);
+	free(tmp);
 	if (resul != 0)
 	{
-		str = ft_substr(str, 0 , ft_strlen(str) - 1);
+		str = ft_substr(str, 0, ft_strlen(str) - 1);
 		ft_putstr_fd(str, STDERR_FILENO);
 		free(str);
 		ft_putstr_fd(" not set\n", STDERR_FILENO);
@@ -79,7 +79,7 @@ bool	change_dir(t_program *program, t_cmd *cmd_list)
 		res = go_dir(program, "HOME=");
 	else if (ft_strncmp(cmd_list->cmd[1], "-", 1))
 		res = go_dir(program, "OLDPWD=");
-	else 
+	else
 	{
 		res = chdir(cmd_list->cmd[1]);
 		if (res != 0)

@@ -6,13 +6,13 @@
 /*   By: jbortolo <jbortolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 13:16:27 by jbortolo          #+#    #+#             */
-/*   Updated: 2023/11/13 10:21:34 by jbortolo         ###   ########.fr       */
+/*   Updated: 2023/11/13 13:35:43 by jbortolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/minishell.h"
 
-static void	free_arr(char **arr, char *str)
+void	free_arr(char **arr, char *str)
 {
 	int	i;
 
@@ -22,7 +22,8 @@ static void	free_arr(char **arr, char *str)
 		free(arr[i]);
 		i++;
 	}
-	free(str);
+	if (str)
+		free(str);
 	free(arr);
 }
 
@@ -58,17 +59,18 @@ void	is_builtin(t_program *program)
 void	exec_builtin(t_program *program)
 {
 	if (strncmp(program->cmd_list->cmd[0], "cd", 2) == 0)
-		cd(program);
-	if (strncmp(program->cmd_list->cmd[0], "echo", 4) == 0)
-		echo();
+		change_dir(program, program->cmd_list);
 	if (strncmp(program->cmd_list->cmd[0], "pwd", 3) == 0)
-		pwd();
+		print_wd(program->data);
 	if (strncmp(program->cmd_list->cmd[0], "env", 3) == 0)
 		print_env(program);
-	if (strncmp(program->cmd_list->cmd[0], "export", 6) == 0)
-		export();
+	/*if (strncmp(program->cmd_list->cmd[0], "export", 6) == 0)
+		//export();
 	if (strncmp(program->cmd_list->cmd[0], "unset", 6) == 0)
-		del_env();
+		//del_env();
 	if (strncmp(program->cmd_list->cmd[0], "exit", 6) == 0)
-		free_exit();
+		//free_exit();
+	if (strncmp(program->cmd_list->cmd[0], "echo", 4) == 0)
+		//echo();	*/
 }
+

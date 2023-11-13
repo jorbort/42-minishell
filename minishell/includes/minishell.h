@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jorge <jorge@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jbortolo <jbortolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 14:41:54 by juan-anm          #+#    #+#             */
-/*   Updated: 2023/11/07 19:08:29 by jorge            ###   ########.fr       */
+/*   Updated: 2023/11/13 13:38:27 by jbortolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,6 +123,7 @@ int			dupstrlen(char *s, int i);
 
 //parser.c
 bool		ft_parser(t_program *program);
+
 //parser_lst_utils.c
 t_cmd		*t_cmd_new(char **str_cmd, int num_redirs, t_lexer *redirection);
 void		ft_cmd_addback(t_cmd **lst, t_cmd *node);
@@ -145,15 +146,18 @@ void		del_redirs(t_parser *pars);
 
 /////Built-ins//////
 //pwd.c
-void	print_wd(t_data *data);
+void		print_wd(t_data *data);
+//env.c
+void		print_env(t_program *program);
 //cd.c
-bool	change_dir(t_program *program, t_cmd *cmd_list);
+bool		change_dir(t_program *program, t_cmd *cmd_list);
 //built_in.c
-void	is_builtin(t_program *program);
-
+void		is_builtin(t_program *program);
+void		exec_builtin(t_program *program);
 ////Utils///
-
+char		**ft_arrdup(char **arr);
+void		change_path(t_program *program);
 //utils_general.c
-char	**ft_arrdup(char **arr);
-void	change_path(t_program *program);
+char		**ft_arrdup(char **arr);
+void		change_path(t_program *program);
 #endif
