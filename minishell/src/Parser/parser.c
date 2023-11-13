@@ -6,7 +6,7 @@
 /*   By: jbortolo <jbortolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 09:13:25 by jorge             #+#    #+#             */
-/*   Updated: 2023/11/13 13:05:06 by jbortolo         ###   ########.fr       */
+/*   Updated: 2023/11/13 15:59:18 by jbortolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,5 +79,6 @@ bool	ft_parser(t_program *program)
 			ft_cmd_addback(&program->cmd_list, node);
 		program->lex_list = aux.lexer_list;
 	}
+	program->redir = aux.redirections;
 	return (true);
 }

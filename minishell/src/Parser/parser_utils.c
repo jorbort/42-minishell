@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jorge <jorge@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jbortolo <jbortolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 18:19:59 by jorge             #+#    #+#             */
-/*   Updated: 2023/11/01 18:33:19 by jorge            ###   ########.fr       */
+/*   Updated: 2023/11/13 15:38:44 by jbortolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ t_parser	init_parser(t_lexer *lex_list, t_program *program)
 	t_parser	pars;
 
 	pars.lexer_list = lex_list;
-	pars.redirections = NULL;
+	pars.redirections = program->redir;
 	pars.num_redirections = 0;
 	pars.program = program;
 	return (pars);
@@ -25,7 +25,7 @@ t_parser	init_parser(t_lexer *lex_list, t_program *program)
 
 void	ft_count_pipes(t_lexer *lex_list, t_program *program)
 {
-	t_lexer *tmp;
+	t_lexer	*tmp;
 
 	tmp = lex_list;
 	program->data->pipes = 0;
@@ -40,7 +40,7 @@ void	ft_count_pipes(t_lexer *lex_list, t_program *program)
 int	count_args(t_lexer *lex_list)
 {
 	t_lexer	*tmp;
-	int	i;
+	int		i;
 
 	i = 0;
 	tmp = lex_list;

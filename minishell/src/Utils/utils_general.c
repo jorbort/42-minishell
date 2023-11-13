@@ -6,7 +6,7 @@
 /*   By: jbortolo <jbortolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 18:22:04 by jorge             #+#    #+#             */
-/*   Updated: 2023/11/13 13:38:38 by jbortolo         ###   ########.fr       */
+/*   Updated: 2023/11/13 15:16:59 by jbortolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ char	**ft_arrdup(char **arr)
 
 void	change_path(t_program *program)
 {
-	char *tmp;
+	char	*tmp;
 
 	tmp = ft_strdup(program->data->pwd);
 	free(program->data->prev_pwd);

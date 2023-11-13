@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_redirs.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jorge <jorge@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jbortolo <jbortolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 18:31:38 by jorge             #+#    #+#             */
-/*   Updated: 2023/11/01 17:52:17 by jorge            ###   ########.fr       */
+/*   Updated: 2023/11/13 15:39:36 by jbortolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	add_redir(t_lexer *tmp, t_parser *pars)
 
 	node = ft_lex_new(ft_strdup(tmp->next->str), tmp->token);
 	if (!node)
-		ft_error(pars->program,3);
+		ft_error(pars->program, 3);
 	ft_lexeradd_back(&pars->redirections, node);
 	index_a = tmp->i;
 	index_b = tmp->next->i;
@@ -40,9 +40,9 @@ void	del_redirs(t_parser *pars)
 	if (!tmp || tmp->token == PIPE)
 		return ;
 	if (!tmp->next)
-		ft_error (pars->program,3);
+		ft_error (pars->program, 3);
 	if (tmp->next->token)
-		ft_error(pars->program,4);
+		ft_error(pars->program, 4);
 	if (tmp->token >= GREAT && tmp->token <= LESS_LESS)
 		add_redir(tmp, pars);
 	del_redirs(pars);
