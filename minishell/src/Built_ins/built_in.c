@@ -6,7 +6,7 @@
 /*   By: jbortolo <jbortolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 13:16:27 by jbortolo          #+#    #+#             */
-/*   Updated: 2023/11/06 14:33:11 by jbortolo         ###   ########.fr       */
+/*   Updated: 2023/11/13 10:21:34 by jbortolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,3 +55,20 @@ void	is_builtin(t_program *program)
 	free_arr(builtin_arr, str);
 }
 
+void	exec_builtin(t_program *program)
+{
+	if (strncmp(program->cmd_list->cmd[0], "cd", 2) == 0)
+		cd(program);
+	if (strncmp(program->cmd_list->cmd[0], "echo", 4) == 0)
+		echo();
+	if (strncmp(program->cmd_list->cmd[0], "pwd", 3) == 0)
+		pwd();
+	if (strncmp(program->cmd_list->cmd[0], "env", 3) == 0)
+		print_env(program);
+	if (strncmp(program->cmd_list->cmd[0], "export", 6) == 0)
+		export();
+	if (strncmp(program->cmd_list->cmd[0], "unset", 6) == 0)
+		del_env();
+	if (strncmp(program->cmd_list->cmd[0], "exit", 6) == 0)
+		free_exit();
+}
