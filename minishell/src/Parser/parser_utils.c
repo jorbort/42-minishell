@@ -6,7 +6,7 @@
 /*   By: jbortolo <jbortolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 18:19:59 by jorge             #+#    #+#             */
-/*   Updated: 2023/11/13 15:38:44 by jbortolo         ###   ########.fr       */
+/*   Updated: 2023/11/13 16:33:29 by jbortolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ t_parser	init_parser(t_lexer *lex_list, t_program *program)
 	t_parser	pars;
 
 	pars.lexer_list = lex_list;
-	pars.redirections = program->redir;
+	pars.redirections = NULL;
 	pars.num_redirections = 0;
 	pars.program = program;
 	return (pars);
