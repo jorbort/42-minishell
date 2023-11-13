@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   token_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juanantonio <juanantonio@student.42.fr>    +#+  +:+       +#+        */
+/*   By: juan-anm <juan-anm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 11:23:40 by juanantonio       #+#    #+#             */
-/*   Updated: 2023/10/26 12:57:25 by juanantonio      ###   ########.fr       */
+/*   Updated: 2023/11/13 14:08:57 by juan-anm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,10 @@ int	dupstrlen(char *s, int i)
 
 	quote = 0;
 	if (ft_isapipe(s[i]))
-		i++;
+	{
+		while (ft_isapipe(s[i]))
+			i++;
+	}
 	else if (ft_isaquote(s[i]))
 	{
 		quote = s[i];

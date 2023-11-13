@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juanantonio <juanantonio@student.42.fr>    +#+  +:+       +#+        */
+/*   By: juan-anm <juan-anm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 14:39:17 by juan-anm          #+#    #+#             */
-/*   Updated: 2023/10/26 13:02:24 by juanantonio      ###   ########.fr       */
+/*   Updated: 2023/11/13 12:42:44 by juan-anm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int main(int ac, char **av)
 	
 	char *str;
 	(void) av;
-	lexe = NULL;
+	t_lexer *lexe = NULL;
 	if (ac != 1)
 		return (1);
 	str = readline(BLUE_T"\nMiniShell:" YELLOW_T" $>"RESET_COLOR);

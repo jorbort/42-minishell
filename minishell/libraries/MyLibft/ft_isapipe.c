@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isapipe.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juanantonio <juanantonio@student.42.fr>    +#+  +:+       +#+        */
+/*   By: juan-anm <juan-anm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 10:27:53 by juan-anm          #+#    #+#             */
-/*   Updated: 2023/10/26 12:42:10 by juanantonio      ###   ########.fr       */
+/*   Updated: 2023/11/13 13:23:00 by juan-anm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
+//124 == | 60 == < 62 == >//
 int	ft_isapipe(char c)
 {
 	if (c == 124 || c == 60 || c == 62)

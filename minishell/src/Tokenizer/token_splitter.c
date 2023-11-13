@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   token_splitter.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbortolo <jbortolo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: juan-anm <juan-anm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 17:25:38 by juanantonio       #+#    #+#             */
-/*   Updated: 2023/11/06 11:02:10 by jbortolo         ###   ########.fr       */
+/*   Updated: 2023/11/13 14:11:34 by juan-anm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,12 +53,12 @@ int	cntallwrds(int i, int contl, int contw, char *s)
 	{
 		if (!ft_isspchar(s[i]))
 			contl++;
-		if (ft_isspchar(s[i]) && contl > 0)
+		if (ft_isspchar(s[i]) & !ft_isspchar(s[i + 1]) && contl > 0)
 		{
 			contw++;
 			contl = 0;
 		}
-		if (ft_isapipe(s[i]))
+		if (ft_isapipe(s[i]) && !ft_isapipe(s[i + 1]))
 			contw++;
 		if (ft_isaquote(s[i]))
 		{

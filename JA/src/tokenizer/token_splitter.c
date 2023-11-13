@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   token_splitter.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juanantonio <juanantonio@student.42.fr>    +#+  +:+       +#+        */
+/*   By: juan-anm <juan-anm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 17:25:38 by juanantonio       #+#    #+#             */
-/*   Updated: 2023/10/26 12:36:03 by juanantonio      ###   ########.fr       */
+/*   Updated: 2023/11/13 13:28:38 by juan-anm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ char	**ft_pipesplit(char const *s)
 	if (!s)
 		return (NULL);
 	nwords = ft_pipecntwrds(s);
+	printf("number of w :%i \n", nwords);
 	split = ft_calloc((nwords + 1), sizeof(char *));
 	if (!split)
 		return (NULL);
@@ -51,14 +52,14 @@ int	cntallwrds(int i, int contl, int contw, char *s)
 
 	while (s[i])
 	{
-		if (!ft_isspchar(s[i])) 
+		if (!ft_isspchar(s[i]))
 			contl++;
-		if (ft_isspchar(s[i]) && contl > 0)
+		if (ft_isspchar(s[i]) & !ft_isspchar(s[i + 1]) && contl > 0)
 		{
 			contw++;
 			contl = 0;
 		}
-		if (ft_isapipe(s[i]))
+		if (ft_isapipe(s[i]) && !ft_isapipe(s[i + 1]))
 			contw++;
 		if (ft_isaquote(s[i]))
 		{
