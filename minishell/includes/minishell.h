@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbortolo <jbortolo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: juanantonio <juanantonio@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 14:41:54 by juan-anm          #+#    #+#             */
-/*   Updated: 2023/11/13 13:38:27 by jbortolo         ###   ########.fr       */
+/*   Updated: 2023/11/14 12:12:20 by juanantonio      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -160,4 +160,9 @@ void		change_path(t_program *program);
 //utils_general.c
 char		**ft_arrdup(char **arr);
 void		change_path(t_program *program);
+
+/////Expansor///////
+void		expand(t_program *program);
+void		expand_var(t_program *program, int i);
+
 #endif
