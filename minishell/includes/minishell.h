@@ -6,7 +6,7 @@
 /*   By: juanantonio <juanantonio@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 14:41:54 by juan-anm          #+#    #+#             */
-/*   Updated: 2023/11/14 12:12:20 by juanantonio      ###   ########.fr       */
+/*   Updated: 2023/11/15 10:39:49 by juanantonio      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -164,5 +164,6 @@ void		change_path(t_program *program);
 /////Expansor///////
 void		expand(t_program *program);
 void		expand_var(t_program *program, int i);
+char		*get_varname(t_program *program, int i);
 
 #endif
