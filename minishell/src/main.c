@@ -40,7 +40,7 @@ int	main(int ac, char **av, char **env)
 	init_program(program, env);
 	if (ac != 1)
 		return (1);
-/*
+
 	while (42)
 	{
 		str = readline(BLUE_T"\nMiniShell:" YELLOW_T" $> "RESET_COLOR);
@@ -55,7 +55,7 @@ int	main(int ac, char **av, char **env)
 		free(str);
 	}
 
-/*/
+/*
 		//add_history(str);
 		str = "$_$_ $HOME";
 		program->lex_list = tokenizer(&program->lex_list, str);
@@ -63,7 +63,7 @@ int	main(int ac, char **av, char **env)
 			ft_error(program, 5);
 		is_builtin(program);
 		ft_expand(program);
-	
+*/	
 	return (0);
 }
 
