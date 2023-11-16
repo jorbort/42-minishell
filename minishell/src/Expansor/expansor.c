@@ -6,13 +6,13 @@
 /*   By: juanantonio <juanantonio@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 11:45:45 by juanantonio       #+#    #+#             */
-/*   Updated: 2023/11/15 13:10:11 by juanantonio      ###   ########.fr       */
+/*   Updated: 2023/11/16 13:31:53 by juanantonio      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <includes/minishell.h>
 
-void expand(t_program *program)
+void ft_expand(t_program *program)
 {
 	int i;
 
@@ -21,11 +21,72 @@ void expand(t_program *program)
 	{
 		printf("%s\n", program->cmd_list->cmd[i]);
 		if (ft_strchr(program->cmd_list->cmd[i], '$') != NULL)
-			expand_var(program, i);
+			ft_expand_var(program, i);
+		printf("%s\n", program->cmd_list->cmd[i]);
+
 	}
 }
 
-void expand_var(t_program *program, int i)
+void ft_expand_var(t_program *program, int i)
+{
+	char	*str;
+	char	*cmd;
+	char	*var_name;
+	int		c;
+	int		exp_flag;
+
+	str = ft_strdup(program->cmd_list->cmd[i]);
+	free(program->cmd_list->cmd[i]);
+	program->cmd_list->cmd[i] = NULL;
+	cmd = program->cmd_list->cmd[i];
+	exp_flag = ft_search_quote(str);
+	c = -1;
+	while (str[++c])
+	{
+		if (str[c] == '$')
+		{
+			var_name = ft_get_varname(str, c + 1);
+			if (var_name != NULL && exp_flag)
+				cmd = ft_strjoin_free(cmd, getenv(var_name));
+			else if (var_name != NULL && !exp_flag)
+				cmd = ft_strjoin_doublefree(cmd, ft_substr(str, c, ft_strlen(var_name) + 1));
+			c += ft_strlen(var_name);
+		}
+		else
+			cmd = ft_strjoin_doublefree(cmd, ft_substr(str, c, 1));
+	}
+	program->cmd_list->cmd[i] = cmd;
+}
+
+int ft_search_quote(char *str)
+{
+	int i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] == '\"')
+			return (1);
+		if (str[i] == '\'')
+			return (0);
+		i++;
+	}
+	return (1);
+
+}
+
+char	*ft_get_varname(char *str, int i)
+{
+	int		j;
+
+	j = 0;
+	while (str[i + j] && ft_isalnum(str[i + j]) && !ft_isspace(str[i + j]))
+		j++;
+	return (ft_substr(str, i, j));
+}
+
+/*
+void ft_expand_var(t_program *program, int i)
 {
 	char	*var;
 	char	*expvar;
@@ -74,19 +135,4 @@ void expand_var(t_program *program, int i)
 	program->cmd_list->cmd[i] = expanstr;
 	printf("%s\n", program->cmd_list->cmd[i]);
 }
-
-char *get_varname(t_program *program, int i)
-{
-	int		j;
-	int		y;
-	char	*str;
-
-	j = 0;
-	str = program->cmd_list->cmd[i];
-	while (str[j] != '$')
-		j++;
-	y = ++j;
-	while (str[j] && ft_isalnum(str[j]) && !ft_isspace(str[j]))
-		j++;
-	return (ft_substr(str, y, (j - y)));
-}
+*/

@@ -6,7 +6,7 @@
 /*   By: juanantonio <juanantonio@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 14:41:54 by juan-anm          #+#    #+#             */
-/*   Updated: 2023/11/15 10:39:49 by juanantonio      ###   ########.fr       */
+/*   Updated: 2023/11/16 12:28:25 by juanantonio      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -162,8 +162,9 @@ char		**ft_arrdup(char **arr);
 void		change_path(t_program *program);
 
 /////Expansor///////
-void		expand(t_program *program);
-void		expand_var(t_program *program, int i);
-char		*get_varname(t_program *program, int i);
+void		ft_expand(t_program *program);
+void		ft_expand_var(t_program *program, int i);
+char		*ft_get_varname(char *str, int i);
+int			ft_search_quote(char *str);
 
 #endif
