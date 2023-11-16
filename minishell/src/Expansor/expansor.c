@@ -19,10 +19,10 @@ void ft_expand(t_program *program)
 	i = -1;
 	while (program->cmd_list->cmd[++i] != NULL)
 	{
-		//printf("%s\n", program->cmd_list->cmd[i]);
+		printf("%s\n", program->cmd_list->cmd[i]);
 		if (ft_strchr(program->cmd_list->cmd[i], '$') != NULL)
 			ft_expand_var(program, i);
-		//2printf("%s\n", program->cmd_list->cmd[i]);
+		printf("%s\n", program->cmd_list->cmd[i]);
 
 	}
 }
@@ -34,6 +34,8 @@ void ft_expand_var(t_program *program, int i)
 	char	*var_name;
 	int		c;
 	int		exp_flag;
+	char	*(*sj)(char *, char *);
+	sj = &ft_strjoin_doublefree;
 
 	str = ft_strdup(program->cmd_list->cmd[i]);
 	free(program->cmd_list->cmd[i]);
@@ -46,14 +48,17 @@ void ft_expand_var(t_program *program, int i)
 		if (str[c] == '$')
 		{
 			var_name = ft_get_varname(str, c + 1);
-			if (var_name != NULL && exp_flag)
+			if (var_name != NULL && exp_flag && ft_strlen(var_name) != 0)
 				cmd = ft_strjoin_free(cmd, getenv(var_name));
-			else if (var_name != NULL && !exp_flag)
-				cmd = ft_strjoin_doublefree(cmd, ft_substr(str, c, ft_strlen(var_name) + 1));
-			c += ft_strlen(var_name);
+			else if (var_name != NULL && !exp_flag && ft_strlen(var_name) != 0)
+				cmd = sj(cmd, ft_substr(str, c, ft_strlen(var_name) + 1));
+			if (ft_strlen(var_name) != 0)
+				c += ft_strlen(var_name);
+			else
+				cmd = sj(cmd, ft_substr(str, c, 1));
 		}
 		else
-			cmd = ft_strjoin_doublefree(cmd, ft_substr(str, c, 1));
+			cmd = sj(cmd, ft_substr(str, c, 1));
 	}
 	program->cmd_list->cmd[i] = cmd;
 }
@@ -80,8 +85,8 @@ char	*ft_get_varname(char *str, int i)
 	int		j;
 
 	j = 0;
-	while (str[i + j] && ft_isalnum(str[i + j]) && !ft_isspace(str[i + j]))
-		j++;
+		while ((str[i + j] && ft_isalnum(str[i + j])) || str[i + j] == '_')
+			j++;
 	return (ft_substr(str, i, j));
 }
 
