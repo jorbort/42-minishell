@@ -6,7 +6,7 @@
 /*   By: juanantonio <juanantonio@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 11:45:45 by juanantonio       #+#    #+#             */
-/*   Updated: 2023/11/16 13:31:53 by juanantonio      ###   ########.fr       */
+/*   Updated: 2023/11/16 13:43:40 by juanantonio      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@ void ft_expand(t_program *program)
 	i = -1;
 	while (program->cmd_list->cmd[++i] != NULL)
 	{
-		printf("%s\n", program->cmd_list->cmd[i]);
+		//printf("%s\n", program->cmd_list->cmd[i]);
 		if (ft_strchr(program->cmd_list->cmd[i], '$') != NULL)
 			ft_expand_var(program, i);
-		printf("%s\n", program->cmd_list->cmd[i]);
+		//2printf("%s\n", program->cmd_list->cmd[i]);
 
 	}
 }
