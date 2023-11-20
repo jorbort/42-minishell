@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juanantonio <juanantonio@student.42.fr>    +#+  +:+       +#+        */
+/*   By: jbortolo <jbortolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 14:41:54 by juan-anm          #+#    #+#             */
-/*   Updated: 2023/11/16 12:28:25 by juanantonio      ###   ########.fr       */
+/*   Updated: 2023/11/20 16:22:05 by jbortolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,10 +157,15 @@ void		exec_builtin(t_program *program);
 ////Utils///
 char		**ft_arrdup(char **arr);
 void		change_path(t_program *program);
+bool		invalid_unsetchar(char *str);
 //utils_general.c
 char		**ft_arrdup(char **arr);
 void		change_path(t_program *program);
-
+//echo.c
+void		print_cmd(int i, char **str, int fd);
+bool		ft_echo(t_cmd *cmd_list);
+//unset.c
+bool		ft_unset(t_program *program, t_cmd *cmd_list);
 /////Expansor///////
 void		ft_expand(t_program *program);
 void		ft_expand_var(t_program *program, int i);

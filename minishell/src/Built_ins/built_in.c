@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   built_in.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jorge <jorge@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jbortolo <jbortolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 13:16:27 by jbortolo          #+#    #+#             */
-/*   Updated: 2023/11/20 00:23:14 by jorge            ###   ########.fr       */
+/*   Updated: 2023/11/20 15:02:08 by jbortolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,11 +66,11 @@ void	exec_builtin(t_program *program)
 		print_env(program);
 	/*if (strncmp(program->cmd_list->cmd[0], "export", 6) == 0)
 		//export();
-	if (strncmp(program->cmd_list->cmd[0], "unset", 6) == 0)
-		//del_env();
 	if (strncmp(program->cmd_list->cmd[0], "exit", 6) == 0)
 		//free_exit();*/
 	if (strncmp(program->cmd_list->cmd[0], "echo", 4) == 0)
-		ft_echo();
+		ft_echo(program->cmd_list);
+	if (strncmp(program->cmd_list->cmd[0], "unset", 6) == 0)
+		ft_unset(program, program->cmd_list);
 }
 

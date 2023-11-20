@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_general.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jorge <jorge@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jbortolo <jbortolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 18:22:04 by jorge             #+#    #+#             */
-/*   Updated: 2023/11/20 02:15:57 by jorge            ###   ########.fr       */
+/*   Updated: 2023/11/20 16:21:13 by jbortolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 bool	invalid_unsetchar(char *str)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (str[i])
@@ -23,7 +23,7 @@ bool	invalid_unsetchar(char *str)
 			|| str[i] == '+' || str[i] == '}' || str[i] == '{' || str[i] == '-'
 			|| str[i] == 92 || str[i] == '[' || str[i] == ']' || str[i] == '@'
 			|| str[i] == '*' || str[i] == '#' || str[i] == '^' || str[i] == '~')
-		return (true);
+			return (true);
 	}
 	return (false);
 }

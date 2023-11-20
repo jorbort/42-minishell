@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jorge <jorge@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jbortolo <jbortolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 00:57:41 by jorge             #+#    #+#             */
-/*   Updated: 2023/11/20 02:24:51 by jorge            ###   ########.fr       */
+/*   Updated: 2023/11/20 16:19:16 by jbortolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/minishell.h"
 
-int	ft_unsetcomp(char *s1, char *s2)
+static int	ft_unsetcomp(char *s1, char *s2)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	if (!s2)
@@ -24,7 +24,7 @@ int	ft_unsetcomp(char *s1, char *s2)
 	return (((unsigned char *)s1)[i] - ((unsigned char *)s2)[i]);
 }
 
-bool	iter_var(char **arr, char *str)
+static bool	iter_var(char **arr, char *str)
 {
 	int	i;
 
@@ -41,7 +41,7 @@ bool	iter_var(char **arr, char *str)
 	return (true);
 }
 
-bool	unset_fail(t_cmd *cmd_list)
+static bool	unset_fail(t_cmd *cmd_list)
 {
 	int	i;
 
@@ -54,19 +54,18 @@ bool	unset_fail(t_cmd *cmd_list)
 	if (invalid_unsetchar(cmd_list->cmd[i]))
 	{
 		ft_putstr_fd("minishell : unset : '", STDERR_FILENO);
-			ft_putstr_fd(cmd_list->cmd[1], STDERR_FILENO);
-			ft_putendl_fd("' : not a valid identifier", STDERR_FILENO);
-			return (false);
+		ft_putstr_fd(cmd_list->cmd[1], STDERR_FILENO);
+		ft_putendl_fd("' : not a valid identifier", STDERR_FILENO);
+		return (false);
 	}
 	return (true);
 }
 
 bool	ft_unset(t_program *program, t_cmd *cmd_list)
 {
-	
 	if (unset_fail(cmd_list) == false)
 		return (false);
 	else
 		iter_var(program->data->envp, cmd_list->cmd[1]);
 	return (true);
-} 
+}
