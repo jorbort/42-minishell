@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_general.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juanantonio <juanantonio@student.42.fr>    +#+  +:+       +#+        */
+/*   By: jorge <jorge@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 18:22:04 by jorge             #+#    #+#             */
-/*   Updated: 2023/11/21 13:11:11 by juanantonio      ###   ########.fr       */
+/*   Updated: 2023/11/22 17:55:06 by jorge            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,5 +75,5 @@ void	change_path(t_program *program)
 	free(program->data->prev_pwd);
 	program->data->prev_pwd = tmp;
 	free(program->data->pwd);
-	program->data->pwd = getcwd(NULL, sizeof(NULL));
+	program->data->pwd = getcwd(NULL, PATH_MAX);
 }

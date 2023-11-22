@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juanantonio <juanantonio@student.42.fr>    +#+  +:+       +#+        */
+/*   By: jorge <jorge@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 14:39:17 by juan-anm          #+#    #+#             */
-/*   Updated: 2023/11/21 13:07:48 by juanantonio      ###   ########.fr       */
+/*   Updated: 2023/11/22 17:49:30 by jorge            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,15 @@
 
 void	init_program(t_program *program, char **env)
 {
-	program->data = (t_data *)malloc(sizeof (t_data *));
+	program->data = (t_data *)malloc(sizeof (t_data));
 	if (program->data)
 	{
 		program->data->pipes = 0;
 		program->data->nume_redirs = 0;
-		program->data->pwd = getcwd(NULL, sizeof(NULL));
+		program->data->pwd = getcwd(NULL, MAXPATHLEN);
 		program->data->prev_pwd = NULL;
 		program->data->envp = ft_arrdup(env);
+
 	}
 	program->redir = NULL;
 	program->lex_list = NULL;
@@ -40,7 +41,7 @@ int	main(int ac, char **av, char **env)
 	init_program(program, env);
 	if (ac != 1)
 		return (1);
-
+	ft_printf("%s/n",program->data->pwd);//segfault al tratar de acceder a program->data->pwd
 	while (42)
 	{
 		str = readline(BLUE_T"\nMiniShell:" YELLOW_T" $> "RESET_COLOR);
@@ -51,7 +52,7 @@ int	main(int ac, char **av, char **env)
 		if (!ft_parser(program))
 			ft_error(program, 5);
 		is_builtin(program);
-		//change_dir(program, program->cmd_list);
+		exec_builtin(program);
 		ft_expand(program);
 		free(str);
 	}

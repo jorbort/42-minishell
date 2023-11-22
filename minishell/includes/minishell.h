@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juanantonio <juanantonio@student.42.fr>    +#+  +:+       +#+        */
+/*   By: jorge <jorge@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 14:41:54 by juan-anm          #+#    #+#             */
-/*   Updated: 2023/11/21 12:41:05 by juanantonio      ###   ########.fr       */
+/*   Updated: 2023/11/22 17:49:33 by jorge            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # include <readline/history.h>
 # include <stdbool.h>
 # include <limits.h>
+# include <sys/param.h>
 
 /////////////ERROR MGS////////////////
 
