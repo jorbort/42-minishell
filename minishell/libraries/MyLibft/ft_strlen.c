@@ -6,7 +6,7 @@
 /*   By: juanantonio <juanantonio@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 12:38:55 by juan-anm          #+#    #+#             */
-/*   Updated: 2023/08/06 09:44:56 by juanantonio      ###   ########.fr       */
+/*   Updated: 2023/11/22 12:20:14 by juanantonio      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ size_t	ft_strlen(const char *s)
 	int	i;
 
 	i = 0;
+	if (!s || !*s)
+		return (0);
 	while (s[i])
 		i++;
 	return (i);
