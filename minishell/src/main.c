@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbortolo <jbortolo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: juanantonio <juanantonio@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 14:39:17 by juan-anm          #+#    #+#             */
-/*   Updated: 2023/11/20 16:29:42 by jbortolo         ###   ########.fr       */
+/*   Updated: 2023/11/21 13:07:48 by juanantonio      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int	main(int ac, char **av, char **env)
 		if (!ft_parser(program))
 			ft_error(program, 5);
 		is_builtin(program);
-		change_dir(program, program->cmd_list);
+		//change_dir(program, program->cmd_list);
 		ft_expand(program);
 		free(str);
 	}
@@ -67,5 +67,3 @@ int	main(int ac, char **av, char **env)
 */	
 	return (0);
 }
-
-

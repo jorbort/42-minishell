@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbortolo <jbortolo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: juanantonio <juanantonio@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 14:41:54 by juan-anm          #+#    #+#             */
-/*   Updated: 2023/11/20 16:22:05 by jbortolo         ###   ########.fr       */
+/*   Updated: 2023/11/21 12:41:05 by juanantonio      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,11 +119,8 @@ char		**ft_pipesplipri(char **split, char *s);
 int			cntallwrds(int i, int contl, int contw, char *s);
 int			dupstrlen(char *s, int i);
 
-///////////////PARSER *.c///////////////
-
 //parser.c
 bool		ft_parser(t_program *program);
-
 //parser_lst_utils.c
 t_cmd		*t_cmd_new(char **str_cmd, int num_redirs, t_lexer *redirection);
 void		ft_cmd_addback(t_cmd **lst, t_cmd *node);
@@ -143,7 +140,6 @@ bool		ft_error(t_program *program, int errno);
 //parse_redirs.c
 int			add_redir(t_lexer *tmp, t_parser *pars);
 void		del_redirs(t_parser *pars);
-
 /////Built-ins//////
 //pwd.c
 void		print_wd(t_data *data);
@@ -171,5 +167,6 @@ void		ft_expand(t_program *program);
 void		ft_expand_var(t_program *program, int i);
 char		*ft_get_varname(char *str, int i);
 int			ft_search_quote(char *str);
+char		*get_myenv(t_program *program, char *var);
 
 #endif

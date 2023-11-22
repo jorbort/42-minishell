@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_general.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbortolo <jbortolo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: juanantonio <juanantonio@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 18:22:04 by jorge             #+#    #+#             */
-/*   Updated: 2023/11/20 16:21:13 by jbortolo         ###   ########.fr       */
+/*   Updated: 2023/11/21 13:11:11 by juanantonio      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ char	**ft_arrdup(char **arr)
 		}
 		i++;
 	}
+	arr[i] = NULL;
 	return (rtn);
 }
 
