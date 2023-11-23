@@ -6,7 +6,7 @@
 /*   By: jorge <jorge@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 17:38:48 by jorge             #+#    #+#             */
-/*   Updated: 2023/11/01 18:47:15 by jorge            ###   ########.fr       */
+/*   Updated: 2023/11/23 17:34:57 by jorge            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,4 +58,24 @@ void	ft_lexeradd_back(t_lexer **lst, t_lexer *new)
 		tmp = tmp->next;
 	tmp->next = new;
 	new->prev = tmp;
+}
+
+void	cmd_clear(t_cmd **list)
+{
+	t_cmd	*tmp;
+	t_lexer	*redir_temp;
+
+	if (!list)
+		return ;
+	while (*list)
+	{
+		tmp = (*list)->next;
+		redir_temp = (*list)->redirection;
+		ft_lexclear(&redir_temp);
+		if ((*list)->cmd)
+			free_double_arr((*list)->cmd);
+		free(*list);
+		*list = tmp;
+	}
+	*list = NULL;
 }

@@ -6,7 +6,7 @@
 /*   By: jorge <jorge@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 14:41:54 by juan-anm          #+#    #+#             */
-/*   Updated: 2023/11/22 17:49:33 by jorge            ###   ########.fr       */
+/*   Updated: 2023/11/23 17:38:11 by jorge            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@
 # define BLUE_T			"\x1b[1;36m"
 
 /////////////////// TOKENIZER STRUCTS /////////////////////////
+int	global_err;
 
 typedef enum s_token
 {
@@ -126,6 +127,7 @@ bool		ft_parser(t_program *program);
 t_cmd		*t_cmd_new(char **str_cmd, int num_redirs, t_lexer *redirection);
 void		ft_cmd_addback(t_cmd **lst, t_cmd *node);
 void		ft_lexeradd_back(t_lexer **lst, t_lexer *node);
+void	cmd_clear(t_cmd **list);
 //parser_utils.c
 t_parser	init_parser(t_lexer *lex_list, t_program *program);
 void		ft_count_pipes(t_lexer *lex_list, t_program *program);
@@ -141,7 +143,9 @@ bool		ft_error(t_program *program, int errno);
 //parse_redirs.c
 int			add_redir(t_lexer *tmp, t_parser *pars);
 void		del_redirs(t_parser *pars);
+
 /////Built-ins//////
+
 //pwd.c
 void		print_wd(t_data *data);
 //env.c
@@ -158,11 +162,16 @@ bool		invalid_unsetchar(char *str);
 //utils_general.c
 char		**ft_arrdup(char **arr);
 void		change_path(t_program *program);
+void	free_double_arr(char **arr);
+bool	invalid_unsetchar(char *str);
 //echo.c
 void		print_cmd(int i, char **str, int fd);
 bool		ft_echo(t_cmd *cmd_list);
 //unset.c
 bool		ft_unset(t_program *program, t_cmd *cmd_list);
+//ft_exit.c
+void	free_program(t_program *program);
+void	ft_exit(t_program *program,t_cmd  *cmd_list);
 /////Expansor///////
 void		ft_expand(t_program *program);
 void		ft_expand_var(t_program *program, int i);

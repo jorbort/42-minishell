@@ -6,7 +6,7 @@
 /*   By: jorge <jorge@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 14:39:17 by juan-anm          #+#    #+#             */
-/*   Updated: 2023/11/22 17:49:30 by jorge            ###   ########.fr       */
+/*   Updated: 2023/11/22 18:31:23 by jorge            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ int	main(int ac, char **av, char **env)
 	init_program(program, env);
 	if (ac != 1)
 		return (1);
-	ft_printf("%s/n",program->data->pwd);//segfault al tratar de acceder a program->data->pwd
 	while (42)
 	{
 		str = readline(BLUE_T"\nMiniShell:" YELLOW_T" $> "RESET_COLOR);
@@ -56,15 +55,5 @@ int	main(int ac, char **av, char **env)
 		ft_expand(program);
 		free(str);
 	}
-
-/*
-		//add_history(str);
-		str = "$_$_ $HOME";
-		program->lex_list = tokenizer(&program->lex_list, str);
-		if (!ft_parser(program))
-			ft_error(program, 5);
-		is_builtin(program);
-		ft_expand(program);
-*/	
 	return (0);
 }
