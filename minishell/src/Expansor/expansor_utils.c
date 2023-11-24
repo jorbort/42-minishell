@@ -1,35 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   expansor_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: juanantonio <juanantonio@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/08 11:31:09 by juan-anm          #+#    #+#             */
-/*   Updated: 2023/11/24 11:40:06 by juanantonio      ###   ########.fr       */
+/*   Created: 2023/11/24 10:45:36 by juanantonio       #+#    #+#             */
+/*   Updated: 2023/11/24 10:46:09 by juanantonio      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <includes/minishell.h>
 
-char	*ft_strdup(const char *s1)
+int	ft_search_quote(char *str)
 {
-	int			i;
-	const char	*str;
-	char		*dupstr;
+	int	i;
 
-	str = s1;
 	i = 0;
-	if (!s1 || !*s1)
-		return (NULL);
-	dupstr = malloc(ft_strlen(s1) * sizeof(char) + 1);
-	if (!dupstr)
-		return (NULL);
-	while (str[i] != 0)
+	while (str[i])
 	{
-		dupstr[i] = str[i];
+		if (str[i] == '\"')
+			return (1);
+		if (str[i] == '\'')
+			return (0);
 		i++;
 	}
-	dupstr[i] = 0;
-	return (dupstr);
+	return (1);
+}
+
+char	*ft_get_varname(char *str, int i)
+{
+	int		j;
+
+	j = 0;
+	while ((str[i + j] && ft_isalnum(str[i + j])) || str[i + j] == '_' 
+		|| str[i + j] == '?')
+		j++;
+	return (ft_substr(str, i, j));
 }

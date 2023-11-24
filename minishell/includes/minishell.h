@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jorge <jorge@student.42.fr>                +#+  +:+       +#+        */
+/*   By: juanantonio <juanantonio@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 14:41:54 by juan-anm          #+#    #+#             */
-/*   Updated: 2023/11/23 17:38:11 by jorge            ###   ########.fr       */
+/*   Updated: 2023/11/24 11:33:04 by juanantonio      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -174,9 +174,10 @@ void	free_program(t_program *program);
 void	ft_exit(t_program *program,t_cmd  *cmd_list);
 /////Expansor///////
 void		ft_expand(t_program *program);
-void		ft_expand_var(t_program *program, int i);
 char		*ft_get_varname(char *str, int i);
 int			ft_search_quote(char *str);
 char		*get_myenv(t_program *program, char *var);
+void		ft_expand_var(t_program *program, int i, int c, char *str);
+char		*ft_return_var(t_program *program, char *cmd, char *str, int c);
 
 #endif

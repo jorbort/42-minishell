@@ -6,7 +6,7 @@ SRC = 	src/main.c src/Tokenizer/token_parser.c src/Tokenizer/token_lst.c \
 		src/Parser/ft_errors.c src/Parser/lex_utils.c src/Parser/parser_utils.c src/Parser/parser_lst_utils.c \
 		src/Parser/parser.c src/Parser/parse_redirs.c \
 		src/Built_ins/built_in.c src/Built_ins/pwd.c src/Built_ins/cd.c src/Built_ins/env.c src/Built_ins/echo.c src/Built_ins/unset.c \
-		src/Utils/utils_general.c src/Expansor/expansor.c \
+		src/Utils/utils_general.c src/Expansor/expansor.c src/Expansor/expansor_utils.c\
 
 OBJS = $(SRC:.c=.o) ##$(SRC_TOKENIZER:.c=.o) $(SRC_PARSER:.c=.o) 
 DEPS = $(SRC:.c=.d) ##$(SRC_TOKENIZER:.c=.d) $(SRC_PARSER:.c=.d)

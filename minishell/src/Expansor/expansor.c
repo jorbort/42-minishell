@@ -6,55 +6,59 @@
 /*   By: juanantonio <juanantonio@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 11:45:45 by juanantonio       #+#    #+#             */
-/*   Updated: 2023/11/22 12:04:12 by juanantonio      ###   ########.fr       */
+/*   Updated: 2023/11/24 11:40:55 by juanantonio      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <includes/minishell.h>
 
+char	*(*sj)(char *s1, char *s2);
+
 void	ft_expand(t_program *program)
 {
-	int	i;
+	int		i;
+	int		c;
+	char	*str;
 
+	c = -1;
 	i = -1;
 	while (program->cmd_list->cmd[++i] != NULL)
 	{
 		printf("%s\n", program->cmd_list->cmd[i]);
 		if (ft_strchr(program->cmd_list->cmd[i], '$') != NULL)
-			ft_expand_var(program, i);
+		{
+			str = ft_strdup(program->cmd_list->cmd[i]);
+			ft_expand_var(program, i, c, str);
+		}
 		printf("%s\n", program->cmd_list->cmd[i]);
 	}
 }
 
-void	ft_expand_var(t_program *program, int i)
+void	ft_expand_var(t_program *program, int i, int c, char *str)
 {
-	char	*str;
 	char	*cmd;
-	char	*var_name;
-	int		c;
-	int		exp_flag;
-	int		var_len;
-	char	*exp_var;
-	char	*(*sj)(char *, char *);
 
 	sj = &ft_strjoin_doublefree;
-	str = ft_strdup(program->cmd_list->cmd[i]);
 	ft_freegnl(&program->cmd_list->cmd[i]);
 	cmd = program->cmd_list->cmd[i];
-	exp_flag = ft_search_quote(str);
-	c = -1;
+	cmd = ft_return_var(program, cmd, str, c);
+	program->cmd_list->cmd[i] = cmd;
+}
+
+char	*ft_return_var(t_program *program, char *cmd, char *str, int c)
+{
+	int		var_len;
+	char	*var_name;
+
 	while (str[++c])
 	{
 		if (str[c] == '$')
 		{
 			var_name = ft_get_varname(str, c + 1);
 			var_len = ft_strlen(var_name);
-			if (exp_var != NULL && exp_flag && var_len != 0)
-			{
-				exp_var = get_myenv(program, var_name);
-				cmd = ft_strjoin_free(cmd, exp_var);
-			}
-			else if (!exp_flag && var_len != 0)
+			if (ft_search_quote(str) && var_len != 0)
+				cmd = ft_strjoin_free(cmd, get_myenv(program, var_name));
+			else if (!ft_search_quote(str) && var_len != 0)
 				cmd = sj(cmd, ft_substr(str, c, var_len + 1));
 			if (var_len != 0)
 				c += var_len;
@@ -64,35 +68,9 @@ void	ft_expand_var(t_program *program, int i)
 		else
 			cmd = sj(cmd, ft_substr(str, c, 1));
 	}
-	program->cmd_list->cmd[i] = cmd;
+	return (cmd);
 }
 
-int	ft_search_quote(char *str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i])
-	{
-		if (str[i] == '\"')
-			return (1);
-		if (str[i] == '\'')
-			return (0);
-		i++;
-	}
-	return (1);
-}
-
-char	*ft_get_varname(char *str, int i)
-{
-	int		j;
-
-	j = 0;
-	while ((str[i + j] && ft_isalnum(str[i + j])) || str[i + j] == '_' 
-		|| str[i + j] == '?')
-		j++;
-	return (ft_substr(str, i, j));
-}
 
 ///implementacion funcion getenv en programa con la copia de env** 
 char	*get_myenv(t_program *program, char *var)
@@ -101,15 +79,15 @@ char	*get_myenv(t_program *program, char *var)
 	int	len;
 
 	i = 0;
-	len = ft_strlen(var);
 	var = ft_strjoin_free(var, "=");
+	len = ft_strlen(var);
 	printf ("%s\n", var);
 	while (program->data->envp[i])
 	{
 		if (!ft_strncmp(program->data->envp[i], var, len))
 		{
 			free(var);
-			return (ft_strdup(&program->data->envp[i][len + 1]));
+			return (ft_strdup(&program->data->envp[i][len]));
 		}
 		i++;
 	}
