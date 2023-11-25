@@ -6,11 +6,41 @@
 /*   By: jorge <jorge@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 16:38:10 by jorge             #+#    #+#             */
-/*   Updated: 2023/11/23 17:37:50 by jorge            ###   ########.fr       */
+/*   Updated: 2023/11/25 18:04:16 by jorge            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/minishell.h"
+
+static long long ft_exit_atoi(char *str, int *exitnro)
+{
+	int			i;
+	int 		flag;
+	long long  	n;
+
+	n = 0;
+	flag = 1;
+	i = 0;
+	if (strlen(str) == 19 &&
+	(ft_strncmp("9223372036854775807", str, 20) < 0))
+			return (*exitnro = -1);
+	if ((ft_strlen(str) == 20 && ft_strncmp
+			("-9223372036854775807", str, 21) < 0) || ft_strlen(str) > 20)
+		return (*exitnro = -1);
+	if (str[i] && (str[i] == '-' || str[i] == '+'))
+	{
+		if (str[i] == '-')
+			flag = -1;
+		i++;
+	}
+	while (str[i] >= '0' && str[i] <= '9')
+	{
+		n = n * 10 + str[i] - '0';
+		i++;
+	}
+	return (n * flag);
+}
+
 
 void	free_program(t_program *program)
 {
@@ -38,25 +68,26 @@ static bool	is_numeric(char *str)
 
 static void	calc_exit_code(char **str)
 {
-	int	exitnro;
+	long long	n;
+	int			exitnro;
 
 	if (!str[1])
-		exitnro = 0;
+		n = 0;
 	else if (is_numeric(str[1]))
-		exitnro = ft_atoi(str[1]);
-	else
+		n = ft_exit_atoi(str[1], &exitnro);
+	if (exitnro == -1)
 	{
 		ft_putstr_fd("minishell: exit: ", STDERR_FILENO);
 		ft_putstr_fd(str[1], STDERR_FILENO);
 		ft_putstr_fd(": numeric argument required\n", STDERR_FILENO);
-		exitnro = 255;
+		n = 255;
 	}
-	free_arr(str);
-	exit(exitnro);
+	free_double_arr(str);
+	exit(n);
 }
 
 
-void	ft_exit(t_program *program,t_cmd  *cmd_list)
+bool	ft_exit(t_program *program,t_cmd  *cmd_list)
 {
 	char	**temp;
 
