@@ -3,27 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   ft_exit.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jorge <jorge@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jbortolo <jbortolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 16:38:10 by jorge             #+#    #+#             */
-/*   Updated: 2023/11/25 18:04:16 by jorge            ###   ########.fr       */
+/*   Updated: 2023/11/27 15:34:56 by jbortolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/minishell.h"
 
-static long long ft_exit_atoi(char *str, int *exitnro)
+static long long	ft_exit_atoi(char *str, int *exitnro)
 {
 	int			i;
-	int 		flag;
-	long long  	n;
+	int			flag;
+	long long	n;
 
 	n = 0;
 	flag = 1;
 	i = 0;
 	if (strlen(str) == 19 &&
-	(ft_strncmp("9223372036854775807", str, 20) < 0))
-			return (*exitnro = -1);
+		(ft_strncmp("9223372036854775807", str, 20) < 0))
+		return (*exitnro = -1);
 	if ((ft_strlen(str) == 20 && ft_strncmp
 			("-9223372036854775807", str, 21) < 0) || ft_strlen(str) > 20)
 		return (*exitnro = -1);
@@ -44,16 +44,20 @@ static long long ft_exit_atoi(char *str, int *exitnro)
 
 void	free_program(t_program *program)
 {
-	free_double_arr(program->data->envp);
-	cmd_clear(&program->cmd_list);
-	free(program->data->pwd);
-	free(program->data->prev_pwd);
+	if (program->data->envp)
+		free_double_arr(program->data->envp);
+	if (program->cmd_list)
+		cmd_clear(&program->cmd_list);
+	if (program->data->pwd)
+		free(program->data->pwd);
+	if (program->data->prev_pwd)
+		free(program->data->prev_pwd);
 }
 
 
 static bool	is_numeric(char *str)
 {
-	int i;
+	int	i;
 
 	i = 0;
 
@@ -71,6 +75,7 @@ static void	calc_exit_code(char **str)
 	long long	n;
 	int			exitnro;
 
+	exitnro = 0;
 	if (!str[1])
 		n = 0;
 	else if (is_numeric(str[1]))
@@ -86,8 +91,7 @@ static void	calc_exit_code(char **str)
 	exit(n);
 }
 
-
-bool	ft_exit(t_program *program,t_cmd  *cmd_list)
+bool	ft_exit(t_program *program, t_cmd *cmd_list)
 {
 	char	**temp;
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jorge <jorge@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jbortolo <jbortolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 14:39:17 by juan-anm          #+#    #+#             */
-/*   Updated: 2023/11/22 18:31:23 by jorge            ###   ########.fr       */
+/*   Updated: 2023/11/27 15:20:22 by jbortolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,13 @@ int	main(int ac, char **av, char **env)
 
 	(void) env;
 	(void) av;
-	program = malloc(sizeof(t_program));
-	init_program(program, env);
+	
 	if (ac != 1)
 		return (1);
 	while (42)
 	{
+		program = malloc(sizeof(t_program));
+		init_program(program, env);
 		str = readline(BLUE_T"\nMiniShell:" YELLOW_T" $> "RESET_COLOR);
 		if (!str | !*str)
 			continue ;
@@ -53,6 +54,8 @@ int	main(int ac, char **av, char **env)
 		is_builtin(program);
 		exec_builtin(program);
 		ft_expand(program);
+		free_program(program);
+		free(program);
 		free(str);
 	}
 	return (0);

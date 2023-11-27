@@ -1,11 +1,11 @@
 NAME = minishell 
 
-FLAGS = -Wall -Wextra -Werror -MMD 
+FLAGS = -Wall -Wextra -Werror -MMD -fsanitize=address
 SRC = 	src/main.c src/Tokenizer/token_parser.c src/Tokenizer/token_lst.c \
 		src/Tokenizer/token_splitter.c  src/Tokenizer/token_utils.c \
 		src/Parser/ft_errors.c src/Parser/lex_utils.c src/Parser/parser_utils.c src/Parser/parser_lst_utils.c \
 		src/Parser/parser.c src/Parser/parse_redirs.c \
-		src/Built_ins/built_in.c src/Built_ins/pwd.c src/Built_ins/cd.c src/Built_ins/env.c src/Built_ins/echo.c src/Built_ins/unset.c \
+		src/Built_ins/built_in.c src/Built_ins/pwd.c src/Built_ins/cd.c src/Built_ins/env.c src/Built_ins/echo.c src/Built_ins/unset.c src/Built_ins/ft_exit.c \
 		src/Utils/utils_general.c src/Expansor/expansor.c src/Expansor/expansor_utils.c\
 
 OBJS = $(SRC:.c=.o) ##$(SRC_TOKENIZER:.c=.o) $(SRC_PARSER:.c=.o) 
@@ -31,7 +31,7 @@ all:
 	@$(MAKE) -lreadline $(NAME)
 
 $(NAME):: $(OBJS) 
-	@$(CC) $(OBJS) $(LIBFT) -o $@ -L$(READLINE_PATH)/lib -lreadline
+	@$(CC) $(FLAGS) $(OBJS) $(LIBFT) -o $@ -L$(READLINE_PATH)/lib -lreadline
 	@echo "$(GREEN)MiniShell Compiled$(NC)"
 
 $(NAME)::

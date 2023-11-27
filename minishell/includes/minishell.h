@@ -6,7 +6,7 @@
 /*   By: jbortolo <jbortolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 14:41:54 by juan-anm          #+#    #+#             */
-/*   Updated: 2023/11/27 12:40:36 by jbortolo         ###   ########.fr       */
+/*   Updated: 2023/11/27 14:48:31 by jbortolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,7 +127,7 @@ bool		ft_parser(t_program *program);
 t_cmd		*t_cmd_new(char **str_cmd, int num_redirs, t_lexer *redirection);
 void		ft_cmd_addback(t_cmd **lst, t_cmd *node);
 void		ft_lexeradd_back(t_lexer **lst, t_lexer *node);
-void	cmd_clear(t_cmd **list);
+void		cmd_clear(t_cmd **list);
 //parser_utils.c
 t_parser	init_parser(t_lexer *lex_list, t_program *program);
 void		ft_count_pipes(t_lexer *lex_list, t_program *program);
@@ -162,16 +162,16 @@ bool		invalid_unsetchar(char *str);
 //utils_general.c
 char		**ft_arrdup(char **arr);
 void		change_path(t_program *program);
-void	free_double_arr(char **arr);
-bool	invalid_unsetchar(char *str);
+void		free_double_arr(char **arr);
+bool		invalid_unsetchar(char *str);
 //echo.c
 void		print_cmd(int i, char **str, int fd);
 bool		ft_echo(t_cmd *cmd_list);
 //unset.c
 bool		ft_unset(t_program *program, t_cmd *cmd_list);
 //ft_exit.c
-void	free_program(t_program *program);
-void	ft_exit(t_program *program,t_cmd  *cmd_list);
+void		free_program(t_program *program);
+bool		ft_exit(t_program *program, t_cmd *cmd_list);
 /////Expansor///////
 void		ft_expand(t_program *program);
 char		*ft_get_varname(char *str, int i);
