@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_exit.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbortolo <jbortolo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jorge <jorge@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 16:38:10 by jorge             #+#    #+#             */
-/*   Updated: 2023/11/27 15:34:56 by jbortolo         ###   ########.fr       */
+/*   Updated: 2023/11/27 21:36:23 by jorge            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,8 @@ void	free_program(t_program *program)
 		free(program->data->pwd);
 	if (program->data->prev_pwd)
 		free(program->data->prev_pwd);
+	if (program->data)
+		free(program->data);
 }
 
 
