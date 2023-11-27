@@ -6,7 +6,7 @@
 /*   By: jbortolo <jbortolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 14:41:54 by juan-anm          #+#    #+#             */
-/*   Updated: 2023/11/27 14:48:31 by jbortolo         ###   ########.fr       */
+/*   Updated: 2023/11/27 16:05:50 by jbortolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,17 @@
 # include <stdbool.h>
 # include <limits.h>
 # include <sys/param.h>
-
+# include <signal.h>
 /////////////ERROR MGS////////////////
 
 # define TOKEN_ERROR "minishell ERROR: invalid consecutive tokens "
 # define PIPE_ERROR "minishell ERROR: invalid | or consecutive | "
 # define INVALID_ARG "minishell ERROR: invalid arguments"
+
+/////////// KEYS /////////////
+
+# define CTRL_C		SIGINT
+# define CTRL_SLASH	SIGQUIT
 
 /////////////COLORS////////////////
 
@@ -179,5 +184,9 @@ int			ft_search_quote(char *str);
 char		*get_myenv(t_program *program, char *var);
 void		ft_expand_var(t_program *program, int i, int c, char *str);
 char		*ft_return_var(t_program *program, char *cmd, char *str, int c);
+
+/////////Signals////////////////
+
+int			init_signals(int mode);
 
 #endif
