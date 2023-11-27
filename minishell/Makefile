@@ -5,7 +5,7 @@ SRC = 	src/main.c src/Tokenizer/token_parser.c src/Tokenizer/token_lst.c \
 		src/Tokenizer/token_splitter.c  src/Tokenizer/token_utils.c \
 		src/Parser/ft_errors.c src/Parser/lex_utils.c src/Parser/parser_utils.c src/Parser/parser_lst_utils.c \
 		src/Parser/parser.c src/Parser/parse_redirs.c \
-		src/Built_ins/built_in.c src/Built_ins/pwd.c src/Built_ins/cd.c src/Built_ins/env.c src/Built_ins/echo.c src/Built_ins/ft_exit.c src/Built_ins/unset.c \
+		src/Built_ins/built_in.c src/Built_ins/pwd.c src/Built_ins/cd.c src/Built_ins/env.c \
 		src/Utils/utils_general.c src/Expansor/expansor.c src/Signals/signals.c \
 
 
