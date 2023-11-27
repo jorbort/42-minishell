@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jorge <jorge@student.42.fr>                +#+  +:+       +#+        */
+/*   By: juan-anm <juan-anm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 14:39:17 by juan-anm          #+#    #+#             */
-/*   Updated: 2023/11/22 18:31:23 by jorge            ###   ########.fr       */
+/*   Updated: 2023/11/27 14:48:51 by juan-anm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,10 @@ int	main(int ac, char **av, char **env)
 
 	(void) env;
 	(void) av;
+	rl_catch_signals = 0;
 	program = malloc(sizeof(t_program));
 	init_program(program, env);
+	init_signals(1);
 	if (ac != 1)
 		return (1);
 	while (42)
