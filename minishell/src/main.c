@@ -6,7 +6,7 @@
 /*   By: jbortolo <jbortolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 14:39:17 by juan-anm          #+#    #+#             */
-/*   Updated: 2023/11/27 15:20:22 by jbortolo         ###   ########.fr       */
+/*   Updated: 2023/11/27 15:42:14 by jbortolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,8 @@ int	main(int ac, char **av, char **env)
 
 	(void) env;
 	(void) av;
-	
+	program = malloc(sizeof(t_program));
+	init_program(program, env);
 	if (ac != 1)
 		return (1);
 	while (42)
