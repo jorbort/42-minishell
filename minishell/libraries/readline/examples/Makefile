@@ -32,7 +32,7 @@ datadir = ${datarootdir}
 
 top_srcdir = ..
 #BUILD_DIR = .
-BUILD_DIR = /home/jorge/Desktop/minichell/minishell/libraries/readline
+BUILD_DIR = /Users/juanantonio/Desktop/42-minishell/minishell/libraries/readline
 installdir = $(datadir)/readline
 
 INSTALL = /usr/bin/install -c
@@ -63,7 +63,7 @@ ASAN_XLDFLAGS = -fsanitize=address
 READLINE_LIB = ../libreadline.a
 HISTORY_LIB = ../libhistory.a
 
-TERMCAP_LIB = -ltinfo
+TERMCAP_LIB = -ltermcap
 
 .c.o:
 	${RM} $@

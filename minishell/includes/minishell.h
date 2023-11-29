@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jorge <jorge@student.42.fr>                +#+  +:+       +#+        */
+/*   By: juanantonio <juanantonio@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 14:41:54 by juan-anm          #+#    #+#             */
-/*   Updated: 2023/11/27 21:30:06 by jorge            ###   ########.fr       */
+/*   Updated: 2023/11/29 10:08:45 by juanantonio      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@
 # include <string.h>
 # include <fcntl.h>
 # include <unistd.h>
-# include <readline/readline.h>
-# include <readline/history.h>
+# include <libraries/readline/readline.h>
+# include <libraries/readline/history.h>
 # include <stdbool.h>
 # include <limits.h>
 # include <sys/param.h>
