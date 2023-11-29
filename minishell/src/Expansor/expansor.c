@@ -84,7 +84,9 @@ char	*get_myenv(t_program *program, char *var)
 	printf ("%s\n", var);
 	while (program->data->envp[i])
 	{
-		if (!ft_strncmp(program->data->envp[i], var, len))
+		if (!ft_strncmp(var, "?", 1))
+			return(ft_itoa((*program->exit_code)));
+		else if (!ft_strncmp(program->data->envp[i], var, len))
 		{
 			free(var);
 			return (ft_strdup(&program->data->envp[i][len]));
