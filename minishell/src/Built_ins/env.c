@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbortolo <jbortolo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: juanantonio <juanantonio@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 17:18:10 by jorge             #+#    #+#             */
-/*   Updated: 2023/11/13 13:33:46 by jbortolo         ###   ########.fr       */
+/*   Updated: 2023/11/29 13:53:39 by juanantonio      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/minishell.h"
 
-void	print_env(t_program *program)
+int	print_env(t_program *program)
 {
 	int	i;
 
@@ -23,4 +23,5 @@ void	print_env(t_program *program)
 		ft_putstr_fd("\n", STDOUT_FILENO);
 		i++;
 	}
+	return (0);
 }

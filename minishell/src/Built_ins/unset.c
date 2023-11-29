@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbortolo <jbortolo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: juanantonio <juanantonio@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 00:57:41 by jorge             #+#    #+#             */
-/*   Updated: 2023/11/20 16:19:16 by jbortolo         ###   ########.fr       */
+/*   Updated: 2023/11/29 13:55:03 by juanantonio      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,11 +61,11 @@ static bool	unset_fail(t_cmd *cmd_list)
 	return (true);
 }
 
-bool	ft_unset(t_program *program, t_cmd *cmd_list)
+int	ft_unset(t_program *program, t_cmd *cmd_list)
 {
 	if (unset_fail(cmd_list) == false)
-		return (false);
+		return (1);
 	else
 		iter_var(program->data->envp, cmd_list->cmd[1]);
-	return (true);
+	return (0);
 }

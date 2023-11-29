@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_exit.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jorge <jorge@student.42.fr>                +#+  +:+       +#+        */
+/*   By: juanantonio <juanantonio@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 16:38:10 by jorge             #+#    #+#             */
-/*   Updated: 2023/11/27 21:36:23 by jorge            ###   ########.fr       */
+/*   Updated: 2023/11/29 13:54:19 by juanantonio      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ static void	calc_exit_code(char **str)
 	exit(n);
 }
 
-bool	ft_exit(t_program *program, t_cmd *cmd_list)
+int	ft_exit(t_program *program, t_cmd *cmd_list)
 {
 	char	**temp;
 
@@ -101,10 +101,10 @@ bool	ft_exit(t_program *program, t_cmd *cmd_list)
 	if (cmd_list->cmd[1] && cmd_list->cmd[2])
 	{
 		ft_putstr_fd("minishell: exit: Too many arguments\n", STDERR_FILENO);
-		return (false);
+		return (1);
 	}
 	temp = ft_arrdup(cmd_list->cmd);
 	free_program(program);
 	calc_exit_code(temp);
-	return (true);
+	return (0);
 }

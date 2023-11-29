@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   built_in.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbortolo <jbortolo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: juanantonio <juanantonio@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 13:16:27 by jbortolo          #+#    #+#             */
-/*   Updated: 2023/11/27 14:47:41 by jbortolo         ###   ########.fr       */
+/*   Updated: 2023/11/29 13:57:47 by juanantonio      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,18 +59,18 @@ void	is_builtin(t_program *program)
 void	exec_builtin(t_program *program)
 {
 	if (strncmp(program->cmd_list->cmd[0], "cd", 2) == 0)
-		change_dir(program, program->cmd_list);
+		(*program->exit_code) = change_dir(program, program->cmd_list);
 	if (strncmp(program->cmd_list->cmd[0], "pwd", 3) == 0)
-		print_wd(program->data);
+		(*program->exit_code) = print_wd(program->data);
 	if (strncmp(program->cmd_list->cmd[0], "env", 3) == 0)
-		print_env(program);
+		(*program->exit_code) = print_env(program);
 	/*if (strncmp(program->cmd_list->cmd[0], "export", 6) == 0)
-		//export();*/
+		//(*program->exit_code) = export();*/
 	if (strncmp(program->cmd_list->cmd[0], "exit", 6) == 0)
-		ft_exit(program, program->cmd_list);
+		(*program->exit_code) = ft_exit(program, program->cmd_list);
 	if (strncmp(program->cmd_list->cmd[0], "echo", 4) == 0)
-		ft_echo(program->cmd_list);
+		(*program->exit_code) = ft_echo(program->cmd_list);
 	if (strncmp(program->cmd_list->cmd[0], "unset", 6) == 0)
-		ft_unset(program, program->cmd_list);
+		(*program->exit_code) = ft_unset(program, program->cmd_list);
 }
 

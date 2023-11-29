@@ -6,7 +6,7 @@
 /*   By: juanantonio <juanantonio@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 11:45:45 by juanantonio       #+#    #+#             */
-/*   Updated: 2023/11/24 11:40:55 by juanantonio      ###   ########.fr       */
+/*   Updated: 2023/11/29 13:45:01 by juanantonio      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void	ft_expand(t_program *program)
 
 	c = -1;
 	i = -1;
+	(*program->exit_code)++;
 	while (program->cmd_list->cmd[++i] != NULL)
 	{
 		printf("%s\n", program->cmd_list->cmd[i]);
@@ -70,7 +71,6 @@ char	*ft_return_var(t_program *program, char *cmd, char *str, int c)
 	}
 	return (cmd);
 }
-
 
 ///implementacion funcion getenv en programa con la copia de env** 
 char	*get_myenv(t_program *program, char *var)

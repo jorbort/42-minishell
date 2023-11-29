@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbortolo <jbortolo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: juanantonio <juanantonio@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 17:17:30 by jorge             #+#    #+#             */
-/*   Updated: 2023/11/13 13:33:02 by jbortolo         ###   ########.fr       */
+/*   Updated: 2023/11/29 13:52:37 by juanantonio      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ static void	change_path_env(t_program *program)
 	}
 }
 
-bool	change_dir(t_program *program, t_cmd *cmd_list)
+int	change_dir(t_program *program, t_cmd *cmd_list)
 {
 	int	res;
 
@@ -89,5 +89,5 @@ bool	change_dir(t_program *program, t_cmd *cmd_list)
 		return (false);
 	change_path(program);
 	change_path_env(program);
-	return (true);
+	return (0);
 }

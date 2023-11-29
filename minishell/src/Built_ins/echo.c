@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbortolo <jbortolo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: juanantonio <juanantonio@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/19 19:46:49 by jorge             #+#    #+#             */
-/*   Updated: 2023/11/20 14:47:12 by jbortolo         ###   ########.fr       */
+/*   Updated: 2023/11/29 13:53:08 by juanantonio      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	print_cmd(int i, char **str, int fd)
 	}
 }
 
-bool	ft_echo(t_cmd *cmd_list)
+int	ft_echo(t_cmd *cmd_list)
 {
 	int		i;
 	int		j;
@@ -45,5 +45,5 @@ bool	ft_echo(t_cmd *cmd_list)
 	print_cmd(i, cmd_list->cmd, STDOUT_FILENO);
 	if (!n_flag)
 		ft_putchar_fd('n', STDOUT_FILENO);
-	return (true);
+	return (0);
 }

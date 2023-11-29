@@ -6,7 +6,7 @@
 /*   By: juanantonio <juanantonio@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 14:41:54 by juan-anm          #+#    #+#             */
-/*   Updated: 2023/11/29 10:08:45 by juanantonio      ###   ########.fr       */
+/*   Updated: 2023/11/29 13:57:48 by juanantonio      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@
 # include <limits.h>
 # include <sys/param.h>
 # include <signal.h>
+//# include <errno.h>
+
 /////////////ERROR MGS////////////////
 
 # define TOKEN_ERROR "minishell ERROR: invalid consecutive tokens "
@@ -107,6 +109,7 @@ typedef struct s_program
 	struct s_cmd			*cmd_list;
 	struct s_lexer			*lex_list;
 	struct s_lexer			*redir;
+	int						*exit_code;
 }	t_program;
 
 ///////////////TOKENIZER *.c///////////////
@@ -152,15 +155,16 @@ void		del_redirs(t_parser *pars);
 /////Built-ins//////
 
 //pwd.c
-void		print_wd(t_data *data);
+int			print_wd(t_data *data);
 //env.c
-void		print_env(t_program *program);
+int			print_env(t_program *program);
 //cd.c
-bool		change_dir(t_program *program, t_cmd *cmd_list);
+int			change_dir(t_program *program, t_cmd *cmd_list);
 //built_in.c
 void		is_builtin(t_program *program);
 void		exec_builtin(t_program *program);
 ////Utils///
+void		init_program(t_program *program, char **env, int *excode);
 char		**ft_arrdup(char **arr);
 void		change_path(t_program *program);
 bool		invalid_unsetchar(char *str);
@@ -171,12 +175,12 @@ void		free_double_arr(char **arr);
 bool		invalid_unsetchar(char *str);
 //echo.c
 void		print_cmd(int i, char **str, int fd);
-bool		ft_echo(t_cmd *cmd_list);
+int			ft_echo(t_cmd *cmd_list);
 //unset.c
-bool		ft_unset(t_program *program, t_cmd *cmd_list);
+int			ft_unset(t_program *program, t_cmd *cmd_list);
 //ft_exit.c
 void		free_program(t_program *program);
-bool		ft_exit(t_program *program, t_cmd *cmd_list);
+int			ft_exit(t_program *program, t_cmd *cmd_list);
 /////Expansor///////
 void		ft_expand(t_program *program);
 char		*ft_get_varname(char *str, int i);
@@ -184,9 +188,7 @@ int			ft_search_quote(char *str);
 char		*get_myenv(t_program *program, char *var);
 void		ft_expand_var(t_program *program, int i, int c, char *str);
 char		*ft_return_var(t_program *program, char *cmd, char *str, int c);
-
 /////////Signals////////////////
-
 int			init_signals(int mode);
 
 #endif
