@@ -6,7 +6,7 @@
 /*   By: jorge <jorge@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 17:38:48 by jorge             #+#    #+#             */
-/*   Updated: 2023/11/23 17:34:57 by jorge            ###   ########.fr       */
+/*   Updated: 2023/12/01 17:02:54 by jorge            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,4 +78,19 @@ void	cmd_clear(t_cmd **list)
 		*list = tmp;
 	}
 	*list = NULL;
+}
+
+t_cmd	*ft_first(t_cmd *cmd_list)
+{
+	int	i;
+
+	i = 0;
+	if (!cmd_list)
+		return (NULL);
+	while (cmd_list->prev)
+	{
+		cmd_list = cmd_list->prev;
+		i++;
+	}
+	return (cmd_list);
 }

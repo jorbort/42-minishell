@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   built_in.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juanantonio <juanantonio@student.42.fr>    +#+  +:+       +#+        */
+/*   By: jorge <jorge@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 13:16:27 by jbortolo          #+#    #+#             */
-/*   Updated: 2023/11/29 13:57:47 by juanantonio      ###   ########.fr       */
+/*   Updated: 2023/12/01 08:59:20 by jorge            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@ void	is_builtin(t_program *program)
 			if (ft_strncmp(tmp->cmd[0], builtin_arr[i], len) == 0)
 			{
 				tmp->built_in = true;
-				break ;
 			}
 			i++;
 		}
