@@ -6,7 +6,7 @@
 /*   By: jorge <jorge@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 09:23:12 by jorge             #+#    #+#             */
-/*   Updated: 2023/12/01 17:24:50 by jorge            ###   ########.fr       */
+/*   Updated: 2023/12/01 17:35:18 by jorge            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,12 +65,12 @@ int	ft_executor(t_program *program)
 	{
 		if (program->cmd_list->next)
 			pipe(end);
-		//set_heredoc() --> to-do
+		set_heredoc(program, program->cmd_list);// --> to-do
 		ft_fork(program, end, fd_in, program->cmd_list);
 		close(end[1]);
 		if (program->cmd_list->prev)
 			close(fd_in);
-		fd_in = check_fd_heredoc(program, end, program->cmd_list);
+		fd_in = check_fd_heredoc(program, end, program->cmd_list); // -->to-do
 		if (program->cmd_list->next)
 			program->cmd_list = program->cmd_list->next;
 		else
