@@ -6,7 +6,7 @@
 /*   By: jorge <jorge@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 08:21:56 by jorge             #+#    #+#             */
-/*   Updated: 2023/12/01 17:36:00 by jorge            ###   ########.fr       */
+/*   Updated: 2023/12/02 17:12:22 by jorge            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	handle_cmd(t_cmd *cmd_list, t_program *program)
 
 	exit_code = 0;
 	if (cmd_list->redirection)
-		if (check_redirs(cmd_list))//function -->to-do
+		if (check_redirs(cmd_list))
 			exit(1);
 	if (cmd_list->cmd[0][0])
 		exit_code = find_cmd(cmd_list, program);
@@ -49,7 +49,7 @@ void	handle_cmd(t_cmd *cmd_list, t_program *program)
 void	single_cmd(t_cmd *cmd_list, t_program *program)
 {
 	int	pid;
-	int status;
+	int status; 
 
 	if (cmd_list->built_in == true)
 	{
