@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expansor.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juanantonio <juanantonio@student.42.fr>    +#+  +:+       +#+        */
+/*   By: juan-anm <juan-anm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 11:45:45 by juanantonio       #+#    #+#             */
-/*   Updated: 2023/11/29 13:45:01 by juanantonio      ###   ########.fr       */
+/*   Updated: 2023/12/02 12:00:26 by juan-anm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,11 @@ void	ft_expand(t_program *program)
 	(*program->exit_code)++;
 	while (program->cmd_list->cmd[++i] != NULL)
 	{
-		printf("%s\n", program->cmd_list->cmd[i]);
 		if (ft_strchr(program->cmd_list->cmd[i], '$') != NULL)
 		{
 			str = ft_strdup(program->cmd_list->cmd[i]);
 			ft_expand_var(program, i, c, str);
 		}
-		printf("%s\n", program->cmd_list->cmd[i]);
 	}
 }
 

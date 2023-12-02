@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jorge <jorge@student.42.fr>                +#+  +:+       +#+        */
+/*   By: juan-anm <juan-anm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 14:41:54 by juan-anm          #+#    #+#             */
-/*   Updated: 2023/12/01 08:55:19 by jorge            ###   ########.fr       */
+/*   Updated: 2023/12/02 12:35:51 by juan-anm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -192,5 +192,7 @@ void		ft_expand_var(t_program *program, int i, int c, char *str);
 char		*ft_return_var(t_program *program, char *cmd, char *str, int c);
 /////////Signals////////////////
 int			init_signals(int mode);
+/////////Heredoc////////////////
+void		ft_heredoc(t_program *program);
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juanantonio <juanantonio@student.42.fr>    +#+  +:+       +#+        */
+/*   By: juan-anm <juan-anm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 14:39:17 by juan-anm          #+#    #+#             */
-/*   Updated: 2023/11/29 13:47:28 by juanantonio      ###   ########.fr       */
+/*   Updated: 2023/12/02 12:11:44 by juan-anm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,11 +55,13 @@ int	main(int ac, char **av, char **env)
 		if (!ft_parser(program))
 			ft_error(program, 5);
 		is_builtin(program);
+		if (program->cmd_list->redirection)
+		{
+			if (program->cmd_list->redirection->token == LESS_LESS)
+				ft_heredoc(program);
+		}
 		exec_builtin(program);
 		ft_expand(program);
-		printf("numero exit main = %d\n", excode);
-		printf("numero exit struct= %d\n", (*program->exit_code));
-
 		free_program(program);
 		free(program);
 		free(str);
