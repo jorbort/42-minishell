@@ -6,7 +6,7 @@
 /*   By: jorge <jorge@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 09:20:09 by jorge             #+#    #+#             */
-/*   Updated: 2023/12/01 09:22:22 by jorge            ###   ########.fr       */
+/*   Updated: 2023/12/03 22:18:31 by jorge            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,4 +47,11 @@ char	**rejoin_str(char **double_arr)
 	ret = ft_split(joined_str, ' ');
 	free(joined_str);
 	return (ret);
+}
+int	command_not_found(char *str)
+{
+	ft_putstr_fd("minishell: ", STDERR_FILENO);
+	ft_putstr_fd(str, STDERR_FILENO);
+	ft_putendl_fd(": command not found", STDERR_FILENO);
+	return (127);
 }
