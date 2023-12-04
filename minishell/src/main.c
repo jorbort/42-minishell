@@ -6,7 +6,7 @@
 /*   By: juan-anm <juan-anm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 14:39:17 by juan-anm          #+#    #+#             */
-/*   Updated: 2023/12/04 12:38:03 by juan-anm         ###   ########.fr       */
+/*   Updated: 2023/12/04 13:09:04 by juan-anm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	shell_loop(t_program *program)
 
 	while (42)
 	{
-		str = readline(BLUE_T"\nMiniShell:" YELLOW_T" $> "RESET_COLOR);
+		str = readline(BLUE_T"MiniShell:" YELLOW_T" $> "RESET_COLOR);
 		if (!str | !*str)
 			continue ;
 		add_history(str);

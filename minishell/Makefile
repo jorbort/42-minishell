@@ -1,6 +1,6 @@
 NAME = minishell 
 
-FLAGS = -Wall -Wextra -Werror -MMD #-fsanitize=address
+FLAGS = -Wall -Wextra -Werror -MMD ##-fsanitize=address
 SRC = 	src/main.c src/Tokenizer/token_parser.c src/Tokenizer/token_lst.c \
 		src/Tokenizer/token_splitter.c  src/Tokenizer/token_utils.c \
 		src/Parser/ft_errors.c src/Parser/lex_utils.c src/Parser/parser_utils.c src/Parser/parser_lst_utils.c \

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbortolo <jbortolo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: juan-anm <juan-anm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 08:21:56 by jorge             #+#    #+#             */
-/*   Updated: 2023/12/04 12:05:04 by jbortolo         ###   ########.fr       */
+/*   Updated: 2023/12/04 14:04:03 by juan-anm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,10 @@ static int	find_cmd(t_cmd *cmd_list, t_program *program)
 	cmd_list->cmd = rejoin_str(cmd_list->cmd);
 	if (!access(cmd_list->cmd[0], F_OK))
 		execve(cmd_list->cmd[0], cmd_list->cmd, program->data->envp);
-	while (program->data->paths[i])
+	while (program->data->envp[i])
 	{
-		path = ft_strjoin(program->data->paths[i], cmd_list->cmd[0]);
+		path = ft_strjoin("/usr/local/go/bin/", cmd_list->cmd[0]);
+		//path = ft_strjoin(program->data->envp[i], cmd_list->cmd[0]);
 		if (!access(path, F_OK))
 			execve(path, cmd_list->cmd, program->data->envp);
 		free(path);
