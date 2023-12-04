@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_executor.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jorge <jorge@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jbortolo <jbortolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 09:23:12 by jorge             #+#    #+#             */
-/*   Updated: 2023/12/01 17:35:18 by jorge            ###   ########.fr       */
+/*   Updated: 2023/12/04 11:48:01 by jbortolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/minishell.h"
 
-void	dup_cmd(t_cmd *cmd_list, t_program *program, int *end, int fd_in)
+static void	dup_cmd(t_cmd *cmd_list, t_program *program, int *end, int fd_in)
 {
 	if (cmd_list->prev && dup2(fd_in, STDIN_FILENO) < 0)
 		ft_error(program, 8);
@@ -25,7 +25,7 @@ void	dup_cmd(t_cmd *cmd_list, t_program *program, int *end, int fd_in)
 	handle_cmd(cmd_list, program);
 }
 
-int	pipe_wait(int *pid, int amount, t_program *program)
+static int	pipe_wait(int *pid, int amount, t_program *program)
 {
 	int	i;
 	int	status;
@@ -33,7 +33,7 @@ int	pipe_wait(int *pid, int amount, t_program *program)
 	i = 0;
 	while (i < amount)
 	{
-		waitpid(pid[i],&status,0);
+		waitpid(pid[i], &status, 0);
 		i++;
 	}
 	waitpid(pid[i], &status, 0);
@@ -42,7 +42,7 @@ int	pipe_wait(int *pid, int amount, t_program *program)
 	return (0);
 }
 
-int	ft_fork(t_program *program, int *end, int fd_in, t_cmd *cmd_list)
+static int	ft_fork(t_program *program, int *end, int fd_in, t_cmd *cmd_list)
 {
 	static int	i = 0;
 
@@ -65,12 +65,12 @@ int	ft_executor(t_program *program)
 	{
 		if (program->cmd_list->next)
 			pipe(end);
-		set_heredoc(program, program->cmd_list);// --> to-do
+		set_heredoc(program, program->cmd_list);
 		ft_fork(program, end, fd_in, program->cmd_list);
 		close(end[1]);
 		if (program->cmd_list->prev)
 			close(fd_in);
-		fd_in = check_fd_heredoc(program, end, program->cmd_list); // -->to-do
+		fd_in = check_fd_heredoc(program, end, program->cmd_list);
 		if (program->cmd_list->next)
 			program->cmd_list = program->cmd_list->next;
 		else

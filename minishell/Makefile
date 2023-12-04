@@ -7,7 +7,8 @@ SRC = 	src/main.c src/Tokenizer/token_parser.c src/Tokenizer/token_lst.c \
 		src/Parser/parser.c src/Parser/parse_redirs.c \
 		src/Built_ins/built_in.c src/Built_ins/pwd.c src/Built_ins/cd.c src/Built_ins/env.c src/Built_ins/unset.c src/Built_ins/ft_exit.c src/Built_ins/echo.c\
 		src/Utils/utils_general.c src/Expansor/expansor.c src/Expansor/expansor_utils.c src/Signals/signals.c \
-		src/Heredoc/heredoc.c
+		src/Heredoc/heredoc.c \
+		src/Executor/exec_redirs.c src/Executor/exec_utils.c src/Executor/executor.c src/Executor/ft_executor.c \
 
 
 

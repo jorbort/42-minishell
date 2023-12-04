@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juan-anm <juan-anm@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jbortolo <jbortolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 14:41:54 by juan-anm          #+#    #+#             */
-/*   Updated: 2023/12/02 12:35:51 by juan-anm         ###   ########.fr       */
+/*   Updated: 2023/12/04 11:48:51 by jbortolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,7 @@
 # include <limits.h>
 # include <sys/param.h>
 # include <signal.h>
-#include <sys/wait.h>
-
-//# include <errno.h>
+# include <sys/wait.h>
 
 /////////////ERROR MGS////////////////
 
@@ -48,7 +46,6 @@
 # define BLUE_T			"\x1b[1;36m"
 
 /////////////////// TOKENIZER STRUCTS /////////////////////////
-
 
 typedef enum s_token
 {
@@ -78,7 +75,6 @@ typedef struct s_parser
 	int					num_redirections;
 	struct s_program	*program;
 }	t_parser;
-
 
 typedef struct s_cmd
 {
@@ -194,5 +190,19 @@ char		*ft_return_var(t_program *program, char *cmd, char *str, int c);
 int			init_signals(int mode);
 /////////Heredoc////////////////
 void		ft_heredoc(t_program *program);
+////Executor/////
+
+//exec_redirs.c
+int			check_redirs(t_cmd *cmd_list);
+//exec_utils.c
+int			check_fd_heredoc(t_program *program, int *end, t_cmd *cmd);
+int			command_not_found(char *str);
+char		**rejoin_str(char **double_arr);
+char		*join_split_str(char **split_str, char *new_str);
+//executor.c
+int			handle_execution(t_program *program);
+void		handle_cmd(t_cmd *cmd_list, t_program *program);
+//ft_executor.c
+int			ft_executor(t_program *program);
 
 #endif

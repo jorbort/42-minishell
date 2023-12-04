@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   executor.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jorge <jorge@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jbortolo <jbortolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 08:21:56 by jorge             #+#    #+#             */
-/*   Updated: 2023/12/03 22:13:46 by jorge            ###   ########.fr       */
+/*   Updated: 2023/12/04 11:48:24 by jbortolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/minishell.h"
 
-int	find_cmd(t_cmd *cmd_list, t_program * program)
+static int	find_cmd(t_cmd *cmd_list, t_program *program)
 {
 	int		i;
 	char	*path;
@@ -20,7 +20,7 @@ int	find_cmd(t_cmd *cmd_list, t_program * program)
 	i = 0;
 	cmd_list->cmd = rejoin_str(cmd_list->cmd);
 	if (!access(cmd_list->cmd[0], F_OK))
-		execve(cmd_list->cmd[0],cmd_list->cmd,program->data->envp);
+		execve(cmd_list->cmd[0], cmd_list->cmd, program->data->envp);
 	while (program->data->paths[i])
 	{
 		path = ft_strjoin(program->data->paths[i], cmd_list->cmd[0]);
@@ -34,34 +34,33 @@ int	find_cmd(t_cmd *cmd_list, t_program * program)
 
 void	handle_cmd(t_cmd *cmd_list, t_program *program)
 {
-	int	exit_code;
+	int	exit_status;
 
-	exit_code = 0;
+	exit_status = 0;
 	if (cmd_list->redirection)
 		if (check_redirs(cmd_list))
 			exit(1);
 	if (cmd_list->built_in)
 	{
 		exec_builtin(program);
-		exit(program->exit_code);
+		exit(*program->exit_code);
 	}
 	else if (cmd_list->cmd[0][0])
-		exit_code = find_cmd(cmd_list, program);
-	exit(exit_code);
+		exit_status = find_cmd(cmd_list, program);
+	exit(exit_status);
 }
 
-
-void	single_cmd(t_cmd *cmd_list, t_program *program)
+static void	exec_single_cmd(t_cmd *cmd_list, t_program *program)
 {
 	int	pid;
-	int status; 
+	int	status;
 
 	if (cmd_list->built_in == true)
 	{
 		exec_builtin(program);
 		return ;
 	}
-	//set_heredoc(program, cmd_list) --> to-do
+	set_heredoc(program, cmd_list);
 	pid = fork();
 	if (pid < 0)
 		ft_erorr(program, 7);
@@ -69,15 +68,14 @@ void	single_cmd(t_cmd *cmd_list, t_program *program)
 		handle_cmd(cmd_list, program);
 	waitpid(pid, &status, 0);
 	if (WIFEXITED(status))
-		program->exit_code = WEXITSTAUS(status);
+		(*program->exit_code) = WEXITSTAUS(status);
 }
-
 
 int	handle_execution(t_program *program)
 {
 	ft_expand(program);
 	is_builtin(program);
-	if (program->data->pipes = 0)
+	if (program->data->pipes == 0)
 		exec_single_cmd(program->cmd_list, program);
 	else
 	{

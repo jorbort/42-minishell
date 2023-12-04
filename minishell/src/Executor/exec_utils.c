@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jorge <jorge@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jbortolo <jbortolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 09:20:09 by jorge             #+#    #+#             */
-/*   Updated: 2023/12/03 22:18:31 by jorge            ###   ########.fr       */
+/*   Updated: 2023/12/04 11:21:31 by jbortolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,25 @@ char	**rejoin_str(char **double_arr)
 	free(joined_str);
 	return (ret);
 }
+
 int	command_not_found(char *str)
 {
 	ft_putstr_fd("minishell: ", STDERR_FILENO);
 	ft_putstr_fd(str, STDERR_FILENO);
 	ft_putendl_fd(": command not found", STDERR_FILENO);
 	return (127);
+}
+
+int	check_fd_heredoc(t_program *program, int *end, t_cmd *cmd)
+{
+	int	fd_in;
+
+	if (program->data->heredoc)
+	{
+		close(end[0]);
+		fd_in = open(cmd->here_d_file_name, O_RDONLY);
+	}
+	else
+		fd_in = end[0];
+	return (fd_in);
 }

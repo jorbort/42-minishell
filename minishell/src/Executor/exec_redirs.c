@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   exec_redirs.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jorge <jorge@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jbortolo <jbortolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/02 16:40:47 by jorge             #+#    #+#             */
-/*   Updated: 2023/12/02 17:07:41 by jorge            ###   ########.fr       */
+/*   Updated: 2023/12/04 11:34:20 by jbortolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/minishell.h"
 
-int	check_append_outfile(t_lexer *redirection)
+static int	check_append_outfile(t_lexer *redirection)
 {
 	int	fd;
 
@@ -23,15 +23,15 @@ int	check_append_outfile(t_lexer *redirection)
 	return (fd);
 }
 
-int	handle_infile(char	*file)
+static int	handle_infile(char	*file)
 {
-	int fd;
+	int	fd;
 
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
 	{
 		ft_putstr_fd("minishell: infile: No such file or directory\n",
-				STDERR_FILENO);
+			STDERR_FILENO);
 		return (1);
 	}
 	if (fd > 0 && dup2(fd, STDIN_FILENO) < 0)
@@ -44,14 +44,14 @@ int	handle_infile(char	*file)
 	return (0);
 }
 
-int	handle_outfile(t_lexer *redirection)
+static int	handle_outfile(t_lexer *redirection)
 {
 	int	fd;
 
 	fd = check_append_outfile(redirection);
 	if (fd < 0)
 	{
-		ft_putstr_fd("minishell: outfile: Error\n",STDERR_FILENO);
+		ft_putstr_fd("minishell: outfile: Error\n", STDERR_FILENO);
 		return (1);
 	}
 	if (fd > 0 && dup2(fd, STDOUT_FILENO) < 0)
@@ -78,7 +78,7 @@ int	check_redirs(t_cmd *cmd_list)
 				return (1);
 		}
 		else if (cmd_list->redirection->token == GREAT
-				|| cmd_list->redirection->token == GREAT_GREAT)
+			|| cmd_list->redirection->token == GREAT_GREAT)
 		{
 			if (handle_outfile(cmd_list->redirection))
 				return (1);
