@@ -9,7 +9,7 @@ SRC = 	src/main.c src/Tokenizer/token_parser.c src/Tokenizer/token_lst.c \
 		src/Utils/utils_general.c src/Expansor/expansor.c src/Expansor/expansor_utils.c src/Signals/signals.c \
 		src/Heredoc/heredoc.c \
 		src/Executor/exec_redirs.c src/Executor/exec_utils.c src/Executor/executor.c src/Executor/ft_executor.c \
-
+		src/Executor/path_utils.c \
 
 
 OBJS = $(SRC:.c=.o) ##$(SRC_TOKENIZER:.c=.o) $(SRC_PARSER:.c=.o) 
@@ -50,7 +50,7 @@ $(NAME)::
 
 rdline :
 	@echo "${PURPLE}Compiling Readline...${NC}"
-	##@cd ./libraries/readline/ &> /dev/null && ./configure &> /dev/null
+	@cd ./libraries/readline/ &> /dev/null && ./configure &> /dev/null
 	@make -C ./libraries/readline/ &> /dev/null
 	@echo "${GREEN}Readline Compiled${NC}"
 
