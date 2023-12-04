@@ -32,7 +32,7 @@ datarootdir = ${prefix}/share
 srcdir = .
 VPATH = ..
 topdir = ..
-BUILD_DIR = /Users/jbortolo/Desktop/minishell/minishell/libraries/readline
+BUILD_DIR = /Users/juan-anm/Desktop/nminishell/minishell/libraries/readline
 
 INSTALL = /usr/bin/install -c
 INSTALL_PROGRAM = ${INSTALL}

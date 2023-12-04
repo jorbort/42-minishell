@@ -50,7 +50,7 @@ $(NAME)::
 
 rdline :
 	@echo "${PURPLE}Compiling Readline...${NC}"
-	@cd ./libraries/readline/ &> /dev/null && ./configure &> /dev/null
+	##@cd ./libraries/readline/ &> /dev/null && ./configure &> /dev/null
 	@make -C ./libraries/readline/ &> /dev/null
 	@echo "${GREEN}Readline Compiled${NC}"
 

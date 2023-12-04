@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_executor.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbortolo <jbortolo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: juan-anm <juan-anm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 09:23:12 by jorge             #+#    #+#             */
-/*   Updated: 2023/12/04 11:48:01 by jbortolo         ###   ########.fr       */
+/*   Updated: 2023/12/04 12:23:25 by juan-anm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static int	pipe_wait(int *pid, int amount, t_program *program)
 	}
 	waitpid(pid[i], &status, 0);
 	if (WIFEXITED(status))
-		program->exit_code = WEXITSTATUS(status);
+		(*program->exit_code) = WEXITSTATUS(status);
 	return (0);
 }
 

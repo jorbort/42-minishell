@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbortolo <jbortolo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: juan-anm <juan-anm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 14:39:17 by juan-anm          #+#    #+#             */
-/*   Updated: 2023/12/04 11:58:17 by jbortolo         ###   ########.fr       */
+/*   Updated: 2023/12/04 12:38:03 by juan-anm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,9 @@ void	shell_loop(t_program *program)
 		if (!ft_parser(program))
 			ft_error(program, 5);
 		handle_execution(program);
-		free_program(program);
-		free(program);
-		free(str);
+		// free_program(program);
+		// free(program);
+		// free(str);
 	}
 }
 

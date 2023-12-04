@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   parser_lst_utils.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jorge <jorge@student.42.fr>                +#+  +:+       +#+        */
+/*   By: juan-anm <juan-anm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 17:38:48 by jorge             #+#    #+#             */
-/*   Updated: 2023/12/01 17:02:54 by jorge            ###   ########.fr       */
+/*   Updated: 2023/12/04 12:24:26 by juan-anm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-t_cmd	*t_cmd_new(char **str_cmd,int num_redirs, t_lexer *redirection)
+t_cmd	*t_cmd_new(char **str_cmd, int num_redirs, t_lexer *redirection)
 {
 	t_cmd	*new;
 

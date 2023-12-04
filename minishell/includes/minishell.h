@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbortolo <jbortolo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: juan-anm <juan-anm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 14:41:54 by juan-anm          #+#    #+#             */
-/*   Updated: 2023/12/04 12:03:24 by jbortolo         ###   ########.fr       */
+/*   Updated: 2023/12/04 12:24:49 by juan-anm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,6 +134,7 @@ t_cmd		*t_cmd_new(char **str_cmd, int num_redirs, t_lexer *redirection);
 void		ft_cmd_addback(t_cmd **lst, t_cmd *node);
 void		ft_lexeradd_back(t_lexer **lst, t_lexer *node);
 void		cmd_clear(t_cmd **list);
+t_cmd		*ft_first(t_cmd *cmd_list);
 //parser_utils.c
 t_parser	init_parser(t_lexer *lex_list, t_program *program);
 void		ft_count_pipes(t_lexer *lex_list, t_program *program);
@@ -204,5 +205,7 @@ int			handle_execution(t_program *program);
 void		handle_cmd(t_cmd *cmd_list, t_program *program);
 //ft_executor.c
 int			ft_executor(t_program *program);
+void		ft_fill_heredoc(t_program *program);
+int			set_heredoc(t_program *program, t_cmd *cmd_list);
 
 #endif

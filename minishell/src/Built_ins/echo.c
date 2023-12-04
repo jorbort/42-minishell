@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juanantonio <juanantonio@student.42.fr>    +#+  +:+       +#+        */
+/*   By: juan-anm <juan-anm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/19 19:46:49 by jorge             #+#    #+#             */
-/*   Updated: 2023/11/29 13:53:08 by juanantonio      ###   ########.fr       */
+/*   Updated: 2023/12/04 12:39:15 by juan-anm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,6 @@ int	ft_echo(t_cmd *cmd_list)
 	}
 	print_cmd(i, cmd_list->cmd, STDOUT_FILENO);
 	if (!n_flag)
-		ft_putchar_fd('n', STDOUT_FILENO);
+		ft_putchar_fd('\n', STDOUT_FILENO);
 	return (0);
 }
