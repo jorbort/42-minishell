@@ -6,13 +6,13 @@
 /*   By: jorge <jorge@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 12:44:41 by jbortolo          #+#    #+#             */
-/*   Updated: 2023/11/30 17:31:33 by jorge            ###   ########.fr       */
+/*   Updated: 2023/12/04 18:21:58 by jorge            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/minishell.h"
 
-int	var_exist(t_program *program, char *str)
+static int	var_exist(t_program *program, char *str)
 {
 	int	i;
 
@@ -35,7 +35,7 @@ int	var_exist(t_program *program, char *str)
 	return (0);
 }
 
-int	check_parameter(char *str)
+static int	check_parameter(char *str)
 {
 	int	i;
 
@@ -48,14 +48,14 @@ int	check_parameter(char *str)
 		return (export_error(str));
 	while (str[i] != '=')
 	{
-		if (invalid_unsetchar(str[i]))
+		if (check_valid_char(str[i]))
 			return (export_error(str));
 		i++;
 	}
 	return (0);
 }
 
-char	**whileloop_add_var(char **arr, char **rtn, char *str)
+static char	**whileloop_add_var(char **arr, char **rtn, char *str)
 {
 	int	i;
 
@@ -79,7 +79,7 @@ char	**whileloop_add_var(char **arr, char **rtn, char *str)
 	return (rtn);
 }
 
-char	**add_var(char **arr, char *str)
+static char	**add_var(char **arr, char *str)
 {
 	char	**rtn;
 	size_t	i;
@@ -111,7 +111,7 @@ int	ft_export(t_cmd *cmd_list, t_program *program)
 	{
 		while (cmd_list->cmd[i])
 		{
-			if (check_input(cmd_list->cmd[i]) == 0
+			if (check_parameter(cmd_list->cmd[i]) == 0
 					&& var_exist(program, cmd_list->cmd[i]) ==0)
 			{
 				if (cmd_list->cmd[i])

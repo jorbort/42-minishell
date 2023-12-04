@@ -6,7 +6,7 @@
 /*   By: jorge <jorge@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 13:16:27 by jbortolo          #+#    #+#             */
-/*   Updated: 2023/12/01 08:59:20 by jorge            ###   ########.fr       */
+/*   Updated: 2023/12/04 18:04:59 by jorge            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,8 @@ void	exec_builtin(t_program *program)
 		(*program->exit_code) = print_wd(program->data);
 	if (strncmp(program->cmd_list->cmd[0], "env", 3) == 0)
 		(*program->exit_code) = print_env(program);
-	/*if (strncmp(program->cmd_list->cmd[0], "export", 6) == 0)
-		//(*program->exit_code) = export();*/
+	if (strncmp(program->cmd_list->cmd[0], "export", 6) == 0)
+		(*program->exit_code) = ft_export(program->cmd_list, program);
 	if (strncmp(program->cmd_list->cmd[0], "exit", 6) == 0)
 		(*program->exit_code) = ft_exit(program, program->cmd_list);
 	if (strncmp(program->cmd_list->cmd[0], "echo", 4) == 0)
@@ -72,4 +72,20 @@ void	exec_builtin(t_program *program)
 	if (strncmp(program->cmd_list->cmd[0], "unset", 6) == 0)
 		(*program->exit_code) = ft_unset(program, program->cmd_list);
 }
+int	find_pwd(t_data *data)
+{
+	int	i;
 
+	i = 0;
+	while (data->envp[i])
+	{
+		if (!ft_strncmp(data->envp[i],"PWD=",4))
+			data->pwd = ft_substr(data->envp[i],
+					4, ft_strlen(data->envp[i]) - 4);
+		if (!ft_strncmp(data->envp[i],"OLDPWD=", 7))
+			data->prev_pwd = ft_substr(data->envp[i],
+					7, ft_strlen(data->envp[i]) - 7);
+		i++;
+	}
+	return (1);
+}

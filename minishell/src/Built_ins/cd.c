@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juanantonio <juanantonio@student.42.fr>    +#+  +:+       +#+        */
+/*   By: jorge <jorge@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 17:17:30 by jorge             #+#    #+#             */
-/*   Updated: 2023/11/29 13:52:37 by juanantonio      ###   ########.fr       */
+/*   Updated: 2023/12/04 19:17:39 by jorge            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,13 +55,13 @@ static void	change_path_env(t_program *program)
 	i = 0;
 	while (program->data->envp[i])
 	{
-		if (!ft_strncmp(program->data->envp[i], "pwd=", 4))
+		if (!ft_strncmp(program->data->envp[i], "PWD=", 4))
 		{
 			tmp = ft_strjoin("PWD=", program->data->pwd);
 			free(program->data->envp[i]);
 			program->data->envp[i] = tmp;
 		}
-		else if (!ft_strncmp("OLDPWD=", program->data->prev_pwd, 7))
+		else if (!ft_strncmp(program->data->envp[i], "OLDPWD=", 7) && program->data->prev_pwd)
 		{
 			tmp = ft_strjoin("OLDPWD=", program->data->prev_pwd);
 			free(program->data->envp[i]);
@@ -77,16 +77,20 @@ int	change_dir(t_program *program, t_cmd *cmd_list)
 
 	if (!cmd_list->cmd[1])
 		res = go_dir(program, "HOME=");
-	else if (ft_strncmp(cmd_list->cmd[1], "-", 1))
+	else if (ft_strncmp(cmd_list->cmd[1], "-", 1) == 0)
 		res = go_dir(program, "OLDPWD=");
 	else
 	{
 		res = chdir(cmd_list->cmd[1]);
 		if (res != 0)
-			ft_error(program, 6);
+		{
+			ft_putstr_fd("minishell: ", STDERR_FILENO);
+			ft_putstr_fd(cmd_list->cmd[1], STDERR_FILENO);
+			perror(" ");
+		}
 	}
 	if (res != 0)
-		return (false);
+		return (1);
 	change_path(program);
 	change_path_env(program);
 	return (0);

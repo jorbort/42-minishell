@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbortolo <jbortolo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jorge <jorge@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 14:39:17 by juan-anm          #+#    #+#             */
-/*   Updated: 2023/12/04 15:30:48 by jbortolo         ###   ########.fr       */
+/*   Updated: 2023/12/04 19:18:51 by jorge            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,15 @@ void	init_program(t_program *program, char **env, int *excode)
 	{
 		program->data->pipes = 0;
 		program->data->nume_redirs = 0;
-		program->data->pwd = getcwd(NULL, MAXPATHLEN);
-		program->data->prev_pwd = NULL;
 		program->data->envp = ft_arrdup(env);
-
+		parse_env(program, program->data);
+		find_pwd(program->data);
 	}
 	program->redir = NULL;
 	program->lex_list = NULL;
 	program->cmd_list = NULL;
 	program->exit_code = excode;
-	parse_env(program, program->data);
+	
 }
 
 void	shell_loop(t_program *program)
@@ -45,6 +44,8 @@ void	shell_loop(t_program *program)
 		if (!ft_parser(program))
 			ft_error(program, 5);
 		handle_execution(program);
+		printf("%s\n", program->data->prev_pwd);
+		printf("%s\n",program->data->pwd);
 		// free_program(program);
 		// free(program);
 		// free(str);

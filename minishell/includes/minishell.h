@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbortolo <jbortolo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jorge <jorge@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 14:41:54 by juan-anm          #+#    #+#             */
-/*   Updated: 2023/12/04 15:29:34 by jbortolo         ###   ########.fr       */
+/*   Updated: 2023/12/04 18:21:14 by jorge            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -162,6 +162,7 @@ int			change_dir(t_program *program, t_cmd *cmd_list);
 //built_in.c
 void		is_builtin(t_program *program);
 void		exec_builtin(t_program *program);
+int			find_pwd(t_data *data);
 ////Utils///
 void		init_program(t_program *program, char **env, int *excode);
 char		**ft_arrdup(char **arr);
@@ -180,6 +181,13 @@ int			ft_unset(t_program *program, t_cmd *cmd_list);
 //ft_exit.c
 void		free_program(t_program *program);
 int			ft_exit(t_program *program, t_cmd *cmd_list);
+//ft_export
+int	ft_export(t_cmd *cmd_list, t_program *program);
+//export_utils.c
+char	*trim_quotes(char *str, char c);
+size_t	equal_sign(char *str);
+int	export_error(char *c);
+int	check_valid_char(char c);
 /////Expansor///////
 void		ft_expand(t_program *program);
 char		*ft_get_varname(char *str, int i);
