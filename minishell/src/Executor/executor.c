@@ -6,7 +6,7 @@
 /*   By: jbortolo <jbortolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 08:21:56 by jorge             #+#    #+#             */
-/*   Updated: 2023/12/04 11:48:24 by jbortolo         ###   ########.fr       */
+/*   Updated: 2023/12/04 12:05:04 by jbortolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,12 +63,12 @@ static void	exec_single_cmd(t_cmd *cmd_list, t_program *program)
 	set_heredoc(program, cmd_list);
 	pid = fork();
 	if (pid < 0)
-		ft_erorr(program, 7);
+		ft_error(program, 7);
 	if (pid == 0)
 		handle_cmd(cmd_list, program);
 	waitpid(pid, &status, 0);
 	if (WIFEXITED(status))
-		(*program->exit_code) = WEXITSTAUS(status);
+		(*program->exit_code) = WEXITSTATUS(status);
 }
 
 int	handle_execution(t_program *program)

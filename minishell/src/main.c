@@ -6,7 +6,7 @@
 /*   By: jbortolo <jbortolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 14:39:17 by juan-anm          #+#    #+#             */
-/*   Updated: 2023/12/04 10:40:03 by jbortolo         ###   ########.fr       */
+/*   Updated: 2023/12/04 11:58:17 by jbortolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,23 +30,12 @@ void	init_program(t_program *program, char **env, int *excode)
 	program->exit_code = excode;
 }
 
-
-int	main(int ac, char **av, char **env)
+void	shell_loop(t_program *program)
 {
 	char		*str;
-	t_program	*program;
-	static int	excode = 0;
 
-	(void) env;
-	(void) av;
-	program = malloc(sizeof(t_program));
-	init_program(program, env, &excode);
-	if (ac != 1)
-		return (1);
 	while (42)
 	{
-		program = malloc(sizeof(t_program));
-		init_program(program, env, &excode);
 		str = readline(BLUE_T"\nMiniShell:" YELLOW_T" $> "RESET_COLOR);
 		if (!str | !*str)
 			continue ;
@@ -54,17 +43,23 @@ int	main(int ac, char **av, char **env)
 		program->lex_list = tokenizer(&program->lex_list, str);
 		if (!ft_parser(program))
 			ft_error(program, 5);
-		is_builtin(program);
-		if (program->cmd_list->redirection)
-		{
-			if (program->cmd_list->redirection->token == LESS_LESS)
-				ft_heredoc(program);
-		}
-		exec_builtin(program);
-		ft_expand(program);
+		handle_execution(program);
 		free_program(program);
 		free(program);
 		free(str);
 	}
+}
+
+int	main(int ac, char **av, char **env)
+{
+	t_program	*program;
+	static int	excode = 0;
+
+	(void) av;
+	program = malloc(sizeof(t_program));
+	init_program(program, env, &excode);
+	if (ac != 1)
+		return (1);
+	shell_loop(program);
 	return (0);
 }

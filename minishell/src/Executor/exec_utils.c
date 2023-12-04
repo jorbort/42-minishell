@@ -6,7 +6,7 @@
 /*   By: jbortolo <jbortolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 09:20:09 by jorge             #+#    #+#             */
-/*   Updated: 2023/12/04 11:21:31 by jbortolo         ###   ########.fr       */
+/*   Updated: 2023/12/04 12:02:32 by jbortolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,11 @@ char	**rejoin_str(char **double_arr)
 	char	*joined_str;
 
 	joined_str = join_split_str(double_arr, NULL);
-	free_arr(double_arr);
+	free_double_arr(double_arr);
 	ret = ft_split(joined_str, ' ');
 	free(joined_str);
 	joined_str = join_split_str(ret, NULL);
-	free_arr(ret);
+	free_double_arr(ret);
 	ret = ft_split(joined_str, ' ');
 	free(joined_str);
 	return (ret);
