@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juan-anm <juan-anm@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jbortolo <jbortolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 14:41:54 by juan-anm          #+#    #+#             */
-/*   Updated: 2023/12/04 12:24:49 by juan-anm         ###   ########.fr       */
+/*   Updated: 2023/12/04 15:29:34 by jbortolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -207,5 +207,7 @@ void		handle_cmd(t_cmd *cmd_list, t_program *program);
 int			ft_executor(t_program *program);
 void		ft_fill_heredoc(t_program *program);
 int			set_heredoc(t_program *program, t_cmd *cmd_list);
+//path_utils.c
+int			parse_env(t_program *program, t_data *data);
 
 #endif

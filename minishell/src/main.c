@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juan-anm <juan-anm@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jbortolo <jbortolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 14:39:17 by juan-anm          #+#    #+#             */
-/*   Updated: 2023/12/04 13:09:04 by juan-anm         ###   ########.fr       */
+/*   Updated: 2023/12/04 15:30:48 by jbortolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ void	init_program(t_program *program, char **env, int *excode)
 	program->lex_list = NULL;
 	program->cmd_list = NULL;
 	program->exit_code = excode;
+	parse_env(program, program->data);
 }
 
 void	shell_loop(t_program *program)
