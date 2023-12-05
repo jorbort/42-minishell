@@ -22,7 +22,6 @@ void	ft_expand(t_program *program)
 
 	c = -1;
 	i = -1;
-	(*program->exit_code)++;
 	while (program->cmd_list->cmd[++i] != NULL)
 	{
 		if (ft_strchr(program->cmd_list->cmd[i], '$') != NULL)
@@ -79,7 +78,6 @@ char	*get_myenv(t_program *program, char *var)
 	i = 0;
 	var = ft_strjoin_free(var, "=");
 	len = ft_strlen(var);
-	printf ("%s\n", var);
 	while (program->data->envp[i])
 	{
 		if (!ft_strncmp(var, "?", 1))

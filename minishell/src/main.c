@@ -38,19 +38,24 @@ void	shell_loop(t_program *program)
 	{
 		str = readline(BLUE_T"MiniShell:" YELLOW_T" $> "RESET_COLOR);
 		if (!str | !*str)
-			continue ;
+		{
+    		if (isatty(STDIN_FILENO))
+				write(2, "exit\n", 6);
+    		exit ((*program->exit_code));
+		}
 		add_history(str);
 		program->lex_list = tokenizer(&program->lex_list, str);
 		if (!ft_parser(program))
 			ft_error(program, 5);
 		handle_execution(program);
-		printf("%s\n", program->data->prev_pwd);
-		printf("%s\n",program->data->pwd);
+		//printf("%s\n", program->data->prev_pwd);
+		//printf("%s\n",program->data->pwd);
 		// free_program(program);
 		// free(program);
 		// free(str);
 	}
 }
+
 
 int	main(int ac, char **av, char **env)
 {
