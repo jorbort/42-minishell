@@ -30,8 +30,8 @@ Kernel configured for up to 8 processors.
 Processor type: arm64e (ARM64E)
 Processors active: 0 1 2 3 4 5 6 7
 Primary memory available: 8.00 gigabytes
-Default processor set: 587 tasks, 2604 threads, 8 processors
-Load average: 12.79, Mach factor: 1.63
+Default processor set: 590 tasks, 2441 threads, 8 processors
+Load average: 1.35, Mach factor: 6.63
 /bin/machine           = unknown
 /usr/bin/oslevel       = unknown
 /bin/universe          = unknown
@@ -1956,7 +1956,7 @@ configure:7074: checking for tgetent
 configure:7074: gcc -o conftest -g -O2   conftest.c  >&5
 ld: Undefined symbols:
   _tgetent, referenced from:
-      _main in conftest-1688c7.o
+      _main in conftest-7fa004.o
 clang: error: linker command failed with exit code 1 (use -v to see invocation)
 configure:7074: $? = 1
 configure: failed program was:
@@ -2250,7 +2250,7 @@ configure:7421: checking for mbscasecmp
 configure:7421: gcc -o conftest -g -O2   conftest.c  >&5
 ld: Undefined symbols:
   _mbscasecmp, referenced from:
-      _main in conftest-4916d1.o
+      _main in conftest-5aab2f.o
 clang: error: linker command failed with exit code 1 (use -v to see invocation)
 configure:7421: $? = 1
 configure: failed program was:
@@ -2389,7 +2389,7 @@ configure:7428: checking for mbscmp
 configure:7428: gcc -o conftest -g -O2   conftest.c  >&5
 ld: Undefined symbols:
   _mbscmp, referenced from:
-      _main in conftest-041d7f.o
+      _main in conftest-6fa0af.o
 clang: error: linker command failed with exit code 1 (use -v to see invocation)
 configure:7428: $? = 1
 configure: failed program was:
@@ -2536,7 +2536,7 @@ configure:7450: checking for mbschr
 configure:7450: gcc -o conftest -g -O2   conftest.c  >&5
 ld: Undefined symbols:
   _mbschr, referenced from:
-      _main in conftest-ce144f.o
+      _main in conftest-90c55e.o
 clang: error: linker command failed with exit code 1 (use -v to see invocation)
 configure:7450: $? = 1
 configure: failed program was:

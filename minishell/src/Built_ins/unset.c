@@ -6,7 +6,7 @@
 /*   By: juanantonio <juanantonio@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 00:57:41 by jorge             #+#    #+#             */
-/*   Updated: 2023/11/29 13:55:03 by juanantonio      ###   ########.fr       */
+/*   Updated: 2023/12/06 15:55:05 by juanantonio      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ static bool	iter_var(char **arr, char *str)
 			arr[i] = NULL;
 			break ;
 		}
+		i++;
 	}
 	return (true);
 }

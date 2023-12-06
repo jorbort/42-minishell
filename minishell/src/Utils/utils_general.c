@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_general.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbortolo <jbortolo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: juanantonio <juanantonio@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 18:22:04 by jorge             #+#    #+#             */
-/*   Updated: 2023/11/27 15:13:00 by jbortolo         ###   ########.fr       */
+/*   Updated: 2023/12/06 15:52:06 by juanantonio      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ bool	invalid_unsetchar(char *str)
 			|| str[i] == 92 || str[i] == '[' || str[i] == ']' || str[i] == '@'
 			|| str[i] == '*' || str[i] == '#' || str[i] == '^' || str[i] == '~')
 			return (true);
+		i++;
 	}
 	return (false);
 }
