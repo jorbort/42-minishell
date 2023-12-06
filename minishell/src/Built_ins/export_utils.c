@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jorge <jorge@student.42.fr>                +#+  +:+       +#+        */
+/*   By: juanantonio <juanantonio@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 17:30:21 by jorge             #+#    #+#             */
-/*   Updated: 2023/12/04 18:20:51 by jorge            ###   ########.fr       */
+/*   Updated: 2023/12/06 13:56:03 by juanantonio      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ int	export_error(char *c)
 	ft_putstr_fd("minishell: export: ", STDERR_FILENO);
 	if (c)
 	{
-		ft_putchar_fd('\'',STDERR_FILENO);
-		ft_putstr_fd(c, STDERR_FILENO);
-		ft_putstr_fd("\': is", STDERR_FILENO);
+		ft_putchar_fd('`',STDERR_FILENO);
+		ft_putcleanstr_fd(c, STDERR_FILENO);
+		ft_putstr_fd("\': ", STDERR_FILENO);
 	}
 	ft_putendl_fd("not a valid identifier", STDERR_FILENO);
 	return (1);
@@ -61,10 +61,12 @@ char	*trim_quotes(char *str, char c)
 }
 int	check_valid_char(char c)
 {
-	return (c == '|' || c == '<' || c == '>' || c == '[' || c == ']'
-		|| c == '\'' || c == '\"' || c == ' ' || c == ',' || c == '.'
-		|| c == ':' || c == '/' || c == '{' || c == '}' || c == '+'
-		|| c == '^' || c == '%' || c == '#' || c == '@' || c == '!'
-		|| c == '~'
-		|| c == '=' || c == '-' || c == '?' || c == '&' || c == '*');
+	if (c == '|' || c == '<' || c == '>' || c == '[' || c == ']'
+	|| c == ' ' || c == ',' || c == '.'	|| c == ':' || c == '/'
+	|| c == '{' || c == '}' || c == '+' || c == '^' || c == '%'
+	|| c == '#' || c == '@' || c == '!'	|| c == '~'	|| c == '='
+	|| c == '-' || c == '?' || c == '&' || c == '*')
+		return (1);
+	else
+		return (0);
 }

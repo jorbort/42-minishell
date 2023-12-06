@@ -6,7 +6,7 @@
 /*   By: juanantonio <juanantonio@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/19 19:46:49 by jorge             #+#    #+#             */
-/*   Updated: 2023/12/06 10:31:40 by juanantonio      ###   ########.fr       */
+/*   Updated: 2023/12/06 11:37:07 by juanantonio      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	print_cmd(int i, char **str, int fd)
 {
 	while (str[i])
 	{
-		ft_putstr_fd(str[i++], fd);
+		ft_putcleanstr_fd(str[i++], fd);
 		if (str[i])
 			ft_putchar_fd(' ', fd);
 	}

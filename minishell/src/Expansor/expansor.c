@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expansor.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juan-anm <juan-anm@student.42.fr>          +#+  +:+       +#+        */
+/*   By: juanantonio <juanantonio@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 11:45:45 by juanantonio       #+#    #+#             */
-/*   Updated: 2023/12/02 12:00:26 by juan-anm         ###   ########.fr       */
+/*   Updated: 2023/12/06 11:33:14 by juanantonio      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ char	*get_myenv(t_program *program, char *var)
 	while (program->data->envp[i])
 	{
 		if (!ft_strncmp(var, "?", 1))
-			return(ft_itoa((*program->exit_code)));
+			return (ft_itoa((*program->exit_code)));
 		else if (!ft_strncmp(program->data->envp[i], var, len))
 		{
 			free(var);

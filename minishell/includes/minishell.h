@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jorge <jorge@student.42.fr>                +#+  +:+       +#+        */
+/*   By: juanantonio <juanantonio@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 14:41:54 by juan-anm          #+#    #+#             */
-/*   Updated: 2023/12/04 18:21:14 by jorge            ###   ########.fr       */
+/*   Updated: 2023/12/06 12:22:59 by juanantonio      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -182,12 +182,12 @@ int			ft_unset(t_program *program, t_cmd *cmd_list);
 void		free_program(t_program *program);
 int			ft_exit(t_program *program, t_cmd *cmd_list);
 //ft_export
-int	ft_export(t_cmd *cmd_list, t_program *program);
+int			ft_export(t_cmd *cmd_list, t_program *program);
 //export_utils.c
-char	*trim_quotes(char *str, char c);
-size_t	equal_sign(char *str);
-int	export_error(char *c);
-int	check_valid_char(char c);
+char		*trim_quotes(char *str, char c);
+size_t		equal_sign(char *str);
+int			export_error(char *c);
+int			check_valid_char(char c);
 /////Expansor///////
 void		ft_expand(t_program *program);
 char		*ft_get_varname(char *str, int i);

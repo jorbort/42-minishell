@@ -6,7 +6,7 @@
 /*   By: juanantonio <juanantonio@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 14:39:17 by juan-anm          #+#    #+#             */
-/*   Updated: 2023/12/06 11:05:17 by juanantonio      ###   ########.fr       */
+/*   Updated: 2023/12/06 11:46:19 by juanantonio      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,8 @@ int	main(int ac, char **av, char **env)
 	init_program(program, env, &excode);
 	if (ac != 1)
 		return (1);
+	rl_catch_signals = 0;
+	init_signals(1);
 	shell_loop(program);
 	return (0);
 }

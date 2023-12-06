@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jorge <jorge@student.42.fr>                +#+  +:+       +#+        */
+/*   By: juanantonio <juanantonio@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 12:44:41 by jbortolo          #+#    #+#             */
-/*   Updated: 2023/12/04 18:21:58 by jorge            ###   ########.fr       */
+/*   Updated: 2023/12/06 14:08:22 by juanantonio      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,13 @@ static int	var_exist(t_program *program, char *str)
 
 	i = 0;
 	if (str[equal_sign(str)] == '\"')
-		trim_quotes(str,'\"');
+		trim_quotes(str, '\"');
 	if (str[equal_sign(str)] == '\'')
 		trim_quotes(str, '\'');
-	while (program->data->envp)
+	while (program->data->envp[i])
 	{
-		if (ft_strncmp(program->data->envp[i],
-						str, equal_sign(program->data->envp[i])) == 0)
+		if (ft_strncmp(str, &program->data->envp[i][equal_sign(program->data->envp[i])],
+				ft_strlen(str)) == 0)
 		{
 			free(program->data->envp[i]);
 			program->data->envp[i] = ft_strdup(str);
@@ -44,8 +44,8 @@ static int	check_parameter(char *str)
 		return (export_error(str));
 	if (equal_sign(str) == 0)
 		return (1);
-	if (str[0] != '=')
-		return (export_error(str));
+	//if (str[0] != '=')
+	//	return (export_error(str));
 	while (str[i] != '=')
 	{
 		if (check_valid_char(str[i]))
@@ -86,12 +86,12 @@ static char	**add_var(char **arr, char *str)
 
 	i = 0;
 	if (str[equal_sign(str)] == '\"')
-		trim_quotes(str,'\"');
+		trim_quotes(str, '\"');
 	if (str[equal_sign(str)] == '\'')
 		trim_quotes(str, '\'');
 	while (arr[i] != NULL)
 		i++;
-	rtn = ft_calloc(sizeof(char *), i+2);
+	rtn = ft_calloc(sizeof(char *), i + 2);
 	if (!rtn)
 		return (NULL);
 	i = 0;
@@ -101,18 +101,18 @@ static char	**add_var(char **arr, char *str)
 
 int	ft_export(t_cmd *cmd_list, t_program *program)
 {
-	char **tmp;
-	int i = 0;
+	char	**tmp;
+	int		i;
 
-	i = 1;
+	i = 0;
 	if (!cmd_list->cmd[1] || cmd_list->cmd[1][0] == '\0')
 		print_env(program);
 	else 
 	{
-		while (cmd_list->cmd[i])
+		while (cmd_list->cmd[++i])
 		{
 			if (check_parameter(cmd_list->cmd[i]) == 0
-					&& var_exist(program, cmd_list->cmd[i]) ==0)
+				&& var_exist(program, cmd_list->cmd[i]) == 0)
 			{
 				if (cmd_list->cmd[i])
 				{
@@ -121,7 +121,8 @@ int	ft_export(t_cmd *cmd_list, t_program *program)
 					program->data->envp = tmp;
 				}
 			}
-			i++;
+			else
+				return (1);
 		}
 	}
 	return (0);
