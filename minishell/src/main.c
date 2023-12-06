@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jorge <jorge@student.42.fr>                +#+  +:+       +#+        */
+/*   By: juanantonio <juanantonio@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 14:39:17 by juan-anm          #+#    #+#             */
-/*   Updated: 2023/12/04 19:18:51 by jorge            ###   ########.fr       */
+/*   Updated: 2023/12/06 11:05:17 by juanantonio      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,9 @@ void	shell_loop(t_program *program)
 		str = readline(BLUE_T"MiniShell:" YELLOW_T" $> "RESET_COLOR);
 		if (!str | !*str)
 		{
-    		if (isatty(STDIN_FILENO))
+			if (isatty(STDIN_FILENO))
 				write(2, "exit\n", 6);
-    		exit ((*program->exit_code));
+			exit ((*program->exit_code));
 		}
 		add_history(str);
 		program->lex_list = tokenizer(&program->lex_list, str);
@@ -50,9 +50,9 @@ void	shell_loop(t_program *program)
 		handle_execution(program);
 		//printf("%s\n", program->data->prev_pwd);
 		//printf("%s\n",program->data->pwd);
-		// free_program(program);
-		// free(program);
-		// free(str);
+		//free_program(program);
+		//free(program);
+		free(str);
 	}
 }
 
