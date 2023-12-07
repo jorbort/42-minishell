@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juanantonio <juanantonio@student.42.fr>    +#+  +:+       +#+        */
+/*   By: jorgebortolotti <jorgebortolotti@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 14:41:54 by juan-anm          #+#    #+#             */
-/*   Updated: 2023/12/06 12:22:59 by juanantonio      ###   ########.fr       */
+/*   Updated: 2023/12/07 09:27:55 by jorgebortol      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -179,8 +179,7 @@ int			ft_echo(t_cmd *cmd_list);
 //unset.c
 int			ft_unset(t_program *program, t_cmd *cmd_list);
 //ft_exit.c
-void		free_program(t_program *program);
-int			ft_exit(t_program *program, t_cmd *cmd_list);
+int			ft_exit(char **cmd_arr, t_program *program);
 //ft_export
 int			ft_export(t_cmd *cmd_list, t_program *program);
 //export_utils.c

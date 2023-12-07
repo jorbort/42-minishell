@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   built_in.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juanantonio <juanantonio@student.42.fr>    +#+  +:+       +#+        */
+/*   By: jorgebortolotti <jorgebortolotti@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 13:16:27 by jbortolo          #+#    #+#             */
-/*   Updated: 2023/12/06 13:07:54 by juanantonio      ###   ########.fr       */
+/*   Updated: 2023/12/07 09:29:21 by jorgebortol      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void	exec_builtin(t_program *program)
 	if (strncmp(program->cmd_list->cmd[0], "export", 6) == 0)
 		(*program->exit_code) = ft_export(program->cmd_list, program);
 	if (strncmp(program->cmd_list->cmd[0], "exit", 6) == 0)
-		(*program->exit_code) = ft_exit(program, program->cmd_list);
+		(*program->exit_code) = ft_exit(program->cmd_list->cmd, program);
 	if (strncmp(program->cmd_list->cmd[0], "echo", 4) == 0)
 		(*program->exit_code) = ft_echo(program->cmd_list);
 	if (strncmp(program->cmd_list->cmd[0], "unset", 6) == 0)

@@ -3,108 +3,94 @@
 /*                                                        :::      ::::::::   */
 /*   ft_exit.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juanantonio <juanantonio@student.42.fr>    +#+  +:+       +#+        */
+/*   By: jorgebortolotti <jorgebortolotti@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 16:38:10 by jorge             #+#    #+#             */
-/*   Updated: 2023/11/29 13:54:19 by juanantonio      ###   ########.fr       */
+/*   Updated: 2023/12/07 09:57:56 by jorgebortol      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/minishell.h"
 
-static long long	ft_exit_atoi(char *str, int *exitnro)
+static int	ft_strcmp(const char *s1, const char *s2)
 {
-	int			i;
-	int			flag;
-	long long	n;
+	size_t			i;
+	unsigned char	*str;
+	unsigned char	*str1;
 
-	n = 0;
-	flag = 1;
 	i = 0;
-	if (strlen(str) == 19 &&
-		(ft_strncmp("9223372036854775807", str, 20) < 0))
-		return (*exitnro = -1);
-	if ((ft_strlen(str) == 20 && ft_strncmp
-			("-9223372036854775807", str, 21) < 0) || ft_strlen(str) > 20)
-		return (*exitnro = -1);
-	if (str[i] && (str[i] == '-' || str[i] == '+'))
+	str = (unsigned char *)s1;
+	str1 = (unsigned char *)s2;
+	while ((str[i] != '\0' || str1[i] != '\0'))
 	{
-		if (str[i] == '-')
-			flag = -1;
+		if (str[i] != str1[i])
+			return (str[i] - str1[i]);
 		i++;
 	}
-	while (str[i] >= '0' && str[i] <= '9')
-	{
-		n = n * 10 + str[i] - '0';
-		i++;
-	}
-	return (n * flag);
+	return (0);
 }
 
-
-void	free_program(t_program *program)
-{
-	if (program->data->envp)
-		free_double_arr(program->data->envp);
-	if (program->cmd_list)
-		cmd_clear(&program->cmd_list);
-	if (program->data->pwd)
-		free(program->data->pwd);
-	if (program->data->prev_pwd)
-		free(program->data->prev_pwd);
-	if (program->data)
-		free(program->data);
-}
-
-
-static bool	is_numeric(char *str)
+static int	ft_issspace(const char *str)
 {
 	int	i;
 
 	i = 0;
+	while (str[i] == ' ' || str[i] == '\t' || str[i] == '\r'
+		|| str[i] == '\n' || str[i] == '\v' || str[i] == '\f')
+		i++;
+	return (i);
+}
 
-	while (str[i])
+int	ft_test_int(const char *str)
+{
+	int			i;
+	int			sign;
+	long long	result;
+
+	result = 0;
+	sign = 1;
+	i = ft_issspace(str);
+	if (str[i] == '-')
+		sign *= -1;
+	if (str[i] == '-' || str[i] == '+')
+		i++;
+	if (str[i] < '0' || str[i] > '9')
+		return (-1);
+	while (str[i] >= '0' && str[i] <= '9')
 	{
-		if (!ft_isdigit(str[i]))
-			return (false);
+		if (result * sign > (LLONG_MAX - (str[i] - '0')) / 10 || result
+			* sign < (LLONG_MIN + (str[i] - '0')) / 10)
+			return (-1);
+		result *= 10;
+		result += (str[i] - '0');
 		i++;
 	}
-	return (true);
+	if (str[i] != '\0' && ft_issspace(str + i) == 0)
+		return (-1);
+	return (0);
 }
 
-static void	calc_exit_code(char **str)
+int	ft_exit(char **cmd_arr, t_program *program)
 {
-	long long	n;
-	int			exitnro;
-
-	exitnro = 0;
-	if (!str[1])
-		n = 0;
-	else if (is_numeric(str[1]))
-		n = ft_exit_atoi(str[1], &exitnro);
-	if (exitnro == -1)
+	if (cmd_arr[1] && ft_strcmp(cmd_arr[1], "--") == 0)
+	{
+		exit ((*program->exit_code));
+	}
+	else if (cmd_arr[1] && ft_test_int(cmd_arr[1]))
 	{
 		ft_putstr_fd("minishell: exit: ", STDERR_FILENO);
-		ft_putstr_fd(str[1], STDERR_FILENO);
+		ft_putstr_fd(cmd_arr[1], STDERR_FILENO);
 		ft_putstr_fd(": numeric argument required\n", STDERR_FILENO);
-		n = 255;
+		exit(255);
 	}
-	free_double_arr(str);
-	exit(n);
-}
-
-int	ft_exit(t_program *program, t_cmd *cmd_list)
-{
-	char	**temp;
-
-	ft_putendl_fd("exit", STDERR_FILENO);
-	if (cmd_list->cmd[1] && cmd_list->cmd[2])
+	else if (cmd_arr[1])
 	{
-		ft_putstr_fd("minishell: exit: Too many arguments\n", STDERR_FILENO);
-		return (1);
+		if (cmd_arr[2])
+		{
+			ft_putstr_fd("minishell: exit: Too many arguments\n", STDERR_FILENO);
+			return (1);
+		}
+		exit(ft_atoi(cmd_arr[1]));
 	}
-	temp = ft_arrdup(cmd_list->cmd);
-	free_program(program);
-	calc_exit_code(temp);
-	return (0);
+	exit((*program->exit_code));
 }
