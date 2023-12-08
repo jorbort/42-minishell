@@ -6,7 +6,7 @@
 /*   By: jorgebortolotti <jorgebortolotti@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 17:17:30 by jorge             #+#    #+#             */
-/*   Updated: 2023/12/08 09:54:52 by jorgebortol      ###   ########.fr       */
+/*   Updated: 2023/12/08 16:46:40 by jorgebortol      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,14 @@ static void	change_path_env(t_program *program)
 	}
 }
 
+void	print_cd_error(char *str)
+{
+	ft_putstr_fd("minishell: cd: ", STDERR_FILENO);
+	ft_putstr_fd(str, STDERR_FILENO);
+	ft_putstr_fd(": ",STDERR_FILENO);
+	perror("");
+}
+
 int	change_dir(t_program *program, t_cmd *cmd_list)
 {
 	int	res;
@@ -90,10 +98,7 @@ int	change_dir(t_program *program, t_cmd *cmd_list)
 		res = chdir(cmd_list->cmd[1]);
 		if (res != 0)
 		{
-			ft_putstr_fd("minishell: cd: ", STDERR_FILENO);
-			ft_putstr_fd(cmd_list->cmd[1], STDERR_FILENO);
-			ft_putstr_fd(": ",STDERR_FILENO);
-			perror("");
+			print_cd_error(cmd_list->cmd[1]);
 		}
 	}
 	if (res != 0)
