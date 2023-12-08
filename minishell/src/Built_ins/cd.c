@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jorge <jorge@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jorgebortolotti <jorgebortolotti@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 17:17:30 by jorge             #+#    #+#             */
-/*   Updated: 2023/12/04 19:17:39 by jorge            ###   ########.fr       */
+/*   Updated: 2023/12/08 09:54:52 by jorgebortol      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ static int	go_dir(t_program *program, char *str)
 		free(str);
 		ft_putstr_fd(" not set\n", STDERR_FILENO);
 	}
+	if (!ft_strncmp(str, "OLDPWD=", 7) && resul == 0)
+		ft_printf("%s\n",program->data->prev_pwd);
 	return (resul);
 }
 
@@ -75,18 +77,23 @@ int	change_dir(t_program *program, t_cmd *cmd_list)
 {
 	int	res;
 
+	if (cmd_list->cmd[1])
+		clean_quotes(cmd_list->cmd[1]);
 	if (!cmd_list->cmd[1])
 		res = go_dir(program, "HOME=");
 	else if (ft_strncmp(cmd_list->cmd[1], "-", 1) == 0)
 		res = go_dir(program, "OLDPWD=");
+	else if (ft_strncmp(cmd_list->cmd[1], "~", 1) == 0)
+		res = go_dir(program, "HOME=");
 	else
 	{
 		res = chdir(cmd_list->cmd[1]);
 		if (res != 0)
 		{
-			ft_putstr_fd("minishell: ", STDERR_FILENO);
+			ft_putstr_fd("minishell: cd: ", STDERR_FILENO);
 			ft_putstr_fd(cmd_list->cmd[1], STDERR_FILENO);
-			perror(" ");
+			ft_putstr_fd(": ",STDERR_FILENO);
+			perror("");
 		}
 	}
 	if (res != 0)

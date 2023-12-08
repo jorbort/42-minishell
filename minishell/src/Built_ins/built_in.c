@@ -6,7 +6,7 @@
 /*   By: jorgebortolotti <jorgebortolotti@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 13:16:27 by jbortolo          #+#    #+#             */
-/*   Updated: 2023/12/07 09:29:21 by jorgebortol      ###   ########.fr       */
+/*   Updated: 2023/12/08 09:33:30 by jorgebortol      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,20 +57,23 @@ void	is_builtin(t_program *program)
 
 void	exec_builtin(t_program *program)
 {
-	if (strncmp(program->cmd_list->cmd[0], "cd", 2) == 0)
-		(*program->exit_code) = change_dir(program, program->cmd_list);
-	if (strncmp(program->cmd_list->cmd[0], "pwd", 3) == 0)
-		(*program->exit_code) = print_wd(program->data);
-	if (strncmp(program->cmd_list->cmd[0], "env", 3) == 0)
-		(*program->exit_code) = print_env(program);
-	if (strncmp(program->cmd_list->cmd[0], "export", 6) == 0)
-		(*program->exit_code) = ft_export(program->cmd_list, program);
-	if (strncmp(program->cmd_list->cmd[0], "exit", 6) == 0)
-		(*program->exit_code) = ft_exit(program->cmd_list->cmd, program);
-	if (strncmp(program->cmd_list->cmd[0], "echo", 4) == 0)
-		(*program->exit_code) = ft_echo(program->cmd_list);
-	if (strncmp(program->cmd_list->cmd[0], "unset", 6) == 0)
-		(*program->exit_code) = ft_unset(program, program->cmd_list);
+	if (program->cmd_list->cmd[0])
+	{
+		if (strncmp(program->cmd_list->cmd[0], "cd", 2) == 0)
+			(*program->exit_code) = change_dir(program, program->cmd_list);
+		if (strncmp(program->cmd_list->cmd[0], "pwd", 3) == 0)
+			(*program->exit_code) = print_wd(program->data);
+		if (strncmp(program->cmd_list->cmd[0], "env", 3) == 0)
+			(*program->exit_code) = print_env(program);
+		if (strncmp(program->cmd_list->cmd[0], "export", 6) == 0)
+			(*program->exit_code) = ft_export(program->cmd_list, program);
+		if (strncmp(program->cmd_list->cmd[0], "exit", 6) == 0)
+			(*program->exit_code) = ft_exit(program->cmd_list->cmd, program);
+		if (strncmp(program->cmd_list->cmd[0], "echo", 4) == 0)
+			(*program->exit_code) = ft_echo(program->cmd_list);
+		if (strncmp(program->cmd_list->cmd[0], "unset", 6) == 0)
+			(*program->exit_code) = ft_unset(program, program->cmd_list);
+	}
 }
 int	find_pwd(t_data *data)
 {

@@ -6,7 +6,7 @@
 /*   By: jorgebortolotti <jorgebortolotti@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 14:41:54 by juan-anm          #+#    #+#             */
-/*   Updated: 2023/12/07 09:27:55 by jorgebortol      ###   ########.fr       */
+/*   Updated: 2023/12/08 09:43:11 by jorgebortol      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -180,6 +180,7 @@ int			ft_echo(t_cmd *cmd_list);
 int			ft_unset(t_program *program, t_cmd *cmd_list);
 //ft_exit.c
 int			ft_exit(char **cmd_arr, t_program *program);
+void		clean_quotes(char *str);
 //ft_export
 int			ft_export(t_cmd *cmd_list, t_program *program);
 //export_utils.c

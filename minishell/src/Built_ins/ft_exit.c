@@ -6,11 +6,19 @@
 /*   By: jorgebortolotti <jorgebortolotti@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 16:38:10 by jorge             #+#    #+#             */
-/*   Updated: 2023/12/07 09:57:56 by jorgebortol      ###   ########.fr       */
+/*   Updated: 2023/12/08 00:33:33 by jorgebortol      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/minishell.h"
+
+void	clean_quotes(char *str)
+{
+	if (str[0] == '\"')
+		trim_quotes(str, '\"');
+	if (str[0] == '\'')
+		trim_quotes(str, '\'');
+}
 
 static int	ft_strcmp(const char *s1, const char *s2)
 {
@@ -72,6 +80,8 @@ int	ft_test_int(const char *str)
 
 int	ft_exit(char **cmd_arr, t_program *program)
 {
+	if (cmd_arr[1])
+		clean_quotes(cmd_arr[1]);
 	if (cmd_arr[1] && ft_strcmp(cmd_arr[1], "--") == 0)
 	{
 		exit ((*program->exit_code));
@@ -87,7 +97,7 @@ int	ft_exit(char **cmd_arr, t_program *program)
 	{
 		if (cmd_arr[2])
 		{
-			ft_putstr_fd("minishell: exit: Too many arguments\n", STDERR_FILENO);
+			ft_putstr_fd("minishell: exit: too many arguments\n", STDERR_FILENO);
 			return (1);
 		}
 		exit(ft_atoi(cmd_arr[1]));

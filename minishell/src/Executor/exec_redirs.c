@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_redirs.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbortolo <jbortolo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jorgebortolotti <jorgebortolotti@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/02 16:40:47 by jorge             #+#    #+#             */
-/*   Updated: 2023/12/04 11:34:20 by jbortolo         ###   ########.fr       */
+/*   Updated: 2023/12/07 17:21:37 by jorgebortol      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,9 @@ static int	handle_infile(char	*file)
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
 	{
-		ft_putstr_fd("minishell: infile: No such file or directory\n",
+		ft_putstr_fd("minishell: ", STDERR_FILENO);
+		ft_putstr_fd(file, STDERR_FILENO);
+		ft_putstr_fd(": No such file or directory\n",
 			STDERR_FILENO);
 		return (1);
 	}
