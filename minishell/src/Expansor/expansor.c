@@ -24,7 +24,8 @@ void	ft_expand(t_program *program)
 	i = -1;
 	while (program->cmd_list->cmd[++i] != NULL)
 	{
-		if (ft_strchr(program->cmd_list->cmd[i], '$') != NULL)
+		if (ft_strchr(program->cmd_list->cmd[i], '$') != NULL || 
+			ft_strchr(program->cmd_list->cmd[i], '~') != NULL)
 		{
 			str = ft_strdup(program->cmd_list->cmd[i]);
 			ft_expand_var(program, i, c, str);
@@ -50,17 +51,20 @@ char	*ft_return_var(t_program *program, char *cmd, char *str, int c)
 
 	while (str[++c])
 	{
-		if (str[c] == '$')
+		if (str[c] == '$' || str[c] == '~')
 		{
-			var_name = ft_get_varname(str, c + 1);
+			if (str[c] == '$')
+				var_name = ft_get_varname(str, c + 1);
+			else if (str[0] == '~' && (str[1] == '/' || str[1] == 0))
+				var_name = ft_strdup("~");
 			var_len = ft_strlen(var_name);
 			if (ft_search_quote(str) && var_len != 0)
 				cmd = ft_strjoin_free(cmd, get_myenv(program, var_name));
 			else if (!ft_search_quote(str) && var_len != 0)
 				cmd = sj(cmd, ft_substr(str, c, var_len + 1));
-			if (var_len != 0)
+			if (var_len != 0 && str[0] != '~')
 				c += var_len;
-			else
+			else if (str[0] != '~')
 				cmd = sj(cmd, ft_substr(str, c, 1));
 		}
 		else
@@ -80,6 +84,12 @@ char	*get_myenv(t_program *program, char *var)
 	len = ft_strlen(var);
 	while (program->data->envp[i])
 	{
+		if (!ft_strncmp(var, "~", 1))
+		{
+				free(var);
+				var = ft_strdup("HOME=");
+				len = ft_strlen(var);
+		}
 		if (!ft_strncmp(var, "?", 1))
 			return (ft_itoa((*program->exit_code)));
 		else if (!ft_strncmp(program->data->envp[i], var, len))
