@@ -3,126 +3,110 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juanantonio <juanantonio@student.42.fr>    +#+  +:+       +#+        */
+/*   By: jorgebortolotti <jorgebortolotti@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 12:44:41 by jbortolo          #+#    #+#             */
-/*   Updated: 2023/12/06 14:08:22 by juanantonio      ###   ########.fr       */
+/*   Updated: 2023/12/10 17:50:10 by jorgebortol      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/minishell.h"
 
-static int	var_exist(t_program *program, char *str)
+
+char **add_export_var(char *str, char **export)
 {
-	int	i;
+	char 	**tmp;
+	int		i;
+	int		flag;
 
 	i = 0;
-	if (str[equal_sign(str)] == '\"')
-		trim_quotes(str, '\"');
-	if (str[equal_sign(str)] == '\'')
-		trim_quotes(str, '\'');
-	while (program->data->envp[i])
-	{
-		if (ft_strncmp(str, &program->data->envp[i][equal_sign(program->data->envp[i])],
-				ft_strlen(str)) == 0)
-		{
-			free(program->data->envp[i]);
-			program->data->envp[i] = ft_strdup(str);
-			return (1);
-		}
-		i++;
-	}
-	return (0);
-}
-
-static int	check_parameter(char *str)
-{
-	int	i;
-
-	i = 0;
-	if (ft_isdigit(str[0]))
-		return (export_error(str));
-	if (equal_sign(str) == 0)
-		return (1);
-	//if (str[0] != '=')
-	//	return (export_error(str));
-	while (str[i] != '=')
-	{
-		if (check_valid_char(str[i]))
-			return (export_error(str));
-		i++;
-	}
-	return (0);
-}
-
-static char	**whileloop_add_var(char **arr, char **rtn, char *str)
-{
-	int	i;
-
-	i = 0;
-	while (arr[i] != NULL)
-	{
-		if (arr[i + 1] == NULL)
-		{
-			rtn[i] = ft_strdup(str);
-			rtn[i + 1] = ft_strdup(arr[i]);
-		}
-		else 
-			rtn[i] = ft_strdup(arr[i]);
-		if (rtn[i] == NULL)
-		{
-			free_double_arr(rtn);
-			return (rtn);
-		}
-		i++;
-	}
-	return (rtn);
-}
-
-static char	**add_var(char **arr, char *str)
-{
-	char	**rtn;
-	size_t	i;
-
-	i = 0;
-	if (str[equal_sign(str)] == '\"')
-		trim_quotes(str, '\"');
-	if (str[equal_sign(str)] == '\'')
-		trim_quotes(str, '\'');
-	while (arr[i] != NULL)
-		i++;
-	rtn = ft_calloc(sizeof(char *), i + 2);
-	if (!rtn)
+	flag =0;
+	tmp = malloc(sizeof(char *) * (ft_arr_len(export) + 2));
+	if (!tmp)
 		return (NULL);
+	while (export[i])
+	{
+		if (ft_env_cmp(export[i] , str) == 0)
+		{
+			tmp[i] = ft_export_dup(str);
+			flag = 1;
+		}
+		else
+			tmp[i] = ft_strdup(export[i]);
+		i++;
+	}
+	if (flag == 0)
+		tmp[i++] = ft_export_dup(str);
+	tmp[i] = NULL;
+	free_double_arr(export);
+	return (tmp);
+}
+
+void	append_env(char *str, t_data *data)
+{
+	int	i;
+	int	flag;
+
 	i = 0;
-	whileloop_add_var(arr, rtn, str);
-	return (rtn);
+	flag = 0;
+	while (str[i])
+	{
+		if (str[i] == '+' || flag == 1)
+		{
+			flag = 1;
+			str[i] = str[i + 1];
+		}
+		i++;
+	}
+	str[i] = '\0';
+	data->envp = ft_join_envp(str, data->envp);
+	data->export = ft_join_export(str, data->export);
+}
+
+void	add_env(char *str, t_data *data)
+{
+	data->envp = add_to_env(str, data->envp);
+	data->export = add_export_var(str, data->export);
+}
+
+int	export_format(char *str)
+{
+	int i;
+
+	i = 0;
+	while ((ft_isalpha(str[i]) == 1 || str[i] == '_') && str[i])
+		i++;
+	if (ft_strncmp(&str[i],"+=", 2) == 0 && i != 0)
+		return (3);
+	if (str[i] == '\0')
+		return (2);
+	if (str[i] != '=' || i == 0)
+		return (1);
+	return (0);
 }
 
 int	ft_export(t_cmd *cmd_list, t_program *program)
 {
-	char	**tmp;
 	int		i;
 
 	i = 0;
 	if (!cmd_list->cmd[1] || cmd_list->cmd[1][0] == '\0')
-		print_env(program);
+		print_export(program, program->data->export);
 	else 
 	{
 		while (cmd_list->cmd[++i])
 		{
-			if (check_parameter(cmd_list->cmd[i]) == 0
-				&& var_exist(program, cmd_list->cmd[i]) == 0)
-			{
-				if (cmd_list->cmd[i])
-				{
-					tmp = add_var(program->data->envp, cmd_list->cmd[i]);
-					free_double_arr(program->data->envp);
-					program->data->envp = tmp;
-				}
-			}
+			// if (cmd_list->cmd[i])
+				// clean_quotes(cmd_list->cmd[i]);
+			if (export_format(cmd_list->cmd[i]) == 0)
+				add_env(cmd_list->cmd[i], program->data);
+			else if (export_format(cmd_list->cmd[i]) == 3)
+				append_env(cmd_list->cmd[i], program->data);
+			else if (export_format(cmd_list->cmd[i]) == 2)
+				program->data->export = add_export_var
+					(cmd_list->cmd[i], program->data->export);
 			else
-				return (1);
+				return (export_error(cmd_list->cmd[i]));
 		}
 	}
 	return (0);

@@ -3,14 +3,73 @@
 /*                                                        :::      ::::::::   */
 /*   export_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juanantonio <juanantonio@student.42.fr>    +#+  +:+       +#+        */
+/*   By: jorgebortolotti <jorgebortolotti@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 17:30:21 by jorge             #+#    #+#             */
-/*   Updated: 2023/12/06 15:50:39 by juanantonio      ###   ########.fr       */
+/*   Updated: 2023/12/10 02:24:01 by jorgebortol      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/minishell.h"
+
+char	*ft_strjoin_export(char *s1, char *s2)
+{
+	char	*str;
+	int		i;
+	int		j;
+	int		flag;
+
+	i = 0;
+	j = 0;
+	flag = 0;
+	str = malloc(ft_strlen(s1) + ft_strlen(s2));
+	if (!str)
+		return (NULL);
+	while (s1[i] != '\"' || flag == 0)
+	{
+		if (s1[i] == '\"')
+			flag = 1;
+		str[i] = s1[i];
+		i++;
+	}
+	while (s2[j] != '=')
+		j++;
+	while (s2[j + 1] != '\0')
+		str[i++] = s2[j++ + 1];
+	str[i] = '\"';
+	str[i + 1] = '\0';
+	return (str);
+}
+
+
+char *ft_join_env(char *s1, char *s2)
+{
+	char 	*str;
+	int		i;
+	int		j;
+
+	i = 0;
+	j = 0;
+	str = malloc(ft_strlen(s1) + ft_strlen(s2));
+	if (!str)
+		return (NULL);
+	while (s1[i])
+	{
+		str[i] = s1[i];
+		i++;
+	}
+	while (s2[j] != '=')
+		j++;
+	j++;
+	while (s2[j]!= '\0')
+	{
+		str[i] = s2[j];
+		i++;
+		j++;
+	}
+	str[i] = '\0';
+	return (str);
+}
 
 int	export_error(char *c)
 {
@@ -25,48 +84,32 @@ int	export_error(char *c)
 	return (1);
 }
 
-size_t	equal_sign(char *str)
+void print_export(t_program *program, char **export)
 {
-	size_t	i;
+	int i;
 
 	i = 0;
-	while (str[i])
-	{
-		if (str[i] == '=')
-			return (i + 1);
-		i++;
-	}
-	return (0);
+	if (!export)
+		print_env(program);
+	else
+		while (export[i])
+		{
+			ft_printf("declare -x %s\n", export[i]);
+			i++;	
+		}
 }
-
-char	*trim_quotes(char *str, char c)
+int	ft_export_cmp(char *export, char *str)
 {
 	int	i;
-	int	j;
 
 	i = 0;
-	j = 0;
-	while (str[i])
+	while (export[i] != '=' && str[i] != '\0')
 	{
-		if (str[i] == c)
-		{
-			j = 0;
-			while (str[i + j] == c)
-				j++;
-			ft_strlcpy(&str[i], &str[i + j], strlen(str) - i);
-		}
+		if (export[i] != str[i])
+			return (export[i] - str[i]);
 		i++;
 	}
-	return (str);
-}
-int	check_valid_char(char c)
-{
-	if (c == '|' || c == '<' || c == '>' || c == '[' || c == ']'
-	|| c == ' ' || c == ',' || c == '.'	|| c == ':' || c == '/'
-	|| c == '{' || c == '}' || c == '+' || c == '^' || c == '%'
-	|| c == '#' || c == '@' || c == '!'	|| c == '~'	|| c == '='
-	|| c == '-' || c == '?' || c == '&' || c == '*')
-		return (1);
-	else
+	if (export[i] == '=' && str[i] == '\0')
 		return (0);
+	return (export[i] - str[i]);
 }

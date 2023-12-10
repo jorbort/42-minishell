@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juanantonio <juanantonio@student.42.fr>    +#+  +:+       +#+        */
+/*   By: jorgebortolotti <jorgebortolotti@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 14:39:17 by juan-anm          #+#    #+#             */
-/*   Updated: 2023/12/06 11:46:19 by juanantonio      ###   ########.fr       */
+/*   Updated: 2023/12/10 17:52:17 by jorgebortol      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,9 @@ void	init_program(t_program *program, char **env, int *excode)
 		program->data->envp = ft_arrdup(env);
 		parse_env(program, program->data);
 		find_pwd(program->data);
+		program->data->export = malloc(sizeof(char *));
+		if (program->data->export)
+			program->data->export[0] = NULL;
 	}
 	program->redir = NULL;
 	program->lex_list = NULL;
