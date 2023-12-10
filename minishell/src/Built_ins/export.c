@@ -6,12 +6,11 @@
 /*   By: jorgebortolotti <jorgebortolotti@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 12:44:41 by jbortolo          #+#    #+#             */
-/*   Updated: 2023/12/10 17:50:10 by jorgebortol      ###   ########.fr       */
+/*   Updated: 2023/12/10 23:09:58 by jorgebortol      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/minishell.h"
-
 
 char **add_export_var(char *str, char **export)
 {
@@ -88,16 +87,18 @@ int	export_format(char *str)
 int	ft_export(t_cmd *cmd_list, t_program *program)
 {
 	int		i;
+	int		exit;
 
-	i = 0;
+	i = 0; 
+	exit = 0;
 	if (!cmd_list->cmd[1] || cmd_list->cmd[1][0] == '\0')
 		print_export(program, program->data->export);
 	else 
 	{
 		while (cmd_list->cmd[++i])
 		{
-			// if (cmd_list->cmd[i])
-				// clean_quotes(cmd_list->cmd[i]);
+			if (cmd_list->cmd[i])
+				clean_quotes(cmd_list->cmd[i]);
 			if (export_format(cmd_list->cmd[i]) == 0)
 				add_env(cmd_list->cmd[i], program->data);
 			else if (export_format(cmd_list->cmd[i]) == 3)
@@ -106,8 +107,8 @@ int	ft_export(t_cmd *cmd_list, t_program *program)
 				program->data->export = add_export_var
 					(cmd_list->cmd[i], program->data->export);
 			else
-				return (export_error(cmd_list->cmd[i]));
+				exit = export_error(cmd_list->cmd[i]);
 		}
 	}
-	return (0);
+	return (exit);
 }

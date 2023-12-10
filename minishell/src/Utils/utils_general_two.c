@@ -6,7 +6,7 @@
 /*   By: jorgebortolotti <jorgebortolotti@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 02:10:23 by jorgebortol       #+#    #+#             */
-/*   Updated: 2023/12/10 02:37:26 by jorgebortol      ###   ########.fr       */
+/*   Updated: 2023/12/10 23:40:28 by jorgebortol      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ char	*trim_quotes(char *str, char c)
 			j = 0;
 			while (str[i + j] == c)
 				j++;
-			ft_strlcpy(&str[i], &str[i + j], strlen(str) - i);
+			ft_strlcpy(&str[i], &str[i + j], ft_strlen(str) - i);
 		}
 		i++;
 	}
