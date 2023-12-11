@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jorgebortolotti <jorgebortolotti@studen    +#+  +:+       +#+        */
+/*   By: jbortolo <jbortolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 17:30:21 by jorge             #+#    #+#             */
-/*   Updated: 2023/12/10 02:24:01 by jorgebortol      ###   ########.fr       */
+/*   Updated: 2023/12/11 09:55:33 by jbortolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,9 @@ char	*ft_strjoin_export(char *s1, char *s2)
 }
 
 
-char *ft_join_env(char *s1, char *s2)
+char	*ft_join_env(char *s1, char *s2)
 {
-	char 	*str;
+	char	*str;
 	int		i;
 	int		j;
 
@@ -61,7 +61,7 @@ char *ft_join_env(char *s1, char *s2)
 	while (s2[j] != '=')
 		j++;
 	j++;
-	while (s2[j]!= '\0')
+	while (s2[j] != '\0')
 	{
 		str[i] = s2[j];
 		i++;
@@ -76,7 +76,7 @@ int	export_error(char *c)
 	ft_putstr_fd("minishell: export: ", STDERR_FILENO);
 	if (c)
 	{
-		ft_putchar_fd('`',STDERR_FILENO);
+		ft_putchar_fd('`', STDERR_FILENO);
 		ft_putcleanstr_fd(c, STDERR_FILENO);
 		ft_putstr_fd("\': ", STDERR_FILENO);
 	}
@@ -84,20 +84,23 @@ int	export_error(char *c)
 	return (1);
 }
 
-void print_export(t_program *program, char **export)
+void	print_export(t_program *program, char **export)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	if (!export)
 		print_env(program);
 	else
+	{
 		while (export[i])
 		{
 			ft_printf("declare -x %s\n", export[i]);
-			i++;	
+			i++;
 		}
+	}
 }
+
 int	ft_export_cmp(char *export, char *str)
 {
 	int	i;

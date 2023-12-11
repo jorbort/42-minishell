@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   export_utils_two.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jorgebortolotti <jorgebortolotti@studen    +#+  +:+       +#+        */
+/*   By: jbortolo <jbortolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 00:55:16 by jorgebortol       #+#    #+#             */
-/*   Updated: 2023/12/10 17:21:42 by jorgebortol      ###   ########.fr       */
+/*   Updated: 2023/12/11 10:07:04 by jbortolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/minishell.h"
 
-char **add_to_env(char *str, char **envp)
+char	**add_to_env(char *str, char **envp)
 {
-	char 	**tmp;
+	char	**tmp;
 	int		i;
 	int		flag;
 
@@ -22,10 +22,10 @@ char **add_to_env(char *str, char **envp)
 	i = 0;
 	tmp = malloc(sizeof(char *) * (ft_arr_len(envp) + 2));
 	if (!tmp)
-		return(NULL);
+		return (NULL);
 	while (envp[i])
 	{
-		if (ft_env_cmp(envp[i],str) == 0)
+		if (ft_env_cmp(envp[i], str) == 0)
 		{
 			tmp[i] = ft_strdup(str);
 			flag = 1;
@@ -46,7 +46,7 @@ int	ft_env_cmp(char *exp, char *str)
 	int	i;
 
 	i = 0;
-	while (exp[i] != '=' || str[i] != '\0') 
+	while (exp[i] != '=' || str[i] != '\0')
 	{
 		if (exp[i] != str[i])
 			return (exp[i] - str[i]);
@@ -57,9 +57,9 @@ int	ft_env_cmp(char *exp, char *str)
 	return (exp[i] - str[i]);
 }
 
-char	**ft_join_envp(char  *str, char **envp)
+char	**ft_join_envp(char	*str, char **envp)
 {
-	char 	**tmp;
+	char	**tmp;
 	int		i;
 	int		flag;
 
@@ -72,7 +72,7 @@ char	**ft_join_envp(char  *str, char **envp)
 	{
 		if (ft_env_cmp(envp[i], str) == 0)
 		{
-			tmp[i] = ft_join_env(envp[i],str);
+			tmp[i] = ft_join_env(envp[i], str);
 			flag = 1;
 		}
 		else
@@ -80,7 +80,7 @@ char	**ft_join_envp(char  *str, char **envp)
 		i++;
 	}
 	if (flag == 0)
-		tmp[i++] = ft_strdup_join(str);//to-do
+		tmp[i++] = ft_strdup_join(str);
 	tmp[i] = NULL;
 	free_double_arr(envp);
 	return (tmp);
@@ -88,7 +88,7 @@ char	**ft_join_envp(char  *str, char **envp)
 
 char	**ft_join_export(char *str, char **export)
 {
-	char 	**tmp;
+	char	**tmp;
 	int		i;
 	int		flag;
 
@@ -106,10 +106,10 @@ char	**ft_join_export(char *str, char **export)
 		}
 		else
 			tmp[i] = ft_strdup(export[i]);
-		i++; 
+		i++;
 	}
 	if (flag == 0)
-	tmp[i++] = ft_export_dup(str);
+		tmp[i++] = ft_export_dup(str);
 	tmp[i] = NULL;
 	free_double_arr(export);
 	return (tmp);
