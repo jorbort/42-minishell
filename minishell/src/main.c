@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbortolo <jbortolo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: juan-anm <juan-anm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 14:39:17 by juan-anm          #+#    #+#             */
-/*   Updated: 2023/12/11 12:34:21 by jbortolo         ###   ########.fr       */
+/*   Updated: 2023/12/11 15:23:17 by juan-anm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,9 @@ void	shell_loop(t_program *program)
 		add_history(str);
 		program->lex_list = tokenizer(&program->lex_list, str);
 		if (!ft_parser(program))
-			ft_error(program, 5);
-		handle_execution(program);
+			ft_error(program, 1);
+		else
+			handle_execution(program);
 		//printf("%s\n", program->data->prev_pwd);
 		//printf("%s\n",program->data->pwd);
 		//free_program(program);

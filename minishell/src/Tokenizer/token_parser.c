@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   token_parser.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juanantonio <juanantonio@student.42.fr>    +#+  +:+       +#+        */
+/*   By: juan-anm <juan-anm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 12:55:32 by juan-anm          #+#    #+#             */
-/*   Updated: 2023/10/26 12:55:30 by juanantonio      ###   ########.fr       */
+/*   Updated: 2023/12/11 15:55:51 by juan-anm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@ void	check_pipes(t_lexer **lexer)
 			temp->token = LESS;
 		else if (!strncmp(temp->str, "<<", 3))
 			temp->token = LESS_LESS;
+		else
+			temp->token = 0;
 		temp = temp->next;
 	}
 }
