@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jorgebortolotti <jorgebortolotti@studen    +#+  +:+       +#+        */
+/*   By: juan-anm <juan-anm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 14:41:54 by juan-anm          #+#    #+#             */
-/*   Updated: 2023/12/10 17:47:57 by jorgebortol      ###   ########.fr       */
+/*   Updated: 2023/12/11 14:44:23 by juan-anm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -185,7 +185,7 @@ int			ft_exit(char **cmd_arr, t_program *program);
 void		clean_quotes(char *str);
 //export.c
 int			ft_export(t_cmd *cmd_list, t_program *program);
-char 		**add_export_var(char *str, char **export);
+char		**add_export_var(char *str, char **export);
 void		append_env(char *str, t_data *data);
 void		add_env(char *str, t_data *data);
 int			export_format(char *str);
@@ -193,18 +193,18 @@ int			export_format(char *str);
 char		*trim_quotes(char *str, char c);
 int			export_error(char *c);
 char		*ft_strjoin_export(char *s1, char *s2);
-char 		*ft_join_env(char *s1, char *s2);
-void 		print_export(t_program *program, char **export);
+char		*ft_join_env(char *s1, char *s2);
+void		print_export(t_program *program, char **export);
 int			ft_export_cmp(char *export, char *str);
 //export_utils_two.c
-char 		**ft_join_export(char *str, char **export);
-char 		**ft_join_envp(char  *str, char **envp);
+char		**ft_join_export(char *str, char **export);
+char		**ft_join_envp(char *str, char **envp);
 int			ft_env_cmp(char *exp, char *str);
-char		**ft_join_envp(char  *str, char **envp);
+char		**ft_join_envp(char *str, char **envp);
 char		**ft_join_export(char *str, char **export);
 char		*ft_strdup_join(char *str);
 char		*ft_export_dup(char *envp);
-char 		**add_to_env(char *str, char **envp);
+char		**add_to_env(char *str, char **envp);
 /////Expansor///////
 void		ft_expand(t_program *program);
 char		*ft_get_varname(char *str, int i);

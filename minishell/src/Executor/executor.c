@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbortolo <jbortolo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: juan-anm <juan-anm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 08:21:56 by jorge             #+#    #+#             */
-/*   Updated: 2023/12/11 13:02:38 by jbortolo         ###   ########.fr       */
+/*   Updated: 2023/12/11 14:54:37 by juan-anm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,25 +37,28 @@ void	handle_cmd(t_cmd *cmd_list, t_program *program)
 	int	exit_status;
 
 	exit_status = 0;
-	if (cmd_list->redirection)
-		if (check_redirs(cmd_list))
-			exit(1);
-	if (cmd_list->built_in)
-	{
-		exec_builtin(program);
-		exit(*program->exit_code);
-	}
-	else if (cmd_list->cmd[0][0])
+	if (cmd_list->cmd[0][0])
 		exit_status = find_cmd(cmd_list, program);
 	exit(exit_status);
 }
 
-static void	exec_single_cmd(t_cmd *cmd_list, t_program *program)
+static int	exec_single_cmd(t_cmd *cmd_list, t_program *program)
 {
 	int	pid;
 	int	status;
 
 	set_heredoc(program, cmd_list);
+	if (cmd_list->redirection)
+	{
+
+		if (check_redirs(cmd_list))
+			return (1);
+	}
+	if (cmd_list->built_in)
+	{
+		exec_builtin(program);
+		return (0);
+	}
 	pid = fork();
 	if (pid < 0)
 		ft_error(program, 7);
@@ -64,14 +67,23 @@ static void	exec_single_cmd(t_cmd *cmd_list, t_program *program)
 	waitpid(pid, &status, 0);
 	if (WIFEXITED(status))
 		(*program->exit_code) = WEXITSTATUS(status);
+	return (0);
 }
 
 int	handle_execution(t_program *program)
 {
+	int	saved_stdout;
+
+	saved_stdout = dup(1);
 	ft_expand(program);
 	is_builtin(program);
 	if (program->data->pipes == 0)
+	{
 		exec_single_cmd(program->cmd_list, program);
+		dup2(saved_stdout, 1);
+		close (saved_stdout);
+		return ((*program->exit_code));
+	}
 	else
 	{
 		program->data->pid = ft_calloc(sizeof(int), program->data->pipes + 2);
