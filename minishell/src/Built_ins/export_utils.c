@@ -6,7 +6,7 @@
 /*   By: jbortolo <jbortolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 17:30:21 by jorge             #+#    #+#             */
-/*   Updated: 2023/12/11 09:55:33 by jbortolo         ###   ########.fr       */
+/*   Updated: 2023/12/11 11:08:00 by jbortolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@ char	*ft_strjoin_export(char *s1, char *s2)
 	str = malloc(ft_strlen(s1) + ft_strlen(s2));
 	if (!str)
 		return (NULL);
-	while (s1[i] != '\"' || flag == 0)
+	while (s1[i] != 34 || flag == 0)
 	{
-		if (s1[i] == '\"')
+		if (s1[i] == 34)
 			flag = 1;
 		str[i] = s1[i];
 		i++;
@@ -36,7 +36,7 @@ char	*ft_strjoin_export(char *s1, char *s2)
 		j++;
 	while (s2[j + 1] != '\0')
 		str[i++] = s2[j++ + 1];
-	str[i] = '\"';
+	str[i] = 34;
 	str[i + 1] = '\0';
 	return (str);
 }

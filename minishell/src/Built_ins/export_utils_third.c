@@ -6,7 +6,7 @@
 /*   By: jbortolo <jbortolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 02:25:18 by jorgebortol       #+#    #+#             */
-/*   Updated: 2023/12/11 09:57:47 by jbortolo         ###   ########.fr       */
+/*   Updated: 2023/12/11 11:06:00 by jbortolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,10 @@ char	*ft_export_dup(char *envp)
 	if (envp[i] == '=')
 	{
 		dup[i] = envp[i];
-		dup[++i] = '\"';
+		dup[++i] = 34;
 		while (envp[i] != '\0')
 			(1 && (dup[i + 1] = envp[i]) && i++);
-		dup[i + 1] = '\"';
+		dup[i + 1] = 34;
 		dup[i + 2] = '\0';
 	}
 	else

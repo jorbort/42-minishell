@@ -6,7 +6,7 @@
 /*   By: jbortolo <jbortolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 00:55:16 by jorgebortol       #+#    #+#             */
-/*   Updated: 2023/12/11 10:07:04 by jbortolo         ###   ########.fr       */
+/*   Updated: 2023/12/11 11:20:23 by jbortolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int	ft_env_cmp(char *exp, char *str)
 	int	i;
 
 	i = 0;
-	while (exp[i] != '=' || str[i] != '\0')
+	while (exp[i] != '=' && str[i] != '\0')
 	{
 		if (exp[i] != str[i])
 			return (exp[i] - str[i]);

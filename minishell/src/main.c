@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jorgebortolotti <jorgebortolotti@studen    +#+  +:+       +#+        */
+/*   By: jbortolo <jbortolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 14:39:17 by juan-anm          #+#    #+#             */
-/*   Updated: 2023/12/10 17:52:17 by jorgebortol      ###   ########.fr       */
+/*   Updated: 2023/12/11 12:10:37 by jbortolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	shell_loop(t_program *program)
 	while (42)
 	{
 		str = readline(BLUE_T"MiniShell:" YELLOW_T" $> "RESET_COLOR);
-		if (!str | !*str)
+		if (!str || !*str)
 		{
 			if (isatty(STDIN_FILENO))
 				write(2, "exit\n", 6);
