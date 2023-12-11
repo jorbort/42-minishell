@@ -6,7 +6,7 @@
 /*   By: jbortolo <jbortolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 14:39:17 by juan-anm          #+#    #+#             */
-/*   Updated: 2023/12/11 12:10:37 by jbortolo         ###   ########.fr       */
+/*   Updated: 2023/12/11 12:34:21 by jbortolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ void	init_program(t_program *program, char **env, int *excode)
 	program->lex_list = NULL;
 	program->cmd_list = NULL;
 	program->exit_code = excode;
-	
 }
 
 void	shell_loop(t_program *program)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expansor.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juanantonio <juanantonio@student.42.fr>    +#+  +:+       +#+        */
+/*   By: jbortolo <jbortolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 11:45:45 by juanantonio       #+#    #+#             */
-/*   Updated: 2023/12/06 11:33:14 by juanantonio      ###   ########.fr       */
+/*   Updated: 2023/12/11 12:56:50 by jbortolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ void	ft_expand(t_program *program)
 	i = -1;
 	while (program->cmd_list->cmd[++i] != NULL)
 	{
-		if (ft_strchr(program->cmd_list->cmd[i], '$') != NULL || 
-			ft_strchr(program->cmd_list->cmd[i], '~') != NULL)
+		if (ft_strchr(program->cmd_list->cmd[i], '$') != NULL
+			|| ft_strchr(program->cmd_list->cmd[i], '~') != NULL)
 		{
 			str = ft_strdup(program->cmd_list->cmd[i]);
 			ft_expand_var(program, i, c, str);
@@ -86,9 +86,9 @@ char	*get_myenv(t_program *program, char *var)
 	{
 		if (!ft_strncmp(var, "~", 1))
 		{
-				free(var);
-				var = ft_strdup("HOME=");
-				len = ft_strlen(var);
+			free(var);
+			var = ft_strdup("HOME=");
+			len = ft_strlen(var);
 		}
 		if (!ft_strncmp(var, "?", 1))
 			return (ft_itoa((*program->exit_code)));
@@ -99,6 +99,6 @@ char	*get_myenv(t_program *program, char *var)
 		}
 		i++;
 	}
-	free(var); 
-	return (ft_strdup(""));
+	free(var);
+	return ("");
 }

@@ -6,7 +6,7 @@
 /*   By: jbortolo <jbortolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 08:21:56 by jorge             #+#    #+#             */
-/*   Updated: 2023/12/04 15:28:38 by jbortolo         ###   ########.fr       */
+/*   Updated: 2023/12/11 13:02:38 by jbortolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,11 +55,6 @@ static void	exec_single_cmd(t_cmd *cmd_list, t_program *program)
 	int	pid;
 	int	status;
 
-	if (cmd_list->built_in == true)
-	{
-		exec_builtin(program);
-		return ;
-	}
 	set_heredoc(program, cmd_list);
 	pid = fork();
 	if (pid < 0)
