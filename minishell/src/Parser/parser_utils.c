@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbortolo <jbortolo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: juanantonio <juanantonio@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 18:19:59 by jorge             #+#    #+#             */
-/*   Updated: 2023/11/13 16:33:29 by jbortolo         ###   ########.fr       */
+/*   Updated: 2023/12/12 13:12:49 by juanantonio      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,4 +51,19 @@ int	count_args(t_lexer *lex_list)
 		tmp = tmp->next;
 	}
 	return (i);
+}
+
+bool	ft_check_redir_pipe(t_lexer *lex_list, t_program *program)
+{
+	t_lexer	*tmp;
+
+	(void) program;
+	tmp = lex_list;
+	while (tmp)
+	{
+		if (tmp->token != 0)
+			return (1);
+		tmp = tmp->next;
+	}
+	return (0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbortolo <jbortolo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: juanantonio <juanantonio@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 09:13:25 by jorge             #+#    #+#             */
-/*   Updated: 2023/11/13 15:59:18 by jbortolo         ###   ########.fr       */
+/*   Updated: 2023/12/12 13:13:25 by juanantonio      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static t_cmd	*init_cmd(t_parser *pars)
 	arg_size = count_args(pars->lexer_list);
 	str = ft_calloc(arg_size + 1, sizeof(char *));
 	if (!str)
-		ft_error(pars->program, 3);
+		return (ft_error(pars->program, 0), NULL);
 	tmp = pars->lexer_list;
 	while (arg_size > 0)
 	{
@@ -38,7 +38,7 @@ static t_cmd	*init_cmd(t_parser *pars)
 	}
 	return (t_cmd_new(str, pars->num_redirections, pars->redirections));
 }
-
+/*
 static bool	pipe_error(t_program *program, t_token token)
 {
 	if (token == PIPE)
@@ -53,6 +53,7 @@ static bool	pipe_error(t_program *program, t_token token)
 	}
 	return (true);
 }
+*/
 
 bool	ft_parser(t_program *program)
 {
@@ -61,18 +62,18 @@ bool	ft_parser(t_program *program)
 
 	program->cmd_list = NULL;
 	ft_count_pipes(program->lex_list, program);
-	if (program->lex_list->token == PIPE)
-		return (ft_error(program, 1));
+	if (program->lex_list->token)
+		return (ft_error(program, program->lex_list->token));
 	while (program->lex_list)
 	{
 		if (program->lex_list && program->lex_list->token == PIPE)
 			ft_lexerdelone(&program->lex_list, program->lex_list->i);
-		if (!pipe_error(program, program->lex_list->token))
-			return (false);
+		if (ft_check_redir_pipe(program->lex_list, program))
+			return (ft_error(program, program->lex_list->token));
 		aux = init_parser(program->lex_list, program);
 		node = init_cmd(&aux);
 		if (!node)
-			ft_error(program, 3);
+			return (ft_error(program, 0));
 		if (!program->cmd_list)
 			program->cmd_list = node;
 		else

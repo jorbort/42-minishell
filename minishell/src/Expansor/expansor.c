@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expansor.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbortolo <jbortolo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: juanantonio <juanantonio@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 11:45:45 by juanantonio       #+#    #+#             */
-/*   Updated: 2023/12/11 12:56:50 by jbortolo         ###   ########.fr       */
+/*   Updated: 2023/12/12 12:44:53 by juanantonio      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ char	*ft_return_var(t_program *program, char *cmd, char *str, int c)
 
 	while (str[++c])
 	{
-		if (str[c] == '$' || str[c] == '~')
+		if (str[c] == '$' || (str[0] == '~' && !str[1]))
 		{
 			if (str[c] == '$')
 				var_name = ft_get_varname(str, c + 1);
