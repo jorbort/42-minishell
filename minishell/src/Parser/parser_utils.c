@@ -6,7 +6,7 @@
 /*   By: juanantonio <juanantonio@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 18:19:59 by jorge             #+#    #+#             */
-/*   Updated: 2023/12/12 13:12:49 by juanantonio      ###   ########.fr       */
+/*   Updated: 2023/12/12 13:49:22 by juanantonio      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,13 +56,19 @@ int	count_args(t_lexer *lex_list)
 bool	ft_check_redir_pipe(t_lexer *lex_list, t_program *program)
 {
 	t_lexer	*tmp;
+	int		num;
 
+	num = 0;
 	(void) program;
 	tmp = lex_list;
 	while (tmp)
 	{
-		if (tmp->token != 0)
+		if (num > 0 && tmp->token)
 			return (1);
+		else
+			num = 0;
+		if (tmp->token)
+			num++;
 		tmp = tmp->next;
 	}
 	return (0);
