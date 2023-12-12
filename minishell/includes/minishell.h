@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juan-anm <juan-anm@student.42.fr>          +#+  +:+       +#+        */
+/*   By: juanantonio <juanantonio@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 14:41:54 by juan-anm          #+#    #+#             */
-/*   Updated: 2023/12/11 14:44:23 by juan-anm         ###   ########.fr       */
+/*   Updated: 2023/12/12 13:13:55 by juanantonio      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,16 @@
 
 /////////////ERROR MGS////////////////
 
+# define MSHELL "minishell:"
 # define TOKEN_ERROR "minishell ERROR: invalid consecutive tokens "
 # define PIPE_ERROR "minishell ERROR: invalid | or consecutive | "
 # define INVALID_ARG "minishell ERROR: invalid arguments"
+# define MSSG_ERR_NL " syntax error near unexpected token `newline'\n"
+# define MSSG_ERR_PIPE " syntax error near unexpected token `|'\n"
+# define MSSG_ERR_LESS " syntax error near unexpected token `<'\n"
+# define MSSG_ERR_LESS_LESS " syntax error near unexpected token `<<'\n"
+# define MSSG_ERR_GREAT " syntax error near unexpected token `>'\n"
+# define MSSG_ERR_GREAT_GREAT " syntax error near unexpected token `>>'\n"
 
 /////////// KEYS /////////////
 
@@ -140,6 +147,7 @@ t_cmd		*ft_first(t_cmd *cmd_list);
 t_parser	init_parser(t_lexer *lex_list, t_program *program);
 void		ft_count_pipes(t_lexer *lex_list, t_program *program);
 int			count_args(t_lexer *lex_list);
+bool		ft_check_redir_pipe(t_lexer *lex_list, t_program *program);
 //lex_utils.c
 void		ft_lexerdelone(t_lexer **lex_list, int to_del);
 t_lexer		*ft_lexclear_one(t_lexer **lex_list);
@@ -148,6 +156,7 @@ void		ft_lexclear(t_lexer **lex_list);
 t_lexer		*ft_lex_new(char *str, int token);
 //ft_errors.c
 bool		ft_error(t_program *program, int errno);
+bool		ft_error2(t_program *program, int errno);
 //parse_redirs.c
 int			add_redir(t_lexer *tmp, t_parser *pars);
 void		del_redirs(t_parser *pars);
