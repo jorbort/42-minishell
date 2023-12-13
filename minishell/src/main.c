@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jorgebortolotti <jorgebortolotti@studen    +#+  +:+       +#+        */
+/*   By: juanantonio <juanantonio@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 14:39:17 by juan-anm          #+#    #+#             */
-/*   Updated: 2023/12/13 08:30:31 by jorgebortol      ###   ########.fr       */
+/*   Updated: 2023/12/13 13:50:25 by juanantonio      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,23 @@
 
 void	reset_program(t_program *program, char *str)
 {
+	ft_lexclear(&program->redir);
+	ft_lexclear(&program->lex_list);
+	//ft_lstclearall((void)&program->cmd_list->redirection);
+	ft_freegnl(program->cmd_list->cmd);
+	free(program->cmd_list->here_d_file_name);
 	cmd_clear(&program->cmd_list);
 	free(str);
 	if (program->data->pid)
 		free(program->data->pid);
 	free_double_arr(program->data->paths);
+	free(program->data);
+	program->redir = NULL;
+	program->lex_list = NULL;
+	program->cmd_list = NULL;
+	program->data = NULL;
 }
+
 
 void	init_program(t_program *program, char **env, int *excode)
 {
@@ -41,12 +52,14 @@ void	init_program(t_program *program, char **env, int *excode)
 	program->exit_code = excode;
 }
 
-void	shell_loop(t_program *program)
+void	shell_loop(t_program *program, char **env, int *excode)
 {
 	char		*str;
 
 	while (42)
 	{
+		if (!program->data)
+			init_program(program, env, excode);
 		str = readline(BLUE_T"MiniShell:" YELLOW_T" $> "RESET_COLOR);
 		if (!str || !*str)
 		{
@@ -58,8 +71,7 @@ void	shell_loop(t_program *program)
 		program->lex_list = tokenizer(&program->lex_list, str);
 		if (ft_parser(program))
 			handle_execution(program);
-		free(str);
-		//reset_program(program, str); no funciona bien
+		reset_program(program, str);
 	}
 }
 
@@ -70,11 +82,12 @@ int	main(int ac, char **av, char **env)
 
 	(void) av;
 	program = malloc(sizeof(t_program));
-	init_program(program, env, &excode);
+	program->data = NULL;
+	//init_program(program, env, &excode);
 	if (ac != 1)
 		return (1);
 	rl_catch_signals = 0;
 	init_signals(1);
-	shell_loop(program);
+	shell_loop(program, env, &excode);
 	return (0);
 }

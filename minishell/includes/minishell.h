@@ -6,7 +6,7 @@
 /*   By: juanantonio <juanantonio@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 14:41:54 by juan-anm          #+#    #+#             */
-/*   Updated: 2023/12/12 13:13:55 by juanantonio      ###   ########.fr       */
+/*   Updated: 2023/12/13 12:24:43 by juanantonio      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -184,6 +184,7 @@ void		change_path(t_program *program);
 void		free_double_arr(char **arr);
 bool		invalid_unsetchar(char *str);
 int			ft_arr_len(char **arr);
+void		ft_lstclearall(void **lex_list);
 //echo.c
 void		print_cmd(int i, char **str, int fd);
 int			ft_echo(t_cmd *cmd_list);
