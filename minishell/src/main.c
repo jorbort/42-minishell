@@ -3,14 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juanantonio <juanantonio@student.42.fr>    +#+  +:+       +#+        */
+/*   By: jorgebortolotti <jorgebortolotti@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 14:39:17 by juan-anm          #+#    #+#             */
-/*   Updated: 2023/12/12 12:20:29 by juanantonio      ###   ########.fr       */
+/*   Updated: 2023/12/13 08:30:31 by jorgebortol      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <includes/minishell.h>
+
+void	reset_program(t_program *program, char *str)
+{
+	cmd_clear(&program->cmd_list);
+	free(str);
+	if (program->data->pid)
+		free(program->data->pid);
+	free_double_arr(program->data->paths);
+}
 
 void	init_program(t_program *program, char **env, int *excode)
 {
@@ -49,12 +58,8 @@ void	shell_loop(t_program *program)
 		program->lex_list = tokenizer(&program->lex_list, str);
 		if (ft_parser(program))
 			handle_execution(program);
-		//printf("%s\n", program->data->prev_pwd);
-		//printf("%s\n",program->data->pwd);
-		//free_program(program);
-		//free(program->lex_list);
-		//init_program(program, program->data->envp, (program->exit_code));
 		free(str);
+		//reset_program(program, str); no funciona bien
 	}
 }
 

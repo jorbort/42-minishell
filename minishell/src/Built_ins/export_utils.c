@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbortolo <jbortolo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jorgebortolotti <jorgebortolotti@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 17:30:21 by jorge             #+#    #+#             */
-/*   Updated: 2023/12/11 11:08:00 by jbortolo         ###   ########.fr       */
+/*   Updated: 2023/12/12 17:25:06 by jorgebortol      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ void	print_export(t_program *program, char **export)
 	int	i;
 
 	i = 0;
-	if (!export)
+	if (!export || !*export)
 		print_env(program);
 	else
 	{

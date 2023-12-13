@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juan-anm <juan-anm@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jorgebortolotti <jorgebortolotti@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 08:21:56 by jorge             #+#    #+#             */
-/*   Updated: 2023/12/11 14:54:37 by juan-anm         ###   ########.fr       */
+/*   Updated: 2023/12/12 19:43:21 by jorgebortol      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,12 @@ void	handle_cmd(t_cmd *cmd_list, t_program *program)
 	int	exit_status;
 
 	exit_status = 0;
-	if (cmd_list->cmd[0][0])
+	if (program->data->pipes > 0 && cmd_list->built_in == true)
+	{
+		exec_builtin(program);
+		exit_status = (*program->exit_code);
+	}
+	else if (cmd_list->cmd[0][0])
 		exit_status = find_cmd(cmd_list, program);
 	exit(exit_status);
 }

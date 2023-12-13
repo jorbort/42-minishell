@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_errors.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juanantonio <juanantonio@student.42.fr>    +#+  +:+       +#+        */
+/*   By: jorgebortolotti <jorgebortolotti@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 14:32:22 by jbortolo          #+#    #+#             */
-/*   Updated: 2023/12/12 12:33:58 by juanantonio      ###   ########.fr       */
+/*   Updated: 2023/12/13 08:47:16 by jorgebortol      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ bool	ft_error(t_program *program, int errno)
 {
 	(void) program;
 	(*program->exit_code) = 2;
+	ft_lexclear(&program->lex_list);
 	if (errno == PIPE)
 	{
 		ft_putstr_fd(MSHELL, STDERR_FILENO);
