@@ -6,7 +6,7 @@
 /*   By: jorgebortolotti <jorgebortolotti@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 14:39:17 by juan-anm          #+#    #+#             */
-/*   Updated: 2023/12/13 08:30:31 by jorgebortol      ###   ########.fr       */
+/*   Updated: 2023/12/14 01:07:18 by jorgebortol      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	shell_loop(t_program *program)
 		}
 		add_history(str);
 		program->lex_list = tokenizer(&program->lex_list, str);
-		if (ft_parser(program))
+		if (!ft_parser(program))
 			handle_execution(program);
 		free(str);
 		//reset_program(program, str); no funciona bien

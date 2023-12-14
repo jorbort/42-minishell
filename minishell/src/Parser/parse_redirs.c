@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_redirs.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juanantonio <juanantonio@student.42.fr>    +#+  +:+       +#+        */
+/*   By: jorgebortolotti <jorgebortolotti@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 18:31:38 by jorge             #+#    #+#             */
-/*   Updated: 2023/12/12 14:40:46 by juanantonio      ###   ########.fr       */
+/*   Updated: 2023/12/14 01:16:41 by jorgebortol      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,21 +35,11 @@ void	del_redirs(t_parser *pars)
 	t_lexer	*tmp;
 
 	tmp = pars->lexer_list;
-	while (tmp->next)
+	while (tmp && tmp->token == 0)
 		tmp = tmp->next;
-	if (tmp->token)
-		ft_error (pars->program, tmp->token);
-	else
-	{
-		tmp = pars->lexer_list;
-		while (tmp && tmp->token == 0)
-			tmp = tmp->next;
-		if (!tmp || tmp->token == PIPE)
-			return ;
-		if (tmp->next == NULL)
-			ft_error (pars->program, 3);
-		if (tmp->token >= GREAT && tmp->token <= LESS_LESS)
-			add_redir(tmp, pars);
-		del_redirs(pars);
-	}
+	if (!tmp || tmp->token == PIPE)
+		return ;
+	if (tmp->token >= GREAT && tmp->token <= LESS_LESS)
+		add_redir(tmp, pars);
+	del_redirs(pars);
 }

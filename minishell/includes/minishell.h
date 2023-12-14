@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juanantonio <juanantonio@student.42.fr>    +#+  +:+       +#+        */
+/*   By: jorgebortolotti <jorgebortolotti@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 14:41:54 by juan-anm          #+#    #+#             */
-/*   Updated: 2023/12/12 13:13:55 by juanantonio      ###   ########.fr       */
+/*   Updated: 2023/12/14 01:24:36 by jorgebortol      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,7 +136,10 @@ int			cntallwrds(int i, int contl, int contw, char *s);
 int			dupstrlen(char *s, int i);
 
 //parser.c
-bool		ft_parser(t_program *program);
+int			ft_parser(t_program *program);
+int			check_syntax(t_lexer *lexer, t_program *program);
+int			check_duplicates(t_lexer *lexer, t_program *program);
+int			check_pipes_syntax(t_lexer *lexer, t_program *program);
 //parser_lst_utils.c
 t_cmd		*t_cmd_new(char **str_cmd, int num_redirs, t_lexer *redirection);
 void		ft_cmd_addback(t_cmd **lst, t_cmd *node);
