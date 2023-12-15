@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   token_splitter.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juan-anm <juan-anm@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jorgebortolotti <jorgebortolotti@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 17:25:38 by juanantonio       #+#    #+#             */
-/*   Updated: 2023/11/13 14:11:34 by juan-anm         ###   ########.fr       */
+/*   Updated: 2023/12/15 00:43:39 by jorgebortol      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

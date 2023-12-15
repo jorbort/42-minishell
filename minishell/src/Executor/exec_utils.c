@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juanantonio <juanantonio@student.42.fr>    +#+  +:+       +#+        */
+/*   By: jorgebortolotti <jorgebortolotti@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 09:20:09 by jorge             #+#    #+#             */
-/*   Updated: 2023/12/12 13:37:09 by juanantonio      ###   ########.fr       */
+/*   Updated: 2023/12/14 18:57:42 by jorgebortol      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ char	*join_split_str(char **split_str, char *new_str)
 	i = 1;
 	while (split_str[i])
 	{
+		clean_quotes(split_str[i]);
 		new_str = tmp;
 		add_space = ft_strjoin(new_str, " ");
 		free(new_str);

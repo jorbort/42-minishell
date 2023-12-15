@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_lst_utils.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juanantonio <juanantonio@student.42.fr>    +#+  +:+       +#+        */
+/*   By: jorgebortolotti <jorgebortolotti@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 17:38:48 by jorge             #+#    #+#             */
-/*   Updated: 2023/12/06 10:27:35 by juanantonio      ###   ########.fr       */
+/*   Updated: 2023/12/14 20:00:39 by jorgebortol      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,13 +65,14 @@ void	cmd_clear(t_cmd **list)
 	t_cmd	*tmp;
 	t_lexer	*redir_temp;
 
-	if (!list)
+	if (!list || !(*list))
 		return ;
 	while (*list)
 	{
 		tmp = (*list)->next;
 		redir_temp = (*list)->redirection;
-		ft_lexclear(&redir_temp);
+		if (redir_temp)
+			ft_lexclear(&redir_temp);
 		if ((*list)->cmd)
 			free_double_arr((*list)->cmd);
 		free(*list);

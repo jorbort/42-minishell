@@ -6,7 +6,7 @@
 /*   By: jorgebortolotti <jorgebortolotti@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/02 16:40:47 by jorge             #+#    #+#             */
-/*   Updated: 2023/12/07 17:21:37 by jorgebortol      ###   ########.fr       */
+/*   Updated: 2023/12/14 19:12:01 by jorgebortol      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ static int	handle_infile(char	*file)
 {
 	int	fd;
 
+	clean_quotes(file);
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
 	{
@@ -50,6 +51,7 @@ static int	handle_outfile(t_lexer *redirection)
 {
 	int	fd;
 
+	clean_quotes(redirection->str);
 	fd = check_append_outfile(redirection);
 	if (fd < 0)
 	{

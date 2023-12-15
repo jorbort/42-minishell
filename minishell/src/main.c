@@ -3,23 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juanantonio <juanantonio@student.42.fr>    +#+  +:+       +#+        */
+/*   By: jorgebortolotti <jorgebortolotti@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 14:39:17 by juan-anm          #+#    #+#             */
-/*   Updated: 2023/12/14 17:12:45 by juanantonio      ###   ########.fr       */
+/*   Updated: 2023/12/15 01:06:00 by jorgebortol      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <includes/minishell.h>
 
-void	reset_program(t_program *program, char *str)
-{
-	cmd_clear(&program->cmd_list);
-	free(str);
-	if (program->data->pid)
-		free(program->data->pid);
-	free_double_arr(program->data->paths);
-}
+void	shell_loop(t_program *program);
 
 void	init_program(t_program *program, char **env, int *excode)
 {
@@ -29,6 +22,7 @@ void	init_program(t_program *program, char **env, int *excode)
 		program->data->pipes = 0;
 		program->data->nume_redirs = 0;
 		program->data->envp = ft_arrdup(env);
+		program->data->pid = NULL;
 		parse_env(program, program->data);
 		find_pwd(program->data);
 		program->data->export = malloc(sizeof(char *));
@@ -41,28 +35,38 @@ void	init_program(t_program *program, char **env, int *excode)
 	program->exit_code = excode;
 }
 
+void	reset_program(t_program *program, char *str)
+{
+	cmd_clear(&program->cmd_list);
+	free(str);
+	if (program->data->pid != NULL)
+	{
+		free(program->data->pid);
+		program->data->pid = NULL;
+	}
+	program->lex_list = NULL;
+	program->cmd_list = NULL;
+	shell_loop(program);
+}
+
 void	shell_loop(t_program *program)
 {
 	char		*str;
 
-	while (42)
+	str = readline(BLUE_T"MiniShell:" YELLOW_T" $> "RESET_COLOR);
+	if (!str)
 	{
-		str = readline(BLUE_T"MiniShell:" YELLOW_T" $> "RESET_COLOR);
-		if (!str)
-		{
-			if (isatty(STDIN_FILENO))
-				write(2, "exit\n", 6);
-			exit ((*program->exit_code));
-		}
-		if (!*str)
-			continue ;
-		add_history(str);
-		program->lex_list = tokenizer(&program->lex_list, str);
-		if (!ft_parser(program))
-			handle_execution(program);
-		free(str);
-		//reset_program(program, str); no funciona bien
+		if (isatty(STDIN_FILENO))
+			write(2, "exit\n", 6);
+		exit ((*program->exit_code));
 	}
+	if (!*str)
+		reset_program(program, str);
+	add_history(str);
+	program->lex_list = tokenizer(&program->lex_list, str);
+	if (!ft_parser(program))
+		handle_execution(program);
+	reset_program(program, str);
 }
 
 int	main(int ac, char **av, char **env)
