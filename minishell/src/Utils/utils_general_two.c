@@ -6,7 +6,7 @@
 /*   By: jorgebortolotti <jorgebortolotti@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 02:10:23 by jorgebortol       #+#    #+#             */
-/*   Updated: 2023/12/10 23:40:28 by jorgebortol      ###   ########.fr       */
+/*   Updated: 2023/12/16 00:56:11 by jorgebortol      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,4 +31,18 @@ char	*trim_quotes(char *str, char c)
 		i++;
 	}
 	return (str);
+}
+
+int	is_quote(char *str)
+{
+	size_t	i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] == '=')
+			return (i + 1);
+		i++;
+	}
+	return (0);
 }

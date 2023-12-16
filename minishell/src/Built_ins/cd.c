@@ -6,7 +6,7 @@
 /*   By: jorgebortolotti <jorgebortolotti@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 17:17:30 by jorge             #+#    #+#             */
-/*   Updated: 2023/12/08 16:46:40 by jorgebortol      ###   ########.fr       */
+/*   Updated: 2023/12/15 16:44:02 by jorgebortol      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static int	go_dir(t_program *program, char *str)
 		ft_putstr_fd(" not set\n", STDERR_FILENO);
 	}
 	if (!ft_strncmp(str, "OLDPWD=", 7) && resul == 0)
-		ft_printf("%s\n",program->data->prev_pwd);
+		ft_printf("%s\n", program->data->prev_pwd);
 	return (resul);
 }
 
@@ -63,7 +63,8 @@ static void	change_path_env(t_program *program)
 			free(program->data->envp[i]);
 			program->data->envp[i] = tmp;
 		}
-		else if (!ft_strncmp(program->data->envp[i], "OLDPWD=", 7) && program->data->prev_pwd)
+		else if (!ft_strncmp(program->data->envp[i], "OLDPWD=", 7) &&
+			program->data->prev_pwd)
 		{
 			tmp = ft_strjoin("OLDPWD=", program->data->prev_pwd);
 			free(program->data->envp[i]);
@@ -77,7 +78,7 @@ void	print_cd_error(char *str)
 {
 	ft_putstr_fd("minishell: cd: ", STDERR_FILENO);
 	ft_putstr_fd(str, STDERR_FILENO);
-	ft_putstr_fd(": ",STDERR_FILENO);
+	ft_putstr_fd(": ", STDERR_FILENO);
 	perror("");
 }
 

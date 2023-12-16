@@ -6,7 +6,7 @@
 /*   By: jorgebortolotti <jorgebortolotti@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 08:21:56 by jorge             #+#    #+#             */
-/*   Updated: 2023/12/12 19:43:21 by jorgebortol      ###   ########.fr       */
+/*   Updated: 2023/12/16 18:23:50 by jorgebortol      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ static int	exec_single_cmd(t_cmd *cmd_list, t_program *program)
 	{
 
 		if (check_redirs(cmd_list))
-			return (1);
+			return ((*program->exit_code) = 1);
 	}
 	if (cmd_list->built_in)
 	{

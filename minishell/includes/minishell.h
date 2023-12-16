@@ -6,7 +6,7 @@
 /*   By: jorgebortolotti <jorgebortolotti@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 14:41:54 by juan-anm          #+#    #+#             */
-/*   Updated: 2023/12/14 19:41:38 by jorgebortol      ###   ########.fr       */
+/*   Updated: 2023/12/16 00:57:00 by jorgebortol      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -188,6 +188,7 @@ void		change_path(t_program *program);
 void		free_double_arr(char **arr);
 bool		invalid_unsetchar(char *str);
 int			ft_arr_len(char **arr);
+int			is_quote(char *str);
 //echo.c
 void		print_cmd(int i, char **str, int fd);
 int			ft_echo(t_cmd *cmd_list);
