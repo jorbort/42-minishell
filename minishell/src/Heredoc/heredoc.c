@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juan-anm <juan-anm@student.42.fr>          +#+  +:+       +#+        */
+/*   By: juanantonio <juanantonio@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/02 12:12:21 by juan-anm          #+#    #+#             */
-/*   Updated: 2023/12/04 12:22:34 by juan-anm         ###   ########.fr       */
+/*   Updated: 2023/12/20 11:26:56 by juanantonio      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,4 +63,21 @@ int	set_heredoc(t_program *program, t_cmd *cmd_list)
 	}
 	cmd_list->redirection = start;
 	return (0);
+}
+
+void	del_heredoc(t_cmd *cmd_list)
+{
+	t_cmd	*start;
+
+	start = cmd_list;
+	while (cmd_list)
+	{
+		if (cmd_list->here_d_file_name)
+		{
+			remove(cmd_list->here_d_file_name);
+			free(cmd_list->here_d_file_name);
+		}
+		cmd_list = cmd_list->next;
+	}
+	cmd_list = start;
 }

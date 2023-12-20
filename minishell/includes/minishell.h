@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jorgebortolotti <jorgebortolotti@studen    +#+  +:+       +#+        */
+/*   By: juanantonio <juanantonio@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 14:41:54 by juan-anm          #+#    #+#             */
-/*   Updated: 2023/12/16 00:57:00 by jorgebortol      ###   ########.fr       */
+/*   Updated: 2023/12/20 11:26:58 by juanantonio      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -230,6 +230,7 @@ char		*ft_return_var(t_program *program, char *cmd, char *str, int c);
 int			init_signals(int mode);
 /////////Heredoc////////////////
 void		ft_heredoc(t_program *program);
+void		del_heredoc(t_cmd *cmd_list);
 ////Executor/////
 
 //exec_redirs.c

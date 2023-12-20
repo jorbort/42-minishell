@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_lst_utils.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jorgebortolotti <jorgebortolotti@studen    +#+  +:+       +#+        */
+/*   By: juanantonio <juanantonio@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 17:38:48 by jorge             #+#    #+#             */
-/*   Updated: 2023/12/14 20:00:39 by jorgebortol      ###   ########.fr       */
+/*   Updated: 2023/12/20 11:27:00 by juanantonio      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

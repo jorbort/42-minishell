@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jorgebortolotti <jorgebortolotti@studen    +#+  +:+       +#+        */
+/*   By: juanantonio <juanantonio@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 14:39:17 by juan-anm          #+#    #+#             */
-/*   Updated: 2023/12/15 01:06:00 by jorgebortol      ###   ########.fr       */
+/*   Updated: 2023/12/20 11:47:03 by juanantonio      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ void	init_program(t_program *program, char **env, int *excode)
 
 void	reset_program(t_program *program, char *str)
 {
+	del_heredoc(program->cmd_list);
 	cmd_clear(&program->cmd_list);
 	free(str);
 	if (program->data->pid != NULL)
@@ -56,8 +57,8 @@ void	shell_loop(t_program *program)
 	str = readline(BLUE_T"MiniShell:" YELLOW_T" $> "RESET_COLOR);
 	if (!str)
 	{
-		if (isatty(STDIN_FILENO))
-			write(2, "exit\n", 6);
+	//	if (isatty(STDIN_FILENO))
+	//		write(2, "exit\n", 6);
 		exit ((*program->exit_code));
 	}
 	if (!*str)
