@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   built_in.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juan-anm <juan-anm@student.42.fr>          +#+  +:+       +#+        */
+/*   By: juanantonio <juanantonio@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 13:16:27 by jbortolo          #+#    #+#             */
-/*   Updated: 2023/12/11 14:48:54 by juan-anm         ###   ########.fr       */
+/*   Updated: 2023/12/21 11:17:08 by juanantonio      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,12 @@ void	is_builtin(t_program *program)
 	tmp = program->cmd_list;
 	while (tmp != NULL)
 	{
+		tmp->cmd[0] = ft_strdup_clean(tmp->cmd[0]);
 		len = ft_strlen(tmp->cmd[0]);
 		i = 0;
 		while (builtin_arr[i] != NULL)
 		{
-			if (ft_strncmp(tmp->cmd[0], builtin_arr[i], len) == 0)
+			if (ft_strncmp(tmp->cmd[0], builtin_arr[i], len + 1) == 0)
 			{
 				tmp->built_in = true;
 			}

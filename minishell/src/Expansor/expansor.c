@@ -6,7 +6,7 @@
 /*   By: juanantonio <juanantonio@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 11:45:45 by juanantonio       #+#    #+#             */
-/*   Updated: 2023/12/12 12:44:53 by juanantonio      ###   ########.fr       */
+/*   Updated: 2023/12/21 10:46:45 by juanantonio      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ void	ft_expand(t_program *program)
 
 	c = -1;
 	i = -1;
+	if (!program->cmd_list)
+		return ;
 	while (program->cmd_list->cmd[++i] != NULL)
 	{
 		if (ft_strchr(program->cmd_list->cmd[i], '$') != NULL

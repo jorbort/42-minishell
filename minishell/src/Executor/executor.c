@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jorgebortolotti <jorgebortolotti@studen    +#+  +:+       +#+        */
+/*   By: juanantonio <juanantonio@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 08:21:56 by jorge             #+#    #+#             */
-/*   Updated: 2023/12/16 18:23:50 by jorgebortol      ###   ########.fr       */
+/*   Updated: 2023/12/21 10:45:32 by juanantonio      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,10 +52,11 @@ static int	exec_single_cmd(t_cmd *cmd_list, t_program *program)
 	int	pid;
 	int	status;
 
+	if (!cmd_list)
+		return ((*program->exit_code) = 127);
 	set_heredoc(program, cmd_list);
 	if (cmd_list->redirection)
 	{
-
 		if (check_redirs(cmd_list))
 			return ((*program->exit_code) = 1);
 	}

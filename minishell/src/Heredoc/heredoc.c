@@ -6,7 +6,7 @@
 /*   By: juanantonio <juanantonio@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/02 12:12:21 by juan-anm          #+#    #+#             */
-/*   Updated: 2023/12/20 11:26:56 by juanantonio      ###   ########.fr       */
+/*   Updated: 2023/12/21 10:43:43 by juanantonio      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@ int	set_heredoc(t_program *program, t_cmd *cmd_list)
 {
 	t_lexer	*start;
 
+	if (!cmd_list)
+		return (0);
 	start = cmd_list->redirection;
 	while (cmd_list->redirection)
 	{

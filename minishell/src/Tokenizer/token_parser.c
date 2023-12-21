@@ -6,7 +6,7 @@
 /*   By: juanantonio <juanantonio@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 12:55:32 by juan-anm          #+#    #+#             */
-/*   Updated: 2023/12/14 16:51:45 by juanantonio      ###   ########.fr       */
+/*   Updated: 2023/12/21 11:09:26 by juanantonio      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,13 @@ t_lexer	*tokenizer(t_lexer **lexer, char *str)
 	split = ft_pipesplit(str);
 	while (split[j])
 	{
-		new = lex_lstnew();
-		new->str = ft_strdup(split[j]);
-		new->i = j;
-		lex_lstadd_back(lexer, new);
+		if (ft_strncmp(split[j], "\"\"", 3))
+		{
+			new = lex_lstnew();
+			new->str = ft_strdup(split[j]);
+			new->i = j;
+			lex_lstadd_back(lexer, new);
+		}
 		j++;
 	}
 	ft_freesp(split);
