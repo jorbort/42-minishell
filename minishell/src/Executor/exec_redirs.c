@@ -6,7 +6,7 @@
 /*   By: jorgebortolotti <jorgebortolotti@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/02 16:40:47 by jorge             #+#    #+#             */
-/*   Updated: 2023/12/14 19:12:01 by jorgebortol      ###   ########.fr       */
+/*   Updated: 2023/12/21 09:57:06 by jorgebortol      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,7 @@ static int	handle_infile(char	*file)
 	if (fd < 0)
 	{
 		ft_putstr_fd("minishell: ", STDERR_FILENO);
-		ft_putstr_fd(file, STDERR_FILENO);
-		ft_putstr_fd(": No such file or directory\n",
-			STDERR_FILENO);
+		perror(file);
 		return (1);
 	}
 	if (fd > 0 && dup2(fd, STDIN_FILENO) < 0)
@@ -55,7 +53,8 @@ static int	handle_outfile(t_lexer *redirection)
 	fd = check_append_outfile(redirection);
 	if (fd < 0)
 	{
-		ft_putstr_fd("minishell: outfile: Error\n", STDERR_FILENO);
+		ft_putstr_fd("minishell: ", STDERR_FILENO);
+		perror(redirection->str);
 		return (1);
 	}
 	if (fd > 0 && dup2(fd, STDOUT_FILENO) < 0)
