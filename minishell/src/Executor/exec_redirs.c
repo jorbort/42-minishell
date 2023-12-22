@@ -6,7 +6,7 @@
 /*   By: jorgebortolotti <jorgebortolotti@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/02 16:40:47 by jorge             #+#    #+#             */
-/*   Updated: 2023/12/21 09:57:06 by jorgebortol      ###   ########.fr       */
+/*   Updated: 2023/12/22 17:44:54 by jorgebortol      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,13 +35,13 @@ static int	handle_infile(char	*file)
 		perror(file);
 		return (1);
 	}
-	if (fd > 0 && dup2(fd, STDIN_FILENO) < 0)
+	if (dup2(fd, STDIN_FILENO) < 0)
 	{
 		ft_putstr_fd("minishell: pipe Error \n", STDERR_FILENO);
+		close(fd);
 		return (1);
 	}
-	if (fd > 0)
-		close(fd);
+	close(fd);
 	return (0);
 }
 
