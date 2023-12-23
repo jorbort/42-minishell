@@ -6,7 +6,7 @@
 /*   By: jorgebortolotti <jorgebortolotti@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/02 12:12:21 by juan-anm          #+#    #+#             */
-/*   Updated: 2023/12/23 00:28:43 by jorgebortol      ###   ########.fr       */
+/*   Updated: 2023/12/23 16:54:25 by jorgebortol      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ int	set_heredoc(t_program *program, t_cmd *cmd_list)
 	{
 		if (cmd_list->redirection->token == LESS_LESS)
 		{
+			program->data->heredoc = true;
 			if (cmd_list->here_d_file_name)
 				free(cmd_list->here_d_file_name);
 			ft_heredoc(program);

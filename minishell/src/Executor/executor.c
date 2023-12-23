@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juanantonio <juanantonio@student.42.fr>    +#+  +:+       +#+        */
+/*   By: jorgebortolotti <jorgebortolotti@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 08:21:56 by jorge             #+#    #+#             */
-/*   Updated: 2023/12/21 10:45:32 by juanantonio      ###   ########.fr       */
+/*   Updated: 2023/12/23 16:40:35 by jorgebortol      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,15 +79,19 @@ static int	exec_single_cmd(t_cmd *cmd_list, t_program *program)
 int	handle_execution(t_program *program)
 {
 	int	saved_stdout;
+	int	saved_stdin;
 
 	saved_stdout = dup(1);
+	saved_stdin = dup(0);
 	ft_expand(program);
 	is_builtin(program);
 	if (program->data->pipes == 0)
 	{
 		exec_single_cmd(program->cmd_list, program);
 		dup2(saved_stdout, 1);
-		close (saved_stdout);
+		dup2(saved_stdin, 0);
+		close(saved_stdout);
+		close(saved_stdin);
 		return ((*program->exit_code));
 	}
 	else
