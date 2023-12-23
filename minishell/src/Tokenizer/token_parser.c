@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   token_parser.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juanantonio <juanantonio@student.42.fr>    +#+  +:+       +#+        */
+/*   By: jorgebortolotti <jorgebortolotti@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 12:55:32 by juan-anm          #+#    #+#             */
-/*   Updated: 2023/12/21 11:09:26 by juanantonio      ###   ########.fr       */
+/*   Updated: 2023/12/23 17:40:26 by jorgebortol      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,19 +43,19 @@ void	check_pipes(t_lexer **lexer)
 	temp = *lexer;
 	while (temp != NULL)
 	{
-		if (!strncmp(temp->str, "|", 2))
+		if (!ft_strncmp(temp->str, "|", 2))
 			temp->token = PIPE;
-		else if (!strncmp(temp->str, ">", 2))
+		else if (!ft_strncmp(temp->str, ">", 2))
 			temp->token = GREAT;
-		else if (!strncmp(temp->str, ">>", 3))
+		else if (!ft_strncmp(temp->str, ">>", 3))
 			temp->token = GREAT_GREAT;
-		else if (!strncmp(temp->str, "<", 2))
+		else if (!ft_strncmp(temp->str, "<", 2))
 			temp->token = LESS;
-		else if (!strncmp(temp->str, "<<", 3))
+		else if (!ft_strncmp(temp->str, "<<", 3))
 			temp->token = LESS_LESS;
-		else if (!strncmp(temp->str, "<<<", 3) || !strncmp(temp->str, ">>>", 3))
+		else if (!ft_strncmp(temp->str, "<<<", 3) || !strncmp(temp->str, ">>>", 3))
 			temp->token = ERROR;
-		else if (!strncmp(temp->str, "||", 2))
+		else if (!ft_strncmp(temp->str, "||", 2))
 			temp->token = ERROR;
 		else if (ft_strchr(temp->str, '>') && ft_strchr(temp->str, '<'))
 			temp->token = ERROR;
