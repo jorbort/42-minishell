@@ -78,7 +78,8 @@ void	del_heredoc(t_cmd *cmd_list)
 		if (cmd_list->here_d_file_name)
 		{
 			unlink(cmd_list->here_d_file_name);
-			free(cmd_list->here_d_file_name);
+			//free(cmd_list->here_d_file_name);
+			cmd_list->here_d_file_name = NULL;
 		}
 		cmd_list = cmd_list->next;
 	}

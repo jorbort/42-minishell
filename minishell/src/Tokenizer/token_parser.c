@@ -38,29 +38,29 @@ t_lexer	*tokenizer(t_lexer **lexer, char *str)
 
 void	check_pipes(t_lexer **lexer)
 {
-	t_lexer	*temp;
+	t_lexer	*t;
 
-	temp = *lexer;
-	while (temp != NULL)
+	t = *lexer;
+	while (t != NULL)
 	{
-		if (!ft_strncmp(temp->str, "|", 2))
-			temp->token = PIPE;
-		else if (!ft_strncmp(temp->str, ">", 2))
-			temp->token = GREAT;
-		else if (!ft_strncmp(temp->str, ">>", 3))
-			temp->token = GREAT_GREAT;
-		else if (!ft_strncmp(temp->str, "<", 2))
-			temp->token = LESS;
-		else if (!ft_strncmp(temp->str, "<<", 3))
-			temp->token = LESS_LESS;
-		else if (!ft_strncmp(temp->str, "<<<", 3) || !strncmp(temp->str, ">>>", 3))
-			temp->token = ERROR;
-		else if (!ft_strncmp(temp->str, "||", 2))
-			temp->token = ERROR;
-		else if (ft_strchr(temp->str, '>') && ft_strchr(temp->str, '<'))
-			temp->token = ERROR;
+		if (!ft_strncmp(t->str, "|", 2))
+			t->token = PIPE;
+		else if (!ft_strncmp(t->str, ">", 2))
+			t->token = GREAT;
+		else if (!ft_strncmp(t->str, ">>", 3))
+			t->token = GREAT_GREAT;
+		else if (!ft_strncmp(t->str, "<", 2))
+			t->token = LESS;
+		else if (!ft_strncmp(t->str, "<<", 3))
+			t->token = LESS_LESS;
+		else if (!ft_strncmp(t->str, "<<<", 3) || !strncmp(t->str, ">>>", 3))
+			t->token = ERROR;
+		else if (!ft_strncmp(t->str, "||", 2))
+			t->token = ERROR;
+		else if (ft_strchr(t->str, '>') && ft_strchr(t->str, '<'))
+			t->token = ERROR;
 		else
-			temp->token = 0;
-		temp = temp->next;
+			t->token = 0;
+		t = t->next;
 	}
 }

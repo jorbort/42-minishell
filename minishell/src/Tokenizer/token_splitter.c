@@ -116,6 +116,6 @@ char	*ft_pipestrdupli(char *s, int reset)
 		j++;
 		a++;
 	}
-	dupstr[j] = 0;
+	dupstr[a] = 0;
 	return (dupstr);
 }

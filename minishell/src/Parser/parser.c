@@ -136,5 +136,6 @@ int	ft_parser(t_program *program)
 		program->lex_list = aux.lexer_list;
 	}
 	program->redir = aux.redirections;
+	program->cmd_list->here_d_file_name = NULL;
 	return (0);
 }
