@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jorgebortolotti <jorgebortolotti@studen    +#+  +:+       +#+        */
+/*   By: juanantonio <juanantonio@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 17:30:21 by jorge             #+#    #+#             */
-/*   Updated: 2023/12/12 17:25:06 by jorgebortol      ###   ########.fr       */
+/*   Updated: 2023/12/27 15:12:56 by juanantonio      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ char	*ft_strjoin_export(char *s1, char *s2)
 	str[i + 1] = '\0';
 	return (str);
 }
-
 
 char	*ft_join_env(char *s1, char *s2)
 {

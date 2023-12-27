@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_redirs.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jorgebortolotti <jorgebortolotti@studen    +#+  +:+       +#+        */
+/*   By: juanantonio <juanantonio@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/02 16:40:47 by jorge             #+#    #+#             */
-/*   Updated: 2023/12/22 17:44:54 by jorgebortol      ###   ########.fr       */
+/*   Updated: 2023/12/27 15:14:55 by juanantonio      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,6 @@ static int	handle_outfile(t_lexer *redirection)
 		close(fd);
 	return (0);
 }
-
 
 int	check_redirs(t_cmd *cmd_list)
 {

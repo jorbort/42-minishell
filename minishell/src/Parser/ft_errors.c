@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_errors.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jorgebortolotti <jorgebortolotti@studen    +#+  +:+       +#+        */
+/*   By: juanantonio <juanantonio@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 14:32:22 by jbortolo          #+#    #+#             */
-/*   Updated: 2023/12/13 08:47:16 by jorgebortol      ###   ########.fr       */
+/*   Updated: 2023/12/27 15:14:17 by juanantonio      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,4 +61,3 @@ bool	ft_error2(t_program *program, int errno)
 	}
 	return (false);
 }
-

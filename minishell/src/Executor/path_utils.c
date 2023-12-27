@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   path_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbortolo <jbortolo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: juanantonio <juanantonio@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 15:04:17 by jbortolo          #+#    #+#             */
-/*   Updated: 2023/12/04 15:24:05 by jbortolo         ###   ########.fr       */
+/*   Updated: 2023/12/27 15:15:05 by juanantonio      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ static char	*search_path(char **envp)
 	int	i;
 
 	i = 0;
-
 	while (envp[i])
 	{
 		if (!strncmp(envp[i], "PATH=", 5))

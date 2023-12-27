@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jorge <jorge@student.42.fr>                +#+  +:+       +#+        */
+/*   By: juanantonio <juanantonio@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 10:37:10 by juan-anm          #+#    #+#             */
-/*   Updated: 2023/10/30 19:38:54 by jorge            ###   ########.fr       */
+/*   Updated: 2023/12/27 15:12:05 by juanantonio      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 char	*get_next_line(int fd)
 {
-	static char* buffer[3000] = {0};
+	static char	*buffer[3000] = {0};
 	char		*line;
 
-	if (fd < 0 || BUFFER_SIZE < 1 )
+	if (fd < 0 || BUFFER_SIZE < 1)
 		return (NULL);
 	if (buffer[fd] == NULL)
 	{

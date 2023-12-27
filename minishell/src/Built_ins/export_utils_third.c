@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export_utils_third.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbortolo <jbortolo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: juanantonio <juanantonio@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 02:25:18 by jorgebortol       #+#    #+#             */
-/*   Updated: 2023/12/11 11:06:00 by jbortolo         ###   ########.fr       */
+/*   Updated: 2023/12/27 15:12:41 by juanantonio      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,4 +58,3 @@ char	*ft_export_dup(char *envp)
 		dup[i] = '\0';
 	return (dup);
 }
-

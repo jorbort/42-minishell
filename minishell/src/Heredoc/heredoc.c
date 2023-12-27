@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jorgebortolotti <jorgebortolotti@studen    +#+  +:+       +#+        */
+/*   By: juanantonio <juanantonio@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/02 12:12:21 by juan-anm          #+#    #+#             */
-/*   Updated: 2023/12/23 16:54:25 by jorgebortol      ###   ########.fr       */
+/*   Updated: 2023/12/27 15:13:54 by juanantonio      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ void	del_heredoc(t_cmd *cmd_list)
 		if (cmd_list->here_d_file_name)
 		{
 			unlink(cmd_list->here_d_file_name);
-			//free(cmd_list->here_d_file_name);
+			free(cmd_list->here_d_file_name);
 			cmd_list->here_d_file_name = NULL;
 		}
 		cmd_list = cmd_list->next;

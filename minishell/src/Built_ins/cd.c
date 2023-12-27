@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jorgebortolotti <jorgebortolotti@studen    +#+  +:+       +#+        */
+/*   By: juanantonio <juanantonio@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 17:17:30 by jorge             #+#    #+#             */
-/*   Updated: 2023/12/15 16:44:02 by jorgebortol      ###   ########.fr       */
+/*   Updated: 2023/12/27 15:13:25 by juanantonio      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,6 @@ static int	go_dir(t_program *program, char *str)
 	return (resul);
 }
 
-
-
 static void	change_path_env(t_program *program)
 {
 	int		i;
@@ -63,8 +61,8 @@ static void	change_path_env(t_program *program)
 			free(program->data->envp[i]);
 			program->data->envp[i] = tmp;
 		}
-		else if (!ft_strncmp(program->data->envp[i], "OLDPWD=", 7) &&
-			program->data->prev_pwd)
+		else if (!ft_strncmp(program->data->envp[i], "OLDPWD=", 7)
+			&& program->data->prev_pwd)
 		{
 			tmp = ft_strjoin("OLDPWD=", program->data->prev_pwd);
 			free(program->data->envp[i]);
