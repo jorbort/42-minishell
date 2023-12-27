@@ -6,7 +6,7 @@
 /*   By: jorgebortolotti <jorgebortolotti@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 08:21:56 by jorge             #+#    #+#             */
-/*   Updated: 2023/12/23 16:40:35 by jorgebortol      ###   ########.fr       */
+/*   Updated: 2023/12/27 17:21:36 by jorgebortol      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,9 @@ void	handle_cmd(t_cmd *cmd_list, t_program *program)
 	int	exit_status;
 
 	exit_status = 0;
+	if (cmd_list->redirection)
+		if (check_redirs(cmd_list))
+			exit(1);
 	if (program->data->pipes > 0 && cmd_list->built_in == true)
 	{
 		exec_builtin(program);
@@ -55,13 +58,13 @@ static int	exec_single_cmd(t_cmd *cmd_list, t_program *program)
 	if (!cmd_list)
 		return ((*program->exit_code) = 127);
 	set_heredoc(program, cmd_list);
-	if (cmd_list->redirection)
-	{
-		if (check_redirs(cmd_list))
-			return ((*program->exit_code) = 1);
-	}
 	if (cmd_list->built_in)
 	{
+		if (cmd_list->redirection)
+		{
+			if (check_redirs(cmd_list))
+				return ((*program->exit_code) = 1);
+		}
 		exec_builtin(program);
 		return (0);
 	}
