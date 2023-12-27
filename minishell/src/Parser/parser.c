@@ -6,7 +6,7 @@
 /*   By: juanantonio <juanantonio@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 09:13:25 by jorge             #+#    #+#             */
-/*   Updated: 2023/12/14 16:30:27 by juanantonio      ###   ########.fr       */
+/*   Updated: 2023/12/27 16:27:18 by juanantonio      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,6 +136,7 @@ int	ft_parser(t_program *program)
 		program->lex_list = aux.lexer_list;
 	}
 	program->redir = aux.redirections;
-	program->cmd_list->here_d_file_name = NULL;
+	if (program->cmd_list)
+		program->cmd_list->here_d_file_name = NULL;
 	return (0);
 }

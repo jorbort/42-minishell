@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jorgebortolotti <jorgebortolotti@studen    +#+  +:+       +#+        */
+/*   By: juanantonio <juanantonio@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 14:39:17 by juan-anm          #+#    #+#             */
-/*   Updated: 2023/12/23 17:19:47 by jorgebortol      ###   ########.fr       */
+/*   Updated: 2023/12/27 16:25:41 by juanantonio      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ void	reset_program(t_program *program, char *str)
 	del_heredoc(program->cmd_list);
 	cmd_clear(&program->cmd_list);
 	free(str);
+	str = NULL;
 	if (program->data->pid != NULL)
 	{
 		free(program->data->pid);
@@ -61,7 +62,7 @@ void	shell_loop(t_program *program)
 			write(2, "exit\n", 6);
 		exit ((*program->exit_code));
 	}
-	if (!*str)
+	if (!*str || !ft_strncmp(str, "", 1))
 		reset_program(program, str);
 	add_history(str);
 	program->lex_list = tokenizer(&program->lex_list, str);
