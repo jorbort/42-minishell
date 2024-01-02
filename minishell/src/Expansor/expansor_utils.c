@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expansor_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juanantonio <juanantonio@student.42.fr>    +#+  +:+       +#+        */
+/*   By: jorgebortolotti <jorgebortolotti@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 10:45:36 by juanantonio       #+#    #+#             */
-/*   Updated: 2023/12/27 15:13:42 by juanantonio      ###   ########.fr       */
+/*   Updated: 2024/01/02 09:52:30 by jorgebortol      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ char	*ft_get_varname(char *str, int i)
 	int		j;
 
 	j = 0;
-	while ((str[i + j] && ft_isalnum(str[i + j])) || str[i + j] == '_' 
+	while ((str[i + j] && ft_isalnum(str[i + j])) || str[i + j] == '_'
 		|| str[i + j] == '?')
 		j++;
 	return (ft_substr(str, i, j));

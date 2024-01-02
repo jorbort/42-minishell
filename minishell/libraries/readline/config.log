@@ -30,8 +30,8 @@ Kernel configured for up to 8 processors.
 Processor type: arm64e (ARM64E)
 Processors active: 0 1 2 3 4 5 6 7
 Primary memory available: 16.00 gigabytes
-Default processor set: 341 tasks, 2002 threads, 8 processors
-Load average: 3.29, Mach factor: 4.69
+Default processor set: 377 tasks, 2864 threads, 8 processors
+Load average: 1.26, Mach factor: 6.72
 /bin/machine           = unknown
 /usr/bin/oslevel       = unknown
 /bin/universe          = unknown
@@ -46,7 +46,6 @@ PATH: /sbin/
 PATH: /var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin/
 PATH: /var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin/
 PATH: /var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin/
-PATH: /Users/jorgebortolotti/Library/Python/3.9/bin/
 
 
 ## ----------- ##
@@ -1951,7 +1950,7 @@ configure:7074: checking for tgetent
 configure:7074: gcc -o conftest -g -O2   conftest.c  >&5
 ld: Undefined symbols:
   _tgetent, referenced from:
-      _main in conftest-f6b6d8.o
+      _main in conftest-818ddf.o
 clang: error: linker command failed with exit code 1 (use -v to see invocation)
 configure:7074: $? = 1
 configure: failed program was:
@@ -2245,7 +2244,7 @@ configure:7421: checking for mbscasecmp
 configure:7421: gcc -o conftest -g -O2   conftest.c  >&5
 ld: Undefined symbols:
   _mbscasecmp, referenced from:
-      _main in conftest-58a229.o
+      _main in conftest-1ea482.o
 clang: error: linker command failed with exit code 1 (use -v to see invocation)
 configure:7421: $? = 1
 configure: failed program was:
@@ -2384,7 +2383,7 @@ configure:7428: checking for mbscmp
 configure:7428: gcc -o conftest -g -O2   conftest.c  >&5
 ld: Undefined symbols:
   _mbscmp, referenced from:
-      _main in conftest-848619.o
+      _main in conftest-622d67.o
 clang: error: linker command failed with exit code 1 (use -v to see invocation)
 configure:7428: $? = 1
 configure: failed program was:
@@ -2531,7 +2530,7 @@ configure:7450: checking for mbschr
 configure:7450: gcc -o conftest -g -O2   conftest.c  >&5
 ld: Undefined symbols:
   _mbschr, referenced from:
-      _main in conftest-13142c.o
+      _main in conftest-2cd39b.o
 clang: error: linker command failed with exit code 1 (use -v to see invocation)
 configure:7450: $? = 1
 configure: failed program was:

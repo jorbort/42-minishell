@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   token_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juan-anm <juan-anm@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jorgebortolotti <jorgebortolotti@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 11:23:40 by juanantonio       #+#    #+#             */
-/*   Updated: 2023/11/13 14:08:57 by juan-anm         ###   ########.fr       */
+/*   Updated: 2024/01/02 09:52:16 by jorgebortol      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	dupstrlen(char *s, int i)
 	{
 		quote = s[i];
 		i++;
-		while (s[i] != quote && s[i]) 
+		while (s[i] != quote && s[i])
 			i++;
 		if (s[i] == quote)
 			i++;
