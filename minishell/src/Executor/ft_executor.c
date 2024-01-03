@@ -46,6 +46,7 @@ static int	ft_fork(t_program *program, int *end, int fd_in, t_cmd *cmd_list)
 {
 	static int	i = 0;
 
+	init_signals(0);
 	if (program->reset)
 	{
 		i = 0;
@@ -55,7 +56,9 @@ static int	ft_fork(t_program *program, int *end, int fd_in, t_cmd *cmd_list)
 	if (program->data->pid[i] < 0)
 		ft_error(program, 7);
 	if (program->data->pid[i] == 0)
+	{
 		dup_cmd(cmd_list, program, end, fd_in);
+	}
 	i++;
 	return (0);
 }

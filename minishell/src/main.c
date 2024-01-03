@@ -58,6 +58,7 @@ void	shell_loop(t_program *program)
 
 	while (42)
 	{
+		init_signals(1);
 		str = readline(BLUE_T"MiniShell:" YELLOW_T" $> "RESET_COLOR);
 		if (!str)
 		{
