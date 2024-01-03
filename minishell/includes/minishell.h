@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juanantonio <juanantonio@student.42.fr>    +#+  +:+       +#+        */
+/*   By: juan-anm <juan-anm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 14:41:54 by juan-anm          #+#    #+#             */
-/*   Updated: 2023/12/20 11:26:58 by juanantonio      ###   ########.fr       */
+/*   Updated: 2024/01/03 19:00:18 by juan-anm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,6 +116,7 @@ typedef struct s_program
 	struct s_lexer			*lex_list;
 	struct s_lexer			*redir;
 	int						*exit_code;
+	bool					reset;
 }	t_program;
 
 ///////////////TOKENIZER *.c///////////////

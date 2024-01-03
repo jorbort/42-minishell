@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juanantonio <juanantonio@student.42.fr>    +#+  +:+       +#+        */
+/*   By: juan-anm <juan-anm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 14:39:17 by juan-anm          #+#    #+#             */
-/*   Updated: 2023/12/27 16:25:41 by juanantonio      ###   ########.fr       */
+/*   Updated: 2024/01/03 19:02:13 by juan-anm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ void	init_program(t_program *program, char **env, int *excode)
 	program->lex_list = NULL;
 	program->cmd_list = NULL;
 	program->exit_code = excode;
+	program->reset = false;
 }
 
 void	reset_program(t_program *program, char *str)
@@ -48,27 +49,31 @@ void	reset_program(t_program *program, char *str)
 	}
 	program->lex_list = NULL;
 	program->cmd_list = NULL;
-	shell_loop(program);
+	program->reset = true;
 }
 
 void	shell_loop(t_program *program)
 {
 	char		*str;
 
-	str = readline(BLUE_T"MiniShell:" YELLOW_T" $> "RESET_COLOR);
-	if (!str)
+	while (42)
 	{
-		if (isatty(STDIN_FILENO))
-			write(2, "exit\n", 6);
-		exit ((*program->exit_code));
+		str = readline(BLUE_T"MiniShell:" YELLOW_T" $> "RESET_COLOR);
+		if (!str)
+		{
+			exit ((*program->exit_code));
+		}
+		if (!*str || !ft_strncmp(str, "", 1))
+			reset_program(program, str);
+		else
+		{
+			add_history(str);
+			program->lex_list = tokenizer(&program->lex_list, str);
+			if (!ft_parser(program))
+				handle_execution(program);
+			reset_program(program, str);
+		}
 	}
-	if (!*str || !ft_strncmp(str, "", 1))
-		reset_program(program, str);
-	add_history(str);
-	program->lex_list = tokenizer(&program->lex_list, str);
-	if (!ft_parser(program))
-		handle_execution(program);
-	reset_program(program, str);
 }
 
 int	main(int ac, char **av, char **env)

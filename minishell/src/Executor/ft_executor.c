@@ -6,7 +6,7 @@
 /*   By: juan-anm <juan-anm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 09:23:12 by jorge             #+#    #+#             */
-/*   Updated: 2023/12/11 14:56:08 by juan-anm         ###   ########.fr       */
+/*   Updated: 2024/01/03 18:59:24 by juan-anm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,11 @@ static int	ft_fork(t_program *program, int *end, int fd_in, t_cmd *cmd_list)
 {
 	static int	i = 0;
 
+	if (program->reset)
+	{
+		i = 0;
+		program->reset = false;
+	}
 	program->data->pid[i] = fork();
 	if (program->data->pid[i] < 0)
 		ft_error(program, 7);

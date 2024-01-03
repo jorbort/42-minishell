@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_lst_utils.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juanantonio <juanantonio@student.42.fr>    +#+  +:+       +#+        */
+/*   By: juan-anm <juan-anm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 17:38:48 by jorge             #+#    #+#             */
-/*   Updated: 2023/12/20 11:27:00 by juanantonio      ###   ########.fr       */
+/*   Updated: 2024/01/03 18:38:12 by juan-anm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ t_cmd	*t_cmd_new(char **str_cmd, int num_redirs, t_lexer *redirection)
 	new->built_in = false;
 	new->num_redirs = num_redirs;
 	new->redirection = redirection;
+	new->here_d_file_name = NULL;
 	new->next = NULL;
 	new->prev = NULL;
 	return (new);
