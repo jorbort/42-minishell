@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juan-anm <juan-anm@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jorge <jorge@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 14:39:17 by juan-anm          #+#    #+#             */
-/*   Updated: 2024/01/03 19:02:13 by juan-anm         ###   ########.fr       */
+/*   Updated: 2024/01/04 09:58:56 by jorge            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,9 @@ void	reset_program(t_program *program, char *str)
 		free(program->data->pid);
 		program->data->pid = NULL;
 	}
+	if (program->data->paths)
+		free_double_arr(program->data->paths);
+	program->data->paths = NULL;
 	program->lex_list = NULL;
 	program->cmd_list = NULL;
 	program->reset = true;
@@ -59,6 +62,8 @@ void	shell_loop(t_program *program)
 	while (42)
 	{
 		init_signals(1);
+		if (program->reset == true)
+			parse_env(program, program->data);
 		str = readline(BLUE_T"MiniShell:" YELLOW_T" $> "RESET_COLOR);
 		if (!str)
 		{

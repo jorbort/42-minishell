@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jorgebortolotti <jorgebortolotti@studen    +#+  +:+       +#+        */
+/*   By: jorge <jorge@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 08:21:56 by jorge             #+#    #+#             */
-/*   Updated: 2023/12/27 17:21:36 by jorgebortol      ###   ########.fr       */
+/*   Updated: 2024/01/04 09:43:36 by jorge            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ static int	find_cmd(t_cmd *cmd_list, t_program *program)
 	char	*path;
 
 	i = 0;
+	if (!program->data->paths)
+		return (cmd_not_found(cmd_list->cmd[0]));
 	cmd_list->cmd = rejoin_str(cmd_list->cmd);
 	if (!access(cmd_list->cmd[0], F_OK))
 		execve(cmd_list->cmd[0], cmd_list->cmd, program->data->envp);

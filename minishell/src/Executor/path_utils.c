@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   path_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juanantonio <juanantonio@student.42.fr>    +#+  +:+       +#+        */
+/*   By: jorge <jorge@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 15:04:17 by jbortolo          #+#    #+#             */
-/*   Updated: 2023/12/27 15:15:05 by juanantonio      ###   ########.fr       */
+/*   Updated: 2024/01/04 09:47:23 by jorge            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ int	parse_env(t_program *program, t_data *data)
 	char	*tmp;
 
 	path_fromenv = search_path(program->data->envp);
+	if (!path_fromenv)
+		return (1);
 	data->paths = ft_split(path_fromenv, ':');
 	free(path_fromenv);
 	i = 0;
