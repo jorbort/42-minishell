@@ -6,7 +6,7 @@
 
 1. Clona este repositorio:
    ```bash
-   git clone <URL-del-repositorio>
+   git clone https://github.com/jorbort/42-minishell
    cd minishell
    ```
 2. Compila el proyecto ejecutando el siguiente comando:
